@@ -1,9 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route }from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from './components/Landing/Landing';
+import Project from './pages/'
 
 function App() {
   return (
-    <div>Hello World</div>
+    <React.Fragment>
+      <Router>
+        <div className="full-container">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            {/* <Route path="/profile" element={<Profile />} /> */}
+            <Route path="/project" element={<Project />} />
+            {/* <Route path="/friends" element={<Friends />} /> */}
+          </Routes>
+        </div>
+      </Router>
+    </React.Fragment>
   );
 }
 
