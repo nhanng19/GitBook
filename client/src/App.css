@@ -1,3 +1,10 @@
+:root {
+    --background1: #f4e6c3;
+    --background2: #f4EAD5;
+    --text-color: black;
+    --nav-color: #CCD6A6;
+}
+
 
 * {
     margin: 0;
@@ -19,8 +26,13 @@ html {
 body {
     /* Decide font-family here */
     /* as well as font-weight */
+    font-size: 2rem;
     /* background-color: #F4EAD5; */
     background-image: linear-gradient(to right bottom, #f4e6c3, #F4EAD5);
+    background-size: cover;
+    background-repeat: no-repeat;
     line-height: 1.6;
+    color: rgb(2, 2, 2);
+    min-height: 100vh
 }
 
