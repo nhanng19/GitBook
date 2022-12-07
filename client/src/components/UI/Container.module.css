@@ -1,0 +1,10 @@
+/* Container css */
+.container {
+    max-width: 120rem;
+    margin: 8rem auto;
+    background-color: maincolor;
+    box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
+
+    min-height: 50rem;
+}
+
