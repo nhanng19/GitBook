@@ -3,7 +3,7 @@ const { Schema } = require('mongoose');
 const userSchema = require('./User');
 
 const projectSchema = new Schema(
-    {
+    {   
         projectName: {
             type: String,
             require: true,
