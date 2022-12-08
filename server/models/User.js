@@ -22,6 +22,12 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        github: {
+            type: String,
+        },
+        linkedin: {
+            type: String,
+        },
         myProjects: [projectSchema],
     }
 );
