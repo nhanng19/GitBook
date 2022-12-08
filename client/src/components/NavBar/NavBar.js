@@ -3,7 +3,7 @@ import classes from "./NavBar.module.css";
 import { FaSearch } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
+// import { FaUserAlt } from "react-icons/fa";
 import logo from "../../assets/Logo.png";
 import profile from '../../assets/profile(test).png';
 
