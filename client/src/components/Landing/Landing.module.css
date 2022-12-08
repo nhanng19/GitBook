@@ -31,17 +31,19 @@
 }
 
 .text h1 {
+  font-size: 3.3rem;
   font-weight: bold;
   color:#000000
   
 }
 .text p {
-  font-size: 20px;
+  font-size: 2rem;
   line-height: 46px;
 }
 
 .text p span {
-  color: #f09053;
+  color: #bfca93;
+  font-weight: bold;
 }
 
 .text a {
@@ -49,7 +51,7 @@
   display: inline-block;
   font-size: 18px;
   text-transform: uppercase;
-  color: #fff;
+  color: rgb(0, 0, 0);
   text-decoration: none;
   padding: 18px 30px;
   letter-spacing: 2px;
@@ -90,11 +92,10 @@
 .icon div {
   position: absolute;
   text-align: center;
-  font-size: 80px;
+  font-size: 7rem;
   color: #ccd6a6;
   animation: inherit;
   animation-direction: reverse;
-  transform: rotate(10deg);
 }
 
 .icon div:nth-child(1) {
@@ -132,7 +133,7 @@
 }
 
 .wave {
-  background: url(../../img/wave.svg) repeat-x;
+  background: url(../../assets/SVG/wave.svg) repeat-x;
   position: absolute;
   top: -198px;
   width: 6400px;
