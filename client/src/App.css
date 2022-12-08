@@ -1,0 +1,38 @@
+:root {
+    --background1: #f4e6c3;
+    --background2: #f4EAD5;
+    --text-color: black;
+    --nav-color: #CCD6A6;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    /* 62.5% is come from that 16px * 62.5% is 10px. so our 1rem = 10px. easy to calculate the px size using rem */
+    font-size: 62.5%; 
+}
+
+body {
+    /* Decide font-family here */
+    /* as well as font-weight */
+    font-size: 2rem;
+    /* background-color: #F4EAD5; */
+    background-image: linear-gradient(to right bottom, #f4e6c3, #F4EAD5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    line-height: 1.6;
+    color: rgb(2, 2, 2);
+    min-height: 100vh
+}
+
