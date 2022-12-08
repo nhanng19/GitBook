@@ -1,0 +1,174 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 50px 100px 0;
+}
+
+.text {
+  padding-right: 150px;
+}
+
+.text h1 {
+  font-weight: bold;
+  color:#000000
+  
+}
+.text p {
+  font-size: 20px;
+  line-height: 46px;
+}
+
+.text p span {
+  color: #f09053;
+}
+
+.text a {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  padding: 18px 30px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.text a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: #ccd6a6;
+  z-index: -1;
+  transition: all ease 0.5s;
+}
+
+.text a:hover:before {
+  width: 100%;
+}
+
+.img {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(520px, #ccd6a6, transparent 50%);
+  margin-top: -50px;
+}
+
+.icon {
+  height: 100%;
+  animation: rotations 60s linear infinite;
+}
+
+.icon div {
+  position: absolute;
+  text-align: center;
+  font-size: 80px;
+  color: #ccd6a6;
+  animation: inherit;
+  animation-direction: reverse;
+  transform: rotate(10deg);
+}
+
+.icon div:nth-child(1) {
+  top: 0;
+  left: 42%;
+}
+
+.icon div:nth-child(2) {
+  top: 25%;
+  right: 0;
+}
+
+.icon div:nth-child(3) {
+  top: 70%;
+  left: 70%;
+}
+
+.icon div:nth-child(4) {
+  top: 25%;
+  left: 0;
+}
+
+.icon div:nth-child(5) {
+  top: 70%;
+  left: 10%;
+}
+
+.ocean {
+  height: 5%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #dae2b6;
+}
+
+.wave {
+  background: url(../../img/wave.svg) repeat-x;
+  position: absolute;
+  top: -198px;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+  top: -175px;
+  animation: wave 100s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
+    swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+@keyframes rotations {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%,
+  100% {
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
