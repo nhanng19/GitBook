@@ -28,11 +28,11 @@ class AuthService {
         return localStorage.getItem('id_token');
     }
 
-    // login(idToken) {
-    //     // save token to local storage
-    //     localStorage.setItem('id_token', idToken);
-    //     window.location.assign('/Project');
-    // }
+    login(idToken) {
+         // save token to local storage
+         localStorage.setItem('id_token', idToken);
+         window.location.assign('/Project');
+     }
 
     logout() {
         // clear token and profile
