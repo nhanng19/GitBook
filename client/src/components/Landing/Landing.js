@@ -7,7 +7,7 @@ import {
   faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useState } from "react";
 // importing dependencies for sign-in modal
 import { Nav, Modal, Tab } from 'react-bootstrap';
 import loginForm from '../LoginModal/LoginModal';
