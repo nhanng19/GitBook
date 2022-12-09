@@ -29,10 +29,10 @@ class AuthService {
     }
 
     login(idToken) {
-        // save token to local storage
-        localStorage.setItem('id_token', idToken);
-        window.location.assign('/Project');
-    }
+         // save token to local storage
+         localStorage.setItem('id_token', idToken);
+         window.location.assign('/Project');
+     }
 
     logout() {
         // clear token and profile
