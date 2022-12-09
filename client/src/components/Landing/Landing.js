@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from '../LoginModal/LoginModal';
 import SignUpForm from '../SignupModal/SignupModal';
+import React, { useState } from 'react';
+
 const Landing = () => {
 
   const [showModal, setShowModal] = useState(false);
