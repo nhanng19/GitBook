@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Poppins" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FFFBE9;
+  background-color: #FFFBE9 !important;
 }
 
 code {
