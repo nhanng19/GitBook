@@ -27,7 +27,7 @@ const SideBar = (props) => {
             <svg className={classes.side_nav_icon}>
               <FaFolder size="2rem" color="#333" />
             </svg>
-            <span>MY PROJECT</span>
+            <span>MY PROFILE</span>
           </a>
         </li>
         <li className={classes.side_nav_item}>
