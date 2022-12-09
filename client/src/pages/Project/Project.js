@@ -12,7 +12,7 @@ const Project = () => {
             <NavBar />
             <Content>
                 <SideBar>
-                    Navigation
+                    
                 </SideBar>
                 <Main>
                     Project view
