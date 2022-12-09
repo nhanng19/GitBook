@@ -7,8 +7,8 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const sendEmail = require('./utils/sendEmail');
 const dotenv = require("dotenv").config();
-const bodyParser = require("body-parser");
-const cors = require("cors");
+// const bodyParser = require("body-parser");
+// const cors = require("cors");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -20,8 +20,8 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(cors());
+// app.use(bodyParser.json());
+// app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}!`);

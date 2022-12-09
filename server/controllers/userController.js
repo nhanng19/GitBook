@@ -17,7 +17,7 @@ module.exports = {
     const user = await User.create(body);
 
     if (!user) {
-      return res.status(400).json({ message: 'Something is wrong!' });
+      return res.status(400).json({ message: 'An error occurred!' });
     }
     const token = signToken(user);
     res.json({ token, user });
@@ -25,13 +25,13 @@ module.exports = {
   async login({ body }, res) {
     const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
     if (!user) {
-      return res.status(400).json({ message: "Can't find this user" });
+      return res.status(400).json({ message: "Cannot find this user!" });
     }
 
     const correctPw = await user.isCorrectPassword(body.password);
 
     if (!correctPw) {
-      return res.status(400).json({ message: 'Wrong password!' });
+      return res.status(400).json({ message: 'Inputted the wrong password!' });
     }
     const token = signToken(user);
     res.json({ token, user });
