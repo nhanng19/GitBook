@@ -9,9 +9,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 // importing dependencies for sign-in modal
+import React, { useState } from 'react';
 import { Nav, Modal, Tab } from 'react-bootstrap';
-import loginForm from '../LoginModal/LoginModal';
-import signUpForm from '../SignupModal/SignupModal';
+import LoginForm from "../LoginModal/LoginModal";
+import SignupForm from "../SignupModal/SignupModal";
+
 
 const Landing = () => {
 
@@ -90,17 +92,16 @@ const Landing = () => {
             <Modal.Body>
               <Tab.Content>
                 <Tab.Pane eventKey='login'>
-                  <loginForm handleModalClose={() => setShowModal(false)} />
+                  <LoginForm handleModalClose={() => setShowModal(false)} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='signup'>
-                  <signUpForm handleModalClose={() => setShowModal(false)} />
+                  <SignupForm handleModalClose={() => setShowModal(false)} />
                 </Tab.Pane>
               </Tab.Content>
             </Modal.Body>
           </Tab.Container>
         </Modal>
       </>
-    
   );
 };
 
