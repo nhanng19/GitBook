@@ -39,9 +39,6 @@ const SideBar = (props) => {
           </a>
         </li>
       </ul>
-      <div className={classes.legal}>
-        &copy; 2022 by Exodia. All rights reserved.
-      </div>
     </nav>
   );
 };

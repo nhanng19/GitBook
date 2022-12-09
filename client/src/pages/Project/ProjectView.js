@@ -20,6 +20,17 @@ const ProjectView = () => {
         Augue lacus viverra vitae congue eu consequat ac. Eu sem integer vitae
         justo eget. Pretium nibh ipsum consequat nisl vel pretium lectus quam.
       </h4>
+      <form className={classes.toDoForm}>
+        <div className={classes.inputHeader}>
+          <label className={classes.formLabel}>To-do list:</label>
+          <input className={classes.formInput}></input>
+        </div>
+        <div className={classes.inputBody}>
+          <label className={classes.formLabel}>Assigners:</label>
+          <input className={classes.formInput}></input>
+          <button className={classes.addBtn}>Add</button>
+        </div>
+      </form>
       <div className={classes.kanbanBox}>
         <div className={classes.kanban}>
           <div className={classes.kanbanHeader}>To-Do</div>
@@ -68,22 +79,24 @@ const ProjectView = () => {
         <div className={classes.kanban}>
           <div className={classes.kanbanHeader}>In-Progress</div>
           <div className={classes.kanbanBody}>
-            
-          <div className={classes.kanbanItem}>
-            <div className={classes.itemHeader}>
-              <h3 className={classes.itemAssigner}>Richard</h3>
-              <button className={classes.btn}>
-                <svg className={classes.icon}>
-                  <FaArrowLeft size="2rem" />
-                </svg>
-              </button>
-              <button className={classes.btn}>
-                <svg className={classes.icon}>
-                  <FaArrowRight size="2rem" />
-                </svg>
-              </button>
-            </div>            
-              <p className={classes.itemDescription}>Testing adsfasdghajshdfjadasfhk testubgajkshdgakjshgdlkjasdghklj asdgagds</p>
+            <div className={classes.kanbanItem}>
+              <div className={classes.itemHeader}>
+                <h3 className={classes.itemAssigner}>Richard</h3>
+                <button className={classes.btn}>
+                  <svg className={classes.icon}>
+                    <FaArrowLeft size="2rem" />
+                  </svg>
+                </button>
+                <button className={classes.btn}>
+                  <svg className={classes.icon}>
+                    <FaArrowRight size="2rem" />
+                  </svg>
+                </button>
+              </div>
+              <p className={classes.itemDescription}>
+                Testing adsfasdghajshdfjadasfhk testubgajkshdgakjshgdlkjasdghklj
+                asdgagds
+              </p>
             </div>
           </div>
         </div>
@@ -92,19 +105,19 @@ const ProjectView = () => {
           <div className={classes.kanbanHeader}>Done</div>
           <div className={classes.kanbanBody}>
             <div className={classes.kanbanItem}>
-                <div className={classes.itemHeader}>
-                    <h3 className={classes.itemAssigner}>Richard</h3>
-              <button className={classes.btn}>
-                <svg className={classes.icon}>
-                  <FaArrowLeft size="2rem" />
-                </svg>
-              </button>
-              
-              <button className={classes.btn}>
-                <svg className={classes.icon}>
-                  <FaTrashAlt size="2rem" />
-                </svg>
-              </button>
+              <div className={classes.itemHeader}>
+                <h3 className={classes.itemAssigner}>Richard</h3>
+                <button className={classes.btn}>
+                  <svg className={classes.icon}>
+                    <FaArrowLeft size="2rem" />
+                  </svg>
+                </button>
+
+                <button className={classes.btn}>
+                  <svg className={classes.icon}>
+                    <FaTrashAlt size="2rem" />
+                  </svg>
+                </button>
               </div>
               <p className={classes.itemDescription}>Testing</p>
             </div>
@@ -113,18 +126,14 @@ const ProjectView = () => {
       </div>
       <div className={classes.chatBox}>
         <div className={classes.chat}>
-            <p>Richard : blah blah blah</p>
-            <p>Nhan : lahb lahb lahb</p>
-            <p>Dat : ahbl ahbl ahbl</p>
-            <p>Lydia : hbla hbla hbla</p>
+          <p>Richard : blah blah blah</p>
+          <p>Nhan : lahb lahb lahb</p>
+          <p>Dat : ahbl ahbl ahbl</p>
+          <p>Lydia : hbla hbla hbla</p>
         </div>
         <form className={classes.chatForm}>
-            <textarea className={classes.chatInput}>
-
-            </textarea>
-            <button className={` ${classes.sendBtn}`}>
-                Send
-            </button>
+          <textarea className={classes.chatInput}></textarea>
+          <button className={` ${classes.sendBtn}`}>Send</button>
         </form>
       </div>
     </div>
