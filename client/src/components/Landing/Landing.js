@@ -16,7 +16,7 @@ const Landing = () => {
             <h1>Organized workspace, organized life</h1>
             <p>
               GitBook is your go-to hub for not just to-do lists but all of your
-              projects. Connect and collaborate with like-minded inviduals.
+              projects. <span>Connect and collaborate</span> with like-minded inviduals.
             </p>
             <a href="#" className={styles.btn}>
               Get Started
