@@ -27,7 +27,7 @@ const typeDefs = gql`
         projectName: String!
         projectDescription: String!
         task: String
-        colaborators: [User]
+        collaborators: [User]
     }
 
     type Auth {
