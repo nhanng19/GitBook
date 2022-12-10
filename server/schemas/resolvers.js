@@ -8,7 +8,7 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 try {
-                    const user = await User.findOne({ _id: context.user._id });
+                    const user = await User.findOne({ _id: context.user._id }).select("-__v -password");
                     return user;
                 } catch (err) {
                     console.log('Unable to find user data', err);
