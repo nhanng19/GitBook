@@ -1,9 +1,10 @@
 import React from "react";
-import Container from "../../components/UI/Container";
+// import Container from "../../components/UI/Container";
 import NavBar from "../../components/NavBar/NavBar";
 import Content from "../../components/UI/Content";
 import SideBar from "../../components/UI/SideBar";
 import Main from "../../components/UI/Main";
+import ProjectView from "./ProjectView";
 
 const Project = () => {
   return (
@@ -11,7 +12,10 @@ const Project = () => {
       <NavBar />
       <Content>
         <SideBar></SideBar>
-        <Main>Project view</Main>
+        <Main>
+          <ProjectView />
+
+        </Main>
       </Content>
     </>
   );
