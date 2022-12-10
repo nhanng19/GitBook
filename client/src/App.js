@@ -2,11 +2,15 @@ import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import socketIO from 'socket.io-client';
 
 import LandingPage from './pages/LandingPage';
-import Project from './pages/Project/Project';
+// import Project from './pages/Project/Project';
+import Home from './pages/Home';
 // import Container from './components/UI/Container';
 import './App.css';
+
+const socket = socketIO.connect('http://localhost:3000');
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,8 +44,9 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               {/* <Route path="/profile" element={<Profile />} /> */}
-              <Route path="/project" element={<Project />} />
+              <Route path="/Home" element={<Home />} />
               {/* <Route path="/friends" element={<Friends />} /> */}
+              {/* <Route path="/chat" element={<Chat />} /> */}
             </Routes>
           </div>
         </Router>
