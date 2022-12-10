@@ -29,13 +29,13 @@ const NavBar = () => {
           <svg className={classes.nav__icon}>
             <FaUserFriends size="2.5rem" />
           </svg>
-          <span class={classes.user_nav__notification}>7</span>
+          <span className={classes.user_nav__notification}>7</span>
         </div>
         <div className={classes.user_nav__icon_box}>
           <svg className={classes.nav__icon}>
             <FaEnvelope size="2.5rem" />
           </svg>
-          <span class={classes.user_nav__notification}>13</span>
+          <span className={classes.user_nav__notification}>13</span>
         </div>
         <div className={classes.user_nav__user}>
           <img src={profile} alt="User" className={classes.nav__profile} />
