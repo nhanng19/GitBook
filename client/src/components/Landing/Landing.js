@@ -1,5 +1,6 @@
 import styles from "./Landing.module.css";
-
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faDiagramNext,
@@ -12,11 +13,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from '../LoginModal/LoginModal';
 import SignUpForm from '../SignupModal/SignupModal';
-import React, { useState } from 'react';
+
+
 
 const Landing = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const navigateHome = () => {
+    navigate('/Home')
+  }
 
   return (
     <>
@@ -32,7 +38,7 @@ const Landing = () => {
               <a className={styles.btn} onClick={() => setShowModal(true)}>
                 Get Started
               </a>
-              <a className={styles.btn}>
+              <a className={styles.btn} onClick={navigateHome}>
                 View Projects
               </a>
             </div>
