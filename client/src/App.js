@@ -39,16 +39,18 @@ function App() {
     <ApolloProvider client={client}>
       <React.Fragment>
         <Router>
-          <div className="full-container">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-              {/* <Route path="/profile" element={<Profile />} /> */}
-              <Route path="/Home" element={<Home />} />
-              {/* <Route path="/friends" element={<Friends />} /> */}
-              {/* <Route path="/chat" element={<Chat />} /> */}
-            </Routes>
-          </div>
+          <>
+            <div className="full-container">
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                {/* <Route path="/profile" element={<Profile />} /> */}
+                <Route path="/Home" element={<Home />} />
+                {/* <Route path="/friends" element={<Friends />} /> */}
+                {/* <Route path="/chat" element={<Chat />} /> */}
+              </Routes>
+            </div>
+          </>
         </Router>
       </React.Fragment>
     </ApolloProvider>
