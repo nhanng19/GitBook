@@ -1,0 +1,23 @@
+.projectTitle {
+    display: inline-block;
+    font-size: 4rem;
+    text-align: left;
+    /* margin-right: 4rem; */
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .projectDate {
+    font-size: 2rem;
+    margin-left: 3rem;
+    display: inline-block;
+  }
+  
+  .projectDescription {
+    font-size: 2rem;
+    text-align: left;
+    border: 1px solid black;
+    padding: 2rem;
+    margin: 1rem 6rem;
+    min-height: 14rem;
+  }

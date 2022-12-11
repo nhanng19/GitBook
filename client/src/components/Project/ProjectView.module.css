@@ -1,100 +1,34 @@
-
-
-
-
-.projectTitle {
-  display: inline-block;
-  font-size: 4rem;
-  text-align: left;
-  /* margin-right: 4rem; */
-  font-weight: bold;
-  margin: 0;
-}
-
-.projectDate {
-  font-size: 2rem;
-  margin-left: 3rem;
-  display: inline-block;
-}
-
-.projectDescription {
-  font-size: 2rem;
-  text-align: left;
-  border: 1px solid black;
-  padding: 2rem;
-  margin: 1rem 6rem;
-  min-height: 14rem;
-}
-
-.toDoForm {
-  padding: 3rem;
-  text-align: center;
-}
-
-.inputHeader {
-width: 100%;
-/* background-color: red; */
-display: flex;
-}
-
-.inputBody {
-  display: flex;
-}
-
-.formLabel {
-  font-size: 2.5rem;
-  margin: 1rem;
-}
-
-.formInput {
-  font-size: 2.5rem;
-  margin: 1rem;
-  flex: 1 0 0;
-}
-
-.addBtn {
-  font-size: 2rem;
-  margin: 1rem;
-  padding: 5px;
-  width: 10rem;
-
-}
-
-
-
-
-
 .chatBox {
   min-height: 20rem;
   margin: 3rem;
-  
+
   border: 3px solid black;
   border-radius: 10px;
   box-shadow: 0 7px 1rem rgba(0, 0, 0, 0.3);
 }
 
 .chat {
-    min-height: 60rem;
-    /* background-color: aqua; */
-    padding: 3rem;
+  min-height: 60rem;
+  /* background-color: aqua; */
+  padding: 3rem;
 }
 .chat > * {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .chatForm {
-/* background-color: red; */
-display: flex;
-padding: 10px;
+  /* background-color: red; */
+  display: flex;
+  padding: 10px;
 }
 
 .chatInput {
-    width: 100%;
-    font-size: 1.5rem;
-    padding: 10px;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 10px;
 }
 
 .sendBtn {
-    width: 7rem;
-    font-size: 1.7rem;
+  width: 7rem;
+  font-size: 1.7rem;
 }

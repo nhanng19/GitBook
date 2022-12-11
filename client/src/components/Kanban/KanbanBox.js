@@ -4,10 +4,10 @@ import KanbanBoardToDo from "./KanbanBoardToDo";
 import KanbanBoardInProgress from "./KanbanBoardInProgress";
 import KanbanBoardDone from "./KanbanBoardDone";
 
-const KanbanBox = () => {
+const KanbanBox = (props) => {
   return (
     <div className={classes.kanbanBox}>
-      <KanbanBoardToDo />
+      <KanbanBoardToDo tasks={props.tasksTodo} />
       <KanbanBoardInProgress />
       <KanbanBoardDone />      
     </div>
