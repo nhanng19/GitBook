@@ -5,13 +5,13 @@ import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const LoginForm = () => {
-    const [userData, setUserData] = useState({ email: "", password: "" });
-    const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
-    const [loginUser] = useMutation(LOGIN_USER);
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [loginUser] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.targtet;
+    const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
   };
 
@@ -24,7 +24,7 @@ const LoginForm = () => {
     }
     try {
       const { data } = await loginUser({
-        varialbes: { ...userData },
+        variables: { ...userData },
       });
 
       Auth.login(data.loginUser.token);
