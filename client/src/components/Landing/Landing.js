@@ -1,6 +1,5 @@
 import styles from "./Landing.module.css";
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faDiagramNext,
@@ -11,18 +10,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // importing dependencies for sign-in modal
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
-import LoginForm from '../LoginModal/LoginModal';
-import SignUpForm from '../SignupModal/SignupModal';
-
-
+import LoginForm from "../LoginModal/LoginModal";
+import SignUpForm from "../SignupModal/SignupModal";
+import React, { useState } from "react";
 
 const Landing = () => {
-
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
-  const navigateHome = () => {
-    navigate('/Home')
-  }
 
   return (
     <>
@@ -32,15 +25,14 @@ const Landing = () => {
             <div className={styles.text}>
               <h1>Organized workspace, organized life</h1>
               <p>
-                GitBook is your go-to hub for not just to-do lists but all of your
-                projects. Connect and collaborate with like-minded inviduals.
+                GitBook is your go-to hub for not just to-do lists but all of
+                your projects. Connect and collaborate with like-minded
+                inviduals.
               </p>
               <a className={styles.btn} onClick={() => setShowModal(true)}>
                 Get Started
               </a>
-              <a className={styles.btn} onClick={navigateHome}>
-                View Projects
-              </a>
+              <a className={styles.btn}>View Projects</a>
             </div>
           </div>
         </div>
@@ -74,40 +66,43 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* login/signup modal */}
       <Modal
-        size='lg'
+        dialogClassName="border-radius-2"
+        size="s"
         show={showModal}
         onHide={() => setShowModal(false)}
-        aria-labelledby='signup-modal'>
-        {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey='login'>
-          <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
-                <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Tab.Container defaultActiveKey="login">
+          <Modal.Header style={{ backgroundColor: "#CCD6A6" }} closeButton>
+            <Modal.Title id="signup-modal">
+              <Nav variant="pills">
+                <Nav.Item style={{ fontSize: "2rem" }}>
+                  <Nav.Link eventKey="login">Login</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                <Nav.Item style={{ fontSize: "2rem" }}>
+                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Tab.Content>
-              <Tab.Pane eventKey='login'>
-                <LoginForm handleModalClose={() => setShowModal(false)} />
+              <Tab.Pane eventKey="login">
+                <LoginForm
+                  style={{ width: "50%" }}
+                  handleModalClose={() => setShowModal(false)}
+                />
               </Tab.Pane>
-              <Tab.Pane eventKey='signup'>
+              <Tab.Pane eventKey="signup">
                 <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
-      </>
-    
+    </>
   );
 };
 

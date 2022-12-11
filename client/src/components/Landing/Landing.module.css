@@ -57,6 +57,7 @@
   letter-spacing: 2px;
   font-weight: 500;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .text a:before {
