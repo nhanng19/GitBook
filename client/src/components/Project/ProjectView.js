@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./ProjectView.module.css";
-import Kanban from "../UI/Kanban";
+import Kanban from '../Kanban/Kanban';
 import Container from "../UI/Container";
 
 const ProjectView = () => {
