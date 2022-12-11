@@ -6,7 +6,7 @@ const SideBar = (props) => {
   return (
     <nav className={classes.sidebar}>
       <ul className={classes.side_nav}>
-        <li className={`${classes.side_nav_item} ${classes.side_nav_active}`} >
+        <li className={`${classes.side_nav_item}`} >
           <a href="#" className={classes.side_nav_link}>
             <svg className={classes.side_nav_icon}>
               <FaHome size="2rem" color="#333" />
