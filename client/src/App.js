@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import socketIO from 'socket.io-client';
 
-import LandingPage from './pages/LandingPage';
+import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
 import Home from "./pages/Home";
 // import Container from './components/UI/Container';
@@ -58,7 +58,9 @@ function App() {
   } else {
     routes = (
       <>
-        <Route path="/" element={<LandingPage />} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
       </>
     );
   }
@@ -67,16 +69,7 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <div className="full-container">
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-                {/* <Route path="/profile" element={<Profile />} /> */}
-                <Route path="/Home" element={<Home />} />
-                {/* <Route path="/friends" element={<Friends />} /> */}
-                {/* <Route path="/chat" element={<Chat />} /> */}
-              </Routes>
-            </div>
+            <div className="full-container">{routes}</div>
           </>
         </Router>
       </React.Fragment>
