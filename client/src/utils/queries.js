@@ -12,8 +12,7 @@ export const QUERY_ME = gql`
                 projectName
                 projectDescription
                 task
-            }
-            
+            }  
         }
     }
-`
+`;
