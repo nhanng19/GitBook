@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ProjectView.module.css";
-import Kanban from '../Kanban/Kanban';
 import Container from "../UI/Container";
+import KanbanBox from "../Kanban/KanbanBox";
 
 const ProjectView = () => {
   return (
@@ -32,7 +32,7 @@ const ProjectView = () => {
           <button className={classes.addBtn}>Add</button>
         </div>
       </form>
-      <Kanban />
+      <KanbanBox />
       <div className={classes.chatBox}>
         <div className={classes.chat}>
           <p>Richard : blah blah blah</p>
