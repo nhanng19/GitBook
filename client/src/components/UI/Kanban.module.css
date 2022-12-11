@@ -1,0 +1,56 @@
+.kanbanBox {
+    padding: 2rem;
+    display: flex;
+  }
+  
+  .kanban {
+    border: 1px solid black;
+    margin: 5px;
+    flex: 1 0 0;
+    padding: 10px;
+    min-height: 60rem;
+  }
+  
+  .kanbanHeader {
+    /* display: flex; */
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .kanbanItem {
+    flex: 1 0 0;
+    /* display: flex; */
+    /* align-items: center; */
+    min-height: 3rem;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 7px 1rem rgba(0, 0, 0, 0.3);
+  }
+  .itemHeader {
+    display: flex;
+    padding-left: 15px;
+    padding-top: 7px;
+  }
+  .itemAssigner {
+    padding: 6px 10px 0px 5px;
+  }
+  
+  .btn {
+    height: 3rem;
+    width: 3rem;
+    margin: 2px 5px;
+  }
+  
+  .icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .itemDescription {
+    font-size: 1.6rem;
+    padding: 5px 5px 2px 5px;
+    width: 100%;
+  }
