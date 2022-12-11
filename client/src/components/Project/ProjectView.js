@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./ProjectView.module.css";
-import { FaTrashAlt, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Kanban from "../UI/Kanban";
+import Container from "../UI/Container";
 
 const ProjectView = () => {
   return (
-    <div className={classes.container}>
-      <div className={classes.projectHeader}>
+    <Container>
+      <div>
         <h1 className={classes.projectTitle}>Project Title</h1>
         <p className={classes.projectDate}>12/27/2022</p>
       </div>
@@ -45,7 +45,7 @@ const ProjectView = () => {
           <button className={` ${classes.sendBtn}`}>Send</button>
         </form>
       </div>
-    </div>
+    </Container>
   );
 };
 
