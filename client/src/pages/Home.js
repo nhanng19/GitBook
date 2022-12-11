@@ -4,7 +4,8 @@ import NavBar from "../components/NavBar/NavBar";
 import Content from "../components/UI/Content";
 import SideBar from "../components/UI/SideBar";
 import Main from "../components/UI/Main";
-import ProjectView from "../components/Project/ProjectView";
+// import ProjectView from "../components/Project/ProjectView";
+import Chat from "../components/Chat/Chat";
 
 const Project = () => {
   return (
@@ -13,8 +14,8 @@ const Project = () => {
       <Content>
         <SideBar></SideBar>
         <Main>
-          <ProjectView />
-
+          {/* <ProjectView /> */}
+          <Chat />
         </Main>
       </Content>
     </>
