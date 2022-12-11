@@ -29,6 +29,11 @@ const userSchema = new Schema(
             type: String,
         },
         myProjects: [projectSchema],
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        }
     }
 );
 
