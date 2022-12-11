@@ -1,15 +1,3 @@
-/* Container css */
 .container {
-    max-width: 120rem;
-    margin: 0rem auto;
-    background-color: maincolor;
-    box-shadow: 0 2rem 6rem rgba(0, 0, 0, .3);
-
-    min-height: 80rem
-}
-
-@media screen and (min-width: 1200px) {
-    .container {
-        margin: 8rem auto;
-    }
+    padding: 3rem;
 }

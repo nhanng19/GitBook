@@ -15,6 +15,10 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
+import NavBar from "./components/NavBar/NavBar";
+import Content from "./components/UI/Content";
+import SideBar from "./components/UI/SideBar";
+
 
 // const socket = socketIO.connect('http://localhost:3000');
 
