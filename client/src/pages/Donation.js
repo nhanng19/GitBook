@@ -1,8 +1,8 @@
-import Donation from "../components/Stripe/Stripe";
+import Payment from "../components/Stripe/Stripe";
 
 const DonationPage = () => {
     return (
-        <Donation />
+        <Payment />
     )
 }
 
