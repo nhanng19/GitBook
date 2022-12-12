@@ -6,6 +6,7 @@ const KanbanContext = React.createContext({
     taskDone: [],
     addTask: (task) => {},
     removeTask: (id) => {},
+    cancelTask: (id) => {},
     moveTaskAB: (id) => {},
     moveTaskBC: (id) => {},
     moveTaskCB: (id) => {},

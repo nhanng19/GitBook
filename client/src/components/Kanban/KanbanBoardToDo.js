@@ -8,9 +8,13 @@ const KanbanBoardToDo = (props) => {
 
   const todoTasks = kanbanCtx.taskToDo;
 
-  const taskRemoveHandler = (id) => {};
+  const taskRemoveHandler = (id) => {
+    kanbanCtx.cancelTask(id);
+  };
 
-  const taskMoveToProgressHandler = (id) => {};
+  const taskMoveToProgressHandler = (id) => {
+    kanbanCtx.moveTaskAB(id);
+  };
 
   return (
     <div className={classes.kanban}>
@@ -23,8 +27,8 @@ const KanbanBoardToDo = (props) => {
               section="To-Do"
               assigner={task.assignee}
               description={task.description}
-              onRemove={taskRemoveHandler}
-              onMoveForward={taskMoveToProgressHandler}
+              onRemove={taskRemoveHandler.bind(null, task.id)}
+              onMoveForward={taskMoveToProgressHandler.bind(null, task.id)}
             />
           ))}
       </div>

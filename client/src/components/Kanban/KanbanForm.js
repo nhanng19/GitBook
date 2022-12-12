@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import classes from "./KanbanForm.module.css";
 
 const KanbanForm = (props) => {
@@ -6,16 +6,6 @@ const KanbanForm = (props) => {
 
   const assigneeInputRef = useRef();
   const descriptionInputRef = useRef();
-  // const [enteredAssignee, setEnteredAssignee] = useState("");
-  // const [enteredDescription, setEnteredDescription] = useState("");
-
-  // const assigneeChangeHandler = (event) => {
-  //   setEnteredAssignee(event.target.value);
-  // };
-
-  // const descriptionChangeHandler = (event) => {
-  //   setEnteredDescription(event.target.value);
-  // };
 
   //useEffect for validity
 

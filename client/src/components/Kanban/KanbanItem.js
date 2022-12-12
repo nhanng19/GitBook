@@ -7,28 +7,28 @@ const KanbanItem = (props) => {
   let section;
   if (props.section === "To-Do") {
     section = [
-      <IconBtn>
+      <IconBtn onClick={props.onRemove}>
         <FaTrashAlt size="2rem" />
       </IconBtn>,
-      <IconBtn>
+      <IconBtn onClick={props.onMoveForward}>
         <FaArrowRight size="2rem" />
       </IconBtn>,
     ];
   } else if (props.section === "In-Progress") {
     section = [
-      <IconBtn>
+      <IconBtn onClick={props.onMovePrevious}>
         <FaArrowLeft size="2rem" />
       </IconBtn>,
-      <IconBtn>
+      <IconBtn onClick={props.onMoveForward}>
         <FaArrowRight size="2rem" />
       </IconBtn>,
     ];
   } else {
     section = [
-      <IconBtn>
+      <IconBtn onClick={props.onMovePrevious}>
         <FaArrowLeft size="2rem" />
       </IconBtn>,
-      <IconBtn>
+      <IconBtn onClick={props.onRemove}>
         <FaTrashAlt size="2rem" />
       </IconBtn>,
     ];
