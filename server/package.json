@@ -19,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10",
     "nodemailer": "^6.7.8",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "stripe": "^8.222.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

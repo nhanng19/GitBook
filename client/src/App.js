@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
+import Donation from "./pages/Donation";
 
 // const socket = socketIO.connect('http://localhost:3000');
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<Chat />} /> */}
+          < Route path="/Donation" element={<Donation />} />
         </Routes>
       </>
     );
