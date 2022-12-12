@@ -5,11 +5,8 @@ const db = require("./config/connection");
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
-const { default: Stripe } = require("stripe");
 
-const env = require("dotenv").config({ path: "./.env" });
-
-const tripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -42,7 +39,7 @@ app.get("/config", (req, res) => {
 
 app.post("/create-payment-intent", async (req, res) => {
   try {
-    const paymentIntent = await Stripe.paymentIntent.create({
+    const paymentIntent = await stripe.paymentIntent.create({
       currency: "usd",
       automatic_payment_methods: {
         enabled: true,

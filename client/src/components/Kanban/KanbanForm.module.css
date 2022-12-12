@@ -1,0 +1,32 @@
+.toDoForm {
+  padding: 3rem;
+  text-align: center;
+}
+
+.inputHeader {
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+}
+
+.inputBody {
+  display: flex;
+}
+
+.formLabel {
+  font-size: 2.5rem;
+  margin: 1rem;
+}
+
+.formInput {
+  font-size: 2.5rem;
+  margin: 1rem;
+  flex: 1 0 0;
+}
+
+.addBtn {
+  font-size: 2rem;
+  margin: 1rem;
+  padding: 5px;
+  width: 10rem;
+}
