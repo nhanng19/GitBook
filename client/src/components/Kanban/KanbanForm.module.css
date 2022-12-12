@@ -2,6 +2,11 @@
   padding: 3rem;
   text-align: center;
 }
+.toDoForm p {
+  font-size: 3rem;
+  color: red;
+  font-weight: bold;
+}
 
 .inputHeader {
   width: 100%;

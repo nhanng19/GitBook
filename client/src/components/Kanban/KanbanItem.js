@@ -1,26 +1,44 @@
 import React from "react";
 import classes from "./KanbanItem.module.css";
 import { FaTrashAlt, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import IconBtn from "../UI/IconBtn";
 
 const KanbanItem = (props) => {
   let section;
   if (props.section === "To-Do") {
-    section = [<FaTrashAlt size="2rem" />, <FaArrowRight size="2rem" />];
+    section = [
+      <IconBtn>
+        <FaTrashAlt size="2rem" />
+      </IconBtn>,
+      <IconBtn>
+        <FaArrowRight size="2rem" />
+      </IconBtn>,
+    ];
   } else if (props.section === "In-Progress") {
-    section = [<FaArrowLeft size="2rem" />, <FaArrowRight size="2rem" />];
+    section = [
+      <IconBtn>
+        <FaArrowLeft size="2rem" />
+      </IconBtn>,
+      <IconBtn>
+        <FaArrowRight size="2rem" />
+      </IconBtn>,
+    ];
   } else {
-    section = [<FaArrowLeft size="2rem" />, <FaTrashAlt size="2rem" />];
+    section = [
+      <IconBtn>
+        <FaArrowLeft size="2rem" />
+      </IconBtn>,
+      <IconBtn>
+        <FaTrashAlt size="2rem" />
+      </IconBtn>,
+    ];
   }
   return (
     <div className={classes.kanbanItem}>
       <div className={classes.itemHeader}>
         <h3 className={classes.itemAssigner}>{props.assigner}</h3>
-        <button className={classes.btn}>
-          <svg className={classes.icon}>{section[0]}</svg>
-        </button>
-        <button className={classes.btn}>
-          <svg className={classes.icon}>{section[1]}</svg>
-        </button>
+        {section[0]}
+        {section[1]}
       </div>
       <p className={classes.itemDescription}>{props.description}</p>
     </div>

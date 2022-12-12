@@ -8,8 +8,8 @@ const KanbanBox = (props) => {
   return (
     <div className={classes.kanbanBox}>
       <KanbanBoardToDo tasks={props.tasksTodo} />
-      <KanbanBoardInProgress />
-      <KanbanBoardDone />      
+      <KanbanBoardInProgress tasks={props.tasksInProgress} />
+      <KanbanBoardDone tasks={props.tasksDone}/>      
     </div>
   );
 };

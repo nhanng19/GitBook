@@ -2,18 +2,20 @@ import React from "react";
 import classes from "./KanbanBoard.module.css";
 import KanbanItem from "./KanbanItem";
 
-const KanbanBoardInProgress = () => {
-    const dummy_description = `Testing adsfasdghajshdfjadasfhk testubgajkshdgakjshgdlkjasdghklj
-    asdgagds`
+const KanbanBoardInProgress = (props) => {
   return (
     <div className={classes.kanban}>
       <div className={classes.kanbanHeader}>In-Progress</div>
       <div>
-        <KanbanItem
-          section="In-Progress"
-          assigner="Richard"
-          description={dummy_description}
-        />
+        {props.tasks.length !== 0 &&
+          props.tasks.map((task) => (
+            <KanbanItem
+              key={task.id}
+              section="In-Progress"
+              assigner={task.assignee}
+              description={task.description}
+            />
+          ))}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import KanbanProvider from "../../store/KanbanProvider";
 
 import KanbanBox from "./KanbanBox";
-import KanbanForm from "./KanbanForm";
 import KanbanNewTask from "./KanbanNewTask";
 
-const DUMMY_DATA = [
+const DUMMY_DATA_TODO = [
   {
     id: "k1",
     assignee: "Richard",
@@ -22,21 +22,53 @@ const DUMMY_DATA = [
   },
 ];
 
-const Kanban = () => {
-  const [tasks, setTasks] = useState(DUMMY_DATA);
+const DUMMY_DATA_IN_PROGRESS = [
+  {
+    id: "k1",
+    assignee: "John",
+    description: "testing for inprogress kanban board",
+  },
+];
+const DUMMY_DATA_DONE = [
+  {
+    id: "k1",
+    assignee: "John",
+    description: "testing for done kanban board",
+  },
+];
 
-  const addTaskHandler = (task) => {
-    setTasks((prevTasks) => {
+const Kanban = () => {
+  const [tasksTodo, setTasksTodo] = useState(DUMMY_DATA_TODO);
+  const [tasksInProgress, setTasksInProgress] = useState(
+    DUMMY_DATA_IN_PROGRESS
+  );
+  const [tasksDone, setTasksDone] = useState(
+    DUMMY_DATA_DONE
+  );
+
+  const addTaskTodoHandler = (task) => {
+    setTasksTodo((prevTasks) => {
+      return [...prevTasks, task];
+    });
+  };
+
+  const addTaskInProgressHandler = (task) => {
+    setTasksInProgress((prevTasks) => {
       return [...prevTasks, task];
     });
   };
 
   return (
-    <>
+    <KanbanProvider>
       {/* <KanbanForm onAddTask={addTaskHandler} /> */}
-      <KanbanNewTask onAddTask={addTaskHandler}/>
-      <KanbanBox tasksTodo={tasks} />
-    </>
+      <KanbanNewTask onAddTask={addTaskTodoHandler} />
+      <KanbanBox
+        tasksTodo={tasksTodo}
+        onAddTaskInProgress={addTaskInProgressHandler}
+        tasksInProgress={tasksInProgress}
+        tasksDone={tasksDone}
+      />
+    </KanbanProvider>
   );
 };
 
