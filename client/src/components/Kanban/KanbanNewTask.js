@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import KanbanForm from "./KanbanForm";
 import classes from "./KanbanNewTask.module.css";
+import KanbanContext from "../../store/kanban-context";
 
 const KanbanNewTask = (props) => {
+  const kanbanCtx = useContext(KanbanContext);
+   
   const [isAdding, setIsAdding] = useState(false);
   const saveTaskDataHandler = (enteredTaskData) => {
-    const taskData = {
-      ...enteredTaskData,
-      id: Math.random().toString(),
-    };
-    props.onAddTask(taskData);
-    setIsAdding(false);
+    kanbanCtx.addTask({
+      id: `${enteredTaskData.assignee}${Math.floor(Math.random()*100000000)}`,
+      assignee: enteredTaskData.assignee,
+      description: enteredTaskData.description
+    })
+    // const taskData = {
+    //   ...enteredTaskData,
+    //   id: Math.random().toString(),
+    // };
+    // props.onAddTask(taskData);
+    // setIsAdding(false);
   };
 
   const startAddingHandler = () => {
