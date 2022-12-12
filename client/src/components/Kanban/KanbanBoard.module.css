@@ -1,0 +1,17 @@
+.kanban {
+  border: 1px solid black;
+  margin: 5px;
+  flex: 1 0 0;
+  padding: 10px;
+  min-height: 60rem;
+}
+
+.kanbanHeader {
+  /* display: flex; */
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+
