@@ -5,9 +5,13 @@ const {
   login,
 } = require('../../controllers/userController');
 
+
 const { authMiddleware } = require('../../utils/auth');
 
-router.route('/').post(createUser);
+
+router.route('/').post(createUser)
+
+// router.route('/addImage/:id').put(addImage);
 
 router.route('/login').post(login);
 
