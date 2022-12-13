@@ -20,6 +20,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/UI/Content";
 import SideBar from "./components/UI/SideBar";
 // import DonationPage from "./pages/Donation";
+import About from "./components/About/About";
 
 import Main from "./components/UI/Main";
 
@@ -58,6 +59,7 @@ function App() {
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<Chat />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
+          <Route path="/About" element={<About />} />
         </Routes>
       </>
     );
