@@ -2,14 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import { FaGithub } from "react-icons/fa";
-const ProjectList = ({ projects, title, showUsername = true }) => {
+const ProjectList = ({
+  repoProjects,
+  projects,
+  title,
+  showUsername = true,
+}) => {
   return (
     <>
       <div className={styles.header}>
         <h2>{title}'s projects</h2>
       </div>
       <div className={styles.cardFrame}>
-        {projects.length > 0 ? (
+        {projects &&
           projects.map((project) => (
             <div className={styles.card}>
               <h3>
@@ -23,6 +28,7 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
               <a
                 className={styles.git}
                 target="_blank"
+                rel="noreferrer"
                 href={project.projectRepo}
               >
                 <FaGithub />
@@ -35,7 +41,7 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
                   <Link to={`/profiles/${project.projectOwner}`}>
                     {project.projectOwner} <br />
                     <span style={{ fontSize: "1rem" }}>
-                      created on {project.createdAt}
+                      {project.createdAt}
                     </span>
                   </Link>
                 ) : (
@@ -47,10 +53,45 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
                 )}
               </div>
             </div>
-          ))
-        ) : (
-          <p>No projects found!</p>
-        )}
+          ))}
+        {repoProjects &&
+          repoProjects.map((project) => (
+            <div className={styles.card}>
+              <h3>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/projects/${project.id}`}
+                >
+                  {project.name}
+                </Link>
+              </h3>
+              <a
+                className={styles.git}
+                target="_blank"
+                rel="noreferrer"
+                href={project.html_url}
+              >
+                <FaGithub />
+              </a>
+              <div className={styles.cutoffText}>{project.description}</div>
+              <div>
+                {showUsername ? (
+                  <Link to={`/profiles/${project.owner.login}`}>
+                    {project.owner.login} <br />
+                    <span style={{ fontSize: "1rem" }}>
+                      {project.created_at}
+                    </span>
+                  </Link>
+                ) : (
+                  <>
+                    <span style={{ fontSize: "1.em" }}>
+                      You created on {project.created_at}
+                    </span>
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
       </div>
     </>
   );
