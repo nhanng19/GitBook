@@ -12,7 +12,6 @@ const projectSchema = new Schema(
     },
     projectRepo: {
       type: String,
-      require: true,
     },
     projectOwner: {
       type: String,
