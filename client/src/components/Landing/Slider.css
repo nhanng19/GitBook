@@ -1,0 +1,140 @@
+.featuredProjects {
+  height: 50vh;
+  background-color: #dae2b6;
+}
+
+.featuredText {
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.featuredTitle {
+  font-size: 5rem;
+  font-weight: 600;
+}
+
+.featuredDescription {
+  font-size: 2rem;
+  margin: 2rem 0rem;
+}
+.sliderContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #dae2b6;
+}
+
+#main-slider-container {
+  width: 100%;
+  height: 30.5rem;
+}
+
+#slider {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+#slider::-webkit-scrollbar {
+  display: none;
+}
+
+#main-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.slider-card-title,
+.slider-card-description {
+  margin: 5px 0px 5px 10px;
+}
+
+.slider-card-title {
+  font-size: 2.5rem;
+  margin-top: 10px;
+}
+
+.slider-card-description {
+  font-size: 1.5rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+
+  white-space: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slider-card-image {
+  width: 100%;
+  height: 220px;
+  background-color: rgb(240 240 240 / 80%);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.slider-icon.left,
+.slider-icon.right {
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0.5;
+  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
+  cursor: pointer;
+}
+
+.slider-icon.left {
+  z-index: 10;
+  left: 0;
+}
+
+.slider-icon.right {
+  right: 0;
+}
+
+.slider-icon.left:hover,
+.slider-icon.right:hover {
+  opacity: 1;
+}
+
+.slider-card {
+  width: 320px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem;
+  background: white;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px solid var(--nav-color);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  animation: slide 225s linear infinite;
+}
+
+.git {
+  color: black;
+  font-size: 4.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.5rem;
+}
+
+.git:hover {
+  color: var(--nav-color)
+}
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-10000px, 0, 0);
+  }
+}
