@@ -23,7 +23,7 @@ const ProjectList = ({
                   style={{ textDecoration: "none" }}
                   to={`/projects/${project._id}`}
                 >
-                  {project.projectName}
+                  /{project.projectName}
                 </Link>
               </h3>
               <a
