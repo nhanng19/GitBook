@@ -1,8 +1,8 @@
-import Payment from "../components/Stripe/Stripe";
+import StripePage from "../components/Stripe/Stripe";
 
 const DonationPage = () => {
     return (
-        <Payment />
+        <StripePage />
     )
 }
 
