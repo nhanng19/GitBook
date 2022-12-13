@@ -4,30 +4,30 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-      users: async () => {
-        return User.find().populate('projects');
-      },
-      user: async (parent, { username }) => {
-        return User.findOne({ username }).populate('projects');
-      },
-      projects: async (parent, { username }) => {
-        const params = username ? { username } : {};
-        return Project.find(params).sort({ createdAt: -1 });
-      },
-      project: async (parent, { projectId }) => {
-        return Project.findOne({ _id: projectId });
-      },
-      me: async (parent, args, context) => {
-        if (context.user) {
-          return User.findOne({ _id: context.user._id }).populate('projects');
-        }
-        throw new AuthenticationError('You need to be logged in!');
-      },
+    users: async () => {
+      return User.find().populate("projects");
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate("projects");
+    },
+    projects: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Project.find(params).sort({ createdAt: -1 });
+    },
+    project: async (parent, { projectId }) => {
+      return Project.findOne({ _id: projectId });
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("projects");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
   Mutation: {
     addProject: async (
       parent,
-      { projectName, projectDescription, projectRepo },
+      { projectName, projectDescription, projectRepo, createdAt },
       context
     ) => {
       if (context.user) {
@@ -36,6 +36,7 @@ const resolvers = {
           projectDescription,
           projectRepo,
           projectOwner: context.user.username,
+          createdAt,
         });
 
         await User.findOneAndUpdate(

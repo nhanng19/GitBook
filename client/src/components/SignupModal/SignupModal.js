@@ -1,10 +1,32 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation} from "@apollo/react-hooks";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { ADD_PROJECT } from "../../utils/mutations";
+import { QUERY_PROJECTS, QUERY_ME } from "../../utils/queries";
+import search from "../../utils/API";
 
-const SignupForm = () => {
+const SignupForm = ({ setLoading }) => {
+  const [addProject, { error }] = useMutation(ADD_PROJECT, {
+    update(cache, { data: { addProject } }) {
+      try {
+        const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+
+        cache.writeQuery({
+          query: QUERY_PROJECTS,
+          data: { projects: [addProject, ...projects] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, projects: [...me.projects, addProject] } },
+      });
+    },
+  });
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -27,16 +49,29 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-
     try {
       const { data } = await addUser({
-        variables: { ...userData },
+        variables: userData,
       });
 
       Auth.login(data.addUser.token);
+      const spinner = await setLoading(true);
+      const response = await search(userData.username);
+      const items = await response.data;
+
+      const fetchProjects = await items.map((project) => {
+        addProject({
+          variables: {
+            projectName: project.name,
+            projectDescription: project.description || "No description available",
+            projectRepo: project.html_url,
+            projectOwner: project.owner.login,
+            createdAt: project.created_at,
+          },
+        });
+      });
     } catch (err) {
-      console.log(err);
-      setShowAlert(true);
+      setShowAlert(err);
     }
 
     setUserData({

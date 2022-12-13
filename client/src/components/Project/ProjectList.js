@@ -10,6 +10,7 @@ const ProjectList = ({
 }) => {
   return (
     <>
+      
       <div className={styles.header}>
         <h2>{title}'s projects</h2>
       </div>
@@ -22,7 +23,7 @@ const ProjectList = ({
                   style={{ textDecoration: "none" }}
                   to={`/projects/${project._id}`}
                 >
-                  {project.projectName}
+                  /{project.projectName}
                 </Link>
               </h3>
               <a
@@ -48,44 +49,6 @@ const ProjectList = ({
                   <>
                     <span style={{ fontSize: "1.em" }}>
                       You created on {project.createdAt}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
-        {repoProjects &&
-          repoProjects.map((project) => (
-            <div className={styles.card}>
-              <h3>
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to={`/projects/${project.id}`}
-                >
-                  {project.name}
-                </Link>
-              </h3>
-              <a
-                className={styles.git}
-                target="_blank"
-                rel="noreferrer"
-                href={project.html_url}
-              >
-                <FaGithub />
-              </a>
-              <div className={styles.cutoffText}>{project.description}</div>
-              <div>
-                {showUsername ? (
-                  <Link to={`/profiles/${project.owner.login}`}>
-                    {project.owner.login} <br />
-                    <span style={{ fontSize: "1rem" }}>
-                      {project.created_at}
-                    </span>
-                  </Link>
-                ) : (
-                  <>
-                    <span style={{ fontSize: "1.em" }}>
-                      You created on {project.created_at}
                     </span>
                   </>
                 )}
