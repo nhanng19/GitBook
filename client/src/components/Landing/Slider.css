@@ -58,6 +58,10 @@
 .slider-card-title {
   font-size: 2.5rem;
   margin-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30rem;
 }
 
 .slider-card-description {
@@ -128,7 +132,7 @@
 }
 
 .git:hover {
-  color: var(--nav-color)
+  color: var(--nav-color);
 }
 @keyframes slide {
   0% {
