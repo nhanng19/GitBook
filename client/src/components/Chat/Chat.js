@@ -1,7 +1,27 @@
 import React from "react";
 import styles from "./Chat.module.css";
+import io from "socket.io-client";
+
+
+
 
 const Chat = () => {
+    
+    const chatForm = document.getElementById('chatForm');
+    const socket = io();
+
+    socket.on('message', message => {
+        console.log(message);
+    })
+
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const msg = e.target.elements.msg.value;
+
+        console.log(msg);
+    })
+
     return (
         <div className={styles.container}>
             <div className={styles.rightSideBar}>
@@ -17,13 +37,20 @@ const Chat = () => {
             <div className={styles.mainChat}>
                 <div className={styles.header}>
                     <p className={styles.roomId}>Current Room: Room.ID</p>
-                    <a className={styles.leaveBtn}>Leave Chat</a>
+                    <button className={styles.leaveBtn}>Leave Chat</button>
                 </div>
                 <div className={styles.chatBox}></div>
-                <div className={styles.chatInput}>
-                    <div className={styles.chatText}>Input text here</div>
-                    <a className={styles.sendBtn}>Send</a>
-                </div>
+                <form className={styles.chatInput} id='chatForm'>
+                    <input
+                        id="msg"
+                        type="text"
+                        placeholder="Enter message"
+                        className={styles.chatText}
+                        autoComplete="off"
+                        required>
+                    </input>
+                    <button className={styles.sendBtn}>Send</button>
+                </form>
             </div>
         </div>
     )
