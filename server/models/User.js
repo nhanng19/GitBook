@@ -147,6 +147,12 @@ userSchema.virtual('followerCount').get(function () {
 userSchema.virtual('followingCount').get(function () {
   return this.followings.length;
 })
+userSchema.virtual('projectCount').get(function () {
+  return this.projects.length;
+})
+userSchema.virtual('birthDate').get(function () {
+  return `${this.bMonth}/${this.bDay}/${this.bYear}`
+})
 
 const User = model("User", userSchema);
 
