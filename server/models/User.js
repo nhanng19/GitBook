@@ -68,6 +68,21 @@ const userSchema = new Schema(
       bio: {
         type: String,
       },
+      job: {
+        type: String,
+      },
+      workplace: {
+        type: String,
+      },
+      highSchool: {
+        type: String,
+      },
+      college: {
+        type: String,
+      },
+      currentCity: {
+        type: String,
+      },
       gender: {
         type: String,
         trim: true,
@@ -90,9 +105,13 @@ const userSchema = new Schema(
       linkedin: {
         type: String,
       },
+      instagram: {
+        type: String,
+      },
     },
   },
   {
+    timestamps: true,
     toJSON: {
       virtuals: true,
     },
