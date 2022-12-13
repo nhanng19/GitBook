@@ -3,6 +3,7 @@ const {
   createUser,
   getSingleUser,
   login,
+  addImage
 } = require('../../controllers/userController');
 
 
@@ -11,7 +12,7 @@ const { authMiddleware } = require('../../utils/auth');
 
 router.route('/').post(createUser)
 
-// router.route('/addImage/:id').put(addImage);
+router.route('/addImage/:id').put(authMiddleware, addImage);
 
 router.route('/login').post(login);
 

@@ -29,7 +29,7 @@ const userSchema = new Schema(
       type: String,
     },
     myProjects: [projectSchema],
-    profile: {
+    url: {
       type: String, 
     },
   },

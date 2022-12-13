@@ -30,6 +30,19 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
+  async addImage({ user, body }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $addToSet: { url: body }},
+      { new : true, runValidators: true}
+    );
+
+    if (!user) {
+      return res.status(400).json({ message: "An error occurred!" });
+    }
+    // const token = signToken(user);
+    res.json(updatedUser);
+  },
   async login({ body }, res) {
     const user = await User.findOne({
       $or: [{ username: body.username }, { email: body.email }],

@@ -3,7 +3,7 @@ import classes from "./ProjectView.module.css";
 import Container from "../UI/Container";
 import ProjectInfo from "./ProjectInfo";
 import Kanban from "../Kanban/Kanban";
-import { addImage } from "../../utils/API";
+import { addImage } from "../../api/profile";
 
 const ProjectView = () => {
   
