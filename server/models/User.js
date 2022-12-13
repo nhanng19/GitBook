@@ -22,12 +22,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    github: {
-      type: String,
-    },
-    linkedin: {
-      type: String,
-    },
     picture: {
       type: String,
       trim: true,
@@ -40,21 +34,62 @@ const userSchema = new Schema(
         ref: "Project",
       },
     ],
-    gender: {
-      type: String,
-      trim: true,
+    verified: {
+      type: Boolean,
+      default: false,
     },
-    bYear: {
-      type: Number,
-      trim: true, 
-    },
-    bMonth: {
-      type: Number,
-      trim: true, 
-    },
-    bDay: {
-      type: Number,
-      trim: true, 
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    requests: [
+      {
+        type: Array,
+        default: [],
+      },
+    ],
+    search: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
+    details: {
+      bio: {
+        type: String,
+      },
+      gender: {
+        type: String,
+        trim: true,
+      },
+      bYear: {
+        type: Number,
+        trim: true,
+      },
+      bMonth: {
+        type: Number,
+        trim: true,
+      },
+      bDay: {
+        type: Number,
+        trim: true,
+      },
+      github: {
+        type: String,
+      },
+      linkedin: {
+        type: String,
+      },
     },
   },
   {
