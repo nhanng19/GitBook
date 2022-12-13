@@ -6,9 +6,26 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    github: String
-    linkedin: String
+    picture: String
     projects: [Project]!
+    verified: Boolean
+    friends: [User]
+    followings: [User]
+    followers: [User]
+    details {
+      bio: String
+      job: String
+      highSchool: String
+      college: String
+      currentCity: String
+      gender: String
+      bYear: Number
+      bMonth: Number
+      bDay: Number
+      github: String
+      linkedin: String
+      instagram: String
+    }
   }
 
   type Project {

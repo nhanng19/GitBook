@@ -56,20 +56,20 @@ const userSchema = new Schema(
         ref: "User",
       },
     ],
-    requests: [
-      {
-        type: Array,
-        default: [],
-      },
-    ],
-    search: [
-      {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-        },
-      },
-    ],
+    // requests: [
+    //   {
+    //     type: Array,
+    //     default: [],
+    //   },
+    // ],
+    // search: [
+    //   {
+    //     user: {
+    //       type: Schema.Types.ObjectId,
+    //       ref: "User",
+    //     },
+    //   },
+    // ],
     details: {
       bio: {
         type: String,
