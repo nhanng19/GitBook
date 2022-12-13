@@ -13,10 +13,10 @@ import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from "../LoginModal/LoginModal";
 import SignUpForm from "../SignupModal/SignupModal";
 import React, { useState } from "react";
-
+import LoadingSpinner from "../UI/LoadingSpinner";
 const Landing = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <div className={styles.wrapper}>
@@ -91,17 +91,22 @@ const Landing = () => {
             <Tab.Content>
               <Tab.Pane eventKey="login">
                 <LoginForm
+                  setLoading={setLoading}
                   style={{ width: "50%" }}
                   handleModalClose={() => setShowModal(false)}
                 />
               </Tab.Pane>
               <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
+                <SignUpForm
+                  setLoading={setLoading}
+                  handleModalClose={() => setShowModal(false)}
+                />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      {loading && <LoadingSpinner />}
     </>
   );
 };
