@@ -1,0 +1,17 @@
+.joinContainer {
+    height: 50%;
+    width: 30%;
+    margin: auto;
+    background-color: rgb(147, 192, 177);
+    border: 3px solid rgba(59, 59, 59, 0.377);
+    border-radius: 2rem;
+    font-size: 2rem;  
+}
+
+.form {
+    margin: auto;
+}
+
+.inputField {
+    width: 80%;
+}
