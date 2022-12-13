@@ -29,6 +29,12 @@ const projectSchema = new Schema(
         type: String,
       },
     ],
+    projectMembers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
     kanban: [
       {
         todo: [],
