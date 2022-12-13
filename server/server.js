@@ -72,10 +72,10 @@ db.once("open", () => {
 io.on("connection", socket => {
 
   // Welcome current user
-  socket.emit('message', formatMessage('GitBot', 'Welcome to Chat'));
+  socket.broadcast.emit('message', formatMessage('ChatBot', 'Welcome to Chat'));
 
   // Broadcast when a user connects
-  socket.broadcast.emit('message', formatMessage('GitBot', 'A user has joined the chat'));
+  socket.broadcast.emit('message', formatMessage('ChatBott', 'A user has joined the chat'));
 
   // Listen for ChatMessage
   socket.on('chatMessage', (msg) => {
@@ -84,6 +84,6 @@ io.on("connection", socket => {
 
   // Broadcast when a user disconnect
   socket.on('disconnect', () => {
-    io.emit('message', formatMessage('GitBot', 'A user has left the chat'));
+    io.emit('message', formatMessage('ChatBot', 'A user has left the chat'));
   });
 });

@@ -36,7 +36,7 @@ const Chat = () => {
     function outputMessage(message) {
         const div = document.createElement('div');
         div.classList.add('message');
-        div.innerHTML = `<p>${message.username} <span>${message.time}</span></p>
+        div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
         <p className="text">
             ${message.text}
         </p>`;
