@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const db = require("./config/connection");
+const formatMessage = require('./utils/message');
 
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
@@ -71,13 +72,18 @@ db.once("open", () => {
 io.on("connection", socket => {
 
   // Welcome current user
-  socket.emit('message', 'Welcome to Chat');
+  socket.emit('message', formatMessage('GitBot', 'Welcome to Chat'));
 
   // Broadcast when a user connects
-  socket.broadcast.emit('message', 'A user has joined the chat');
+  socket.broadcast.emit('message', formatMessage('GitBot', 'A user has joined the chat'));
+
+  // Listen for ChatMessage
+  socket.on('chatMessage', (msg) => {
+    io.emit('message', formatMessage('USER', msg));
+  })
 
   // Broadcast when a user disconnect
   socket.on('disconnect', () => {
-    io.emit('message', 'A user has left the chat');
+    io.emit('message', formatMessage('GitBot', 'A user has left the chat'));
   });
 });
