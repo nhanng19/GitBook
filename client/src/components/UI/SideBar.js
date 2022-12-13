@@ -46,15 +46,10 @@ const SideBar = (props) => {
             <FaFolder size="2rem" color="#333" />
           </SideBarItem>
         </NavLink>
-        <NavLink
-          style={{ textDecoration: "none" }}
-          className={(navData) => (navData.isActive ? classes.active : "")}
-          to="/Donation"
-        >
-          <SideBarItem name="DONATION" href="">
+
+          <SideBarItem name="DONATION" href="https://donate.stripe.com/test_bIY00k8w9eTw1AQ9AA">
             <FaDonate size="2rem" color="#333" />
           </SideBarItem>
-        </NavLink>
 
         <SideBarItem name="LOGOUT" onClick={logout} href="">
           <FaSignOutAlt size="2rem" color="#333" />

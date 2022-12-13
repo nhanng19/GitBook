@@ -60,12 +60,12 @@ const SignupForm = () => {
 
         <Form.Group>
           <Form.Label style={{ fontSize: "1.5rem" }} htmlFor="username">
-            Username
+            Github Username
           </Form.Label>
           <Form.Control
             style={{ fontSize: "1.75rem" }}
             type="text"
-            placeholder="Enter username"
+            placeholder="Enter github username"
             name="username"
             onChange={handleInputChange}
             value={userData.username}
