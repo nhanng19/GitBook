@@ -6,6 +6,7 @@ const projectSchema = new Schema(
       type: String,
       require: true,
     },
+
     projectDescription: {
       type: String,
       require: true,

@@ -72,7 +72,7 @@ const typeDefs = gql`
     addProject(
       projectName: String!
       projectDescription: String
-      projectRepo: String!
+      projectRepo: String
       projectOwner: String
       createdAt: String
     ): Project

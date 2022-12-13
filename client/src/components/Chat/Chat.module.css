@@ -2,7 +2,7 @@
     border-color: #285430;
     background-color: #3b7946;
     margin: 2rem;
-    height: 90%;
+    height: 750px;
     border-radius: 2rem;
     display: flex;
 }
@@ -57,6 +57,8 @@
     background-color: white;
     border: 3px solid rgba(59, 59, 59, 0.377);
     margin: 2%;
+    overflow-y: scroll;
+    font-size: 2rem;
 }
 
 .chatInput {
@@ -80,11 +82,12 @@
     background-color: rgb(24, 9, 243);
     border-radius: 1rem;
     margin: auto;
-    padding: 0.5rem;
-    
+    padding: 0.5rem;   
 }
 
-
+.message {
+    background-color: #B6E2A1;
+}
 
 
 
