@@ -57,7 +57,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<Chat />} /> */}
-          < Route path="/Donation" element={<DonationPage />} />
+          {/* < Route path="/Donation" element={<DonationPage />} /> */}
         </Routes>
       </>
     );
