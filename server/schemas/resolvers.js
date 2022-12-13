@@ -83,17 +83,17 @@ const resolvers = {
       }
     },
 
-    addUser: async (parent, { username, email, password }) => {
-      try {
-        // create user using provided usename, email, and password
-        const user = await User.create({ username, email, password });
-        // create token from user and return both
-        const token = signToken(user);
-        return { token, user };
-      } catch (err) {
-        console.log("Sign up error", err);
-      }
-    },
+    // addUser: async (parent, { username, email, password }) => {
+    //   try {
+    //     // create user using provided usename, email, and password
+    //     const user = await User.create({ username, email, password });
+    //     // create token from user and return both
+    //     const token = signToken(user);
+    //     return { token, user };
+    //   } catch (err) {
+    //     console.log("Sign up error", err);
+    //   }
+    // },
   },
 };
 
