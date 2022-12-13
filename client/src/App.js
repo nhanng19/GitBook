@@ -19,7 +19,7 @@ import Auth from "./utils/auth";
 import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/UI/Content";
 import SideBar from "./components/UI/SideBar";
-import DonationPage from "./pages/Donation";
+// import 
 
 import Main from "./components/UI/Main";
 
