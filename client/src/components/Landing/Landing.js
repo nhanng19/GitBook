@@ -1,5 +1,5 @@
 import styles from "./Landing.module.css";
-
+import {Link} from "react-scroll"
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faDiagramNext,
@@ -32,7 +32,16 @@ const Landing = () => {
               <a className={styles.btn} onClick={() => setShowModal(true)}>
                 Get Started
               </a>
-              <a className={styles.btn}>View Projects</a>
+              <Link
+                to="projects"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={1000}
+              >
+                View Projects
+              </Link>
+        
             </div>
           </div>
         </div>
