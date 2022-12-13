@@ -4,6 +4,8 @@
   flex: 1 0 0;
   padding: 10px;
   min-height: 60rem;
+  max-height: 60rem;
+  overflow: scroll;
 }
 
 .kanbanHeader {
