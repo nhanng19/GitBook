@@ -6,6 +6,7 @@ import {
   FaFolder,
   FaDonate,
   FaSignOutAlt,
+  FaRocketchat,
 } from "react-icons/fa";
 import SideBarItem from "./SideBarItem";
 import Auth from "../..//utils/auth.js";
@@ -44,6 +45,15 @@ const SideBar = (props) => {
         >
           <SideBarItem name="PROFILE" href="">
             <FaFolder size="2rem" color="#333" />
+          </SideBarItem>
+        </NavLink>
+        <NavLink
+          style={{ textDecoration: "none" }}
+          className={(navData) => (navData.isActive ? classes.active : "")}
+          to="/Chat"
+        >
+          <SideBarItem name="Chat" href="">
+            <FaRocketchat size="2rem" color="#333" />
           </SideBarItem>
         </NavLink>
 

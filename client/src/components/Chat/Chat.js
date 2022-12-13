@@ -1,26 +1,48 @@
-import React from "react";
 import styles from "./Chat.module.css";
-import io from "socket.io-client";
-
-
+import { io } from "socket.io-client";
+// import { useRef } from 'react';
 
 
 const Chat = () => {
     
-    const chatForm = document.getElementById('chatForm');
-    const socket = io();
+    const socket = io('http://localhost:3000');
+    
+    // const ref = useRef(null);
 
+    // Message from server
     socket.on('message', message => {
-        console.log(message);
+        
+        // const Box = ref.current;
+        // console.log(message);
+        outputMessage(message);
+        
+        // Box.scrollTop = Box.scrollHeight;
     })
 
-    chatForm.addEventListener('submit', (e) => {
+    const submitForm = (e) => {
         e.preventDefault();
 
+        // retrieve text to send
         const msg = e.target.elements.msg.value;
+        
+        // sending message to server
+        socket.emit('chatMessage', msg)
 
-        console.log(msg);
-    })
+        // Clear input and focus on input area
+        e.target.elements.msg.value = '';
+        e.target.elements.msg.focus();
+    }
+
+    function outputMessage(message) {
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
+        <p className="text">
+            ${message.text}
+        </p>`;
+
+        document.getElementById('chatBox').appendChild(div);
+    }
 
     return (
         <div className={styles.container}>
@@ -39,8 +61,10 @@ const Chat = () => {
                     <p className={styles.roomId}>Current Room: Room.ID</p>
                     <button className={styles.leaveBtn}>Leave Chat</button>
                 </div>
-                <div className={styles.chatBox}></div>
-                <form className={styles.chatInput} id='chatForm'>
+                <div className={styles.chatBox} id='chatBox'>
+                    
+                </div>
+                <form className={styles.chatInput} id='chatForm' onSubmit={submitForm}>
                     <input
                         id="msg"
                         type="text"
@@ -49,7 +73,7 @@ const Chat = () => {
                         autoComplete="off"
                         required>
                     </input>
-                    <button className={styles.sendBtn}>Send</button>
+                    <button className={styles.sendBtn} type='submit'>Send</button>
                 </form>
             </div>
         </div>
