@@ -6,6 +6,7 @@ const projectSchema = new Schema(
       type: String,
       require: true,
     },
+
     projectDescription: {
       type: String,
       require: true,
@@ -54,6 +55,20 @@ const projectSchema = new Schema(
     },
   }
 );
+
+  ],
+  kanban: [
+    {
+      todo: [],
+    },
+    {
+      inProgress: [],
+    },
+    {
+      done: [],
+    },
+  ],
+});
 
 
 const Project = model("Project", projectSchema);

@@ -30,6 +30,6 @@ export const loginUser = (userData) => {
 };
 
 const search = (query) =>
-  axios.get(`https://api.github.com/users/${query}/repos`);
+  axios.get(`https://api.github.com/users/${query}/repos?sort=created`);
 
 export default search;

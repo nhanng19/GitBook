@@ -31,13 +31,14 @@ export const ADD_USER = gql`
 
 
 export const ADD_PROJECT = gql`
-  mutation addProject($projectName: String!, $projectDescription: String!, $projectRepo: String!) {
-    addProject(projectName: $projectName, projectDescription: $projectDescription, projectRepo: $projectRepo) {
+  mutation addProject($projectName: String!, $projectDescription: String, $projectRepo: String!, $projectOwner: String, $createdAt: String) {
+    addProject(projectName: $projectName, projectDescription: $projectDescription, projectRepo: $projectRepo, projectOwner: $projectOwner, createdAt: $createdAt) {
       _id
       projectName
       projectDescription
       projectRepo
       projectOwner
+      createdAt
     }
   }
 `;
