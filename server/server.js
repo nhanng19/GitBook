@@ -10,9 +10,9 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-const server = require("http").createServer(app);
+// const server = require("http").createServer(app);
 // dependencies for socket.io
-const io =  require("socket.io")(server);
+// const io = require("socket.io")(server);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,9 +23,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/config", (req, res) => {
-  res.send ({
-    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
-  })
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  });
 });
 
 app.post("/create-payment-intent", async (req, res) => {
@@ -42,41 +42,43 @@ app.post("/create-payment-intent", async (req, res) => {
       error: {
         message: e.message,
       },
-    })
+    });
   }
 });
 // Starting Apollo Server
 const startApolloServer = async (typeDefs, resolvers) => {
-
-  const server = new ApolloServer({
+  const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
     context: authMiddleware,
   });
-  await server.start();
-  server.applyMiddleware({ app });
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
+
+  //Opening MongoDB database
+  db.once("open", () => {
+    const server = app.listen(PORT, () =>
+      console.log(`🌍 Now listening on localhost:${PORT}`)
+    );
+    const io = require("socket.io")(server);
+    // Connecting Socket IO
+    io.on("connection", (socket) => {
+      // Welcome current user
+      socket.emit("message", "Welcome to Chat");
+
+      // Broadcast when a user connects
+      socket.broadcast.emit("message", "A user has joined the chat");
+
+      // Broadcast when a user disconnect
+      socket.on("disconnect", () => {
+        io.emit("message", "A user has left the chat");
+      });
+    });
+  });
+
+  console.log(
+    `Use GraphQL at http://localhost:${PORT}${apolloServer.graphqlPath}`
+  );
 };
 
 startApolloServer(typeDefs, resolvers);
-
-//Opening MongoDB database
-db.once("open", () => {
-  server.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-});
-
-
-// Connecting Socket IO
-io.on("connection", socket => {
-
-  // Welcome current user
-  socket.emit('message', 'Welcome to Chat');
-
-  // Broadcast when a user connects
-  socket.broadcast.emit('message', 'A user has joined the chat');
-
-  // Broadcast when a user disconnect
-  socket.on('disconnect', () => {
-    io.emit('message', 'A user has left the chat');
-  });
-});
