@@ -7,7 +7,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import socketIO from 'socket.io-client';
+
 
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
@@ -19,8 +19,6 @@ import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/UI/Content";
 import SideBar from "./components/UI/SideBar";
 
-
-// const socket = socketIO.connect('http://localhost:3000');
 
 const httpLink = createHttpLink({
   uri: "/graphql",
