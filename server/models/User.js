@@ -2,6 +2,8 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+//import schema from Project.js
+const projectSchema = require("./Project");
 
 const userSchema = new Schema(
   {
