@@ -1,0 +1,65 @@
+.cardFrame {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10rem;
+}
+
+.card {
+  padding: 2.4rem;
+  background-color: white;
+  border: 2px solid var(--nav-color);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  position: relative;
+}
+
+.card a {
+    color: black;
+    text-decoration: none
+}
+
+.card a:hover {
+    color: var(--nav-color)
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2.4rem;
+}
+
+.header h2 {
+  text-transform: capitalize;
+  font-size: 2.4rem;
+  color: black;
+}
+
+.git {
+  color: black;
+  font-size: 2.4rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+}
+
+.git:hover {
+ color: var(--nav-color) !important
+}
+
+.cutoffText{
+    font-size: 1.5rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2
+}
+
+.cardFrame > p {
+  color: var(--primary-blue-dark);
+    font-size: 1.5rem;
+}

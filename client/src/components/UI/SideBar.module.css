@@ -1,9 +1,14 @@
 .sidebar {
-  background-color: #fffbe9;
+  background-color: var(--nav-color);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 9;
   display: flex;
+  height: 100vh;
   flex-direction: column;
   justify-content: space-between;
-
+  border-top: none;
   flex: 0 0 18%;
 }
 
@@ -12,14 +17,21 @@
   list-style: none;
   margin-top: 3.5rem;
 }
+
+.side_nav span {
+  text-decoration: none;
+}
+
+.active li {
+  background-color: var(--background2);
+}
+
 @media screen and (max-width: 900px) {
   .side_nav {
-    display:flex;
+    display: flex;
     margin: 0;
   }
 }
-
-
 
 .legal {
   font-size: 1.2rem;
@@ -30,6 +42,6 @@
 
 @media screen and (max-width: 900px) {
   .legal {
-    display:none;
+    display: none;
   }
 }
