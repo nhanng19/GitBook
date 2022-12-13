@@ -30,14 +30,14 @@ const projectSchema = new Schema({
   ],
   kanban: [
     {
-      todo: []
+      todo: [],
     },
     {
-      inProgress: []
+      inProgress: [],
     },
     {
-      done: []
-    }
+      done: [],
+    },
   ],
 });
 
