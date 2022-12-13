@@ -7,7 +7,8 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import socketIO from 'socket.io-client';
+
+import Profile from "./pages/Profile";
 
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
@@ -15,9 +16,12 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
+import NavBar from "./components/NavBar/NavBar";
+import Content from "./components/UI/Content";
+import SideBar from "./components/UI/SideBar";
+import DonationPage from "./pages/Donation";
 
-
-// const socket = socketIO.connect('http://localhost:3000');
+import Main from "./components/UI/Main";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -29,7 +33,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorizatoin: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -49,10 +53,11 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={<Profile />} />
           <Route path="/Home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<Chat />} /> */}
+          {/* < Route path="/Donation" element={<DonationPage />} /> */}
         </Routes>
       </>
     );
@@ -70,7 +75,9 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <div className="full-container">{routes}</div>
+            <Main>
+              <div>{routes}</div>
+            </Main>
           </>
         </Router>
       </React.Fragment>

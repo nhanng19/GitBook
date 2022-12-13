@@ -1,0 +1,94 @@
+.container {
+    border-color: #285430;
+    background-color: #3b7946;
+    margin: 2rem;
+    height: 90%;
+    border-radius: 2rem;
+    display: flex;
+}
+
+.rightSideBar {
+    width: 15%;
+    height: 96%;
+    background-color: #B6E2A1;
+    text-align: center;
+    font-size: 2rem;
+    border-radius: 1rem;
+    margin: 1%;  
+}
+
+.sideHeader {
+    padding-top: 2rem;
+}
+
+.user {
+    list-style: none
+}
+
+.mainChat {
+    margin-top: 1%;
+    width: 82%;
+    height: 10%;
+}
+
+.header {
+    background-color: #B6E2A1;
+    height: 90%;
+    font-size: 2.0rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.roomId {
+   font-weight: bolder; 
+   margin: auto 0 auto 2%;
+}
+
+.leaveBtn {
+    background-color: rgb(184, 118, 118);
+    border-radius: 1rem;
+    margin: auto 2% auto 0;
+    padding: 0.5rem;
+}
+
+.chatBox {
+    height: 750%;
+    background-color: white;
+    border: 3px solid rgba(59, 59, 59, 0.377);
+    margin: 2%;
+}
+
+.chatInput {
+    height: 60%;
+    display: flex;
+    margin: 0 2% 0 2%;
+}
+
+.chatText {
+    height: 100%;
+    width: 92%;
+    background-color: white;
+    font-size: 2rem;
+    line-height: 100%;
+    padding: 1rem;
+}
+
+.sendBtn {
+    width: auto;
+    font-size: 2.2rem;
+    background-color: rgb(24, 9, 243);
+    border-radius: 1rem;
+    margin: auto;
+    padding: 0.5rem;
+    
+}
+
+
+
+
+
+
+
+
+

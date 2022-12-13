@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getMe = (token) => {
   return fetch("/api/users/me", {
     headers: {
@@ -27,12 +29,7 @@ export const loginUser = (userData) => {
   });
 };
 
-// export const addImage = (id, link) => {
-//   return fetch("/api/users/addImage/" + id, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: link,
-//   });
-// };
+const search = (query) =>
+  axios.get(`https://api.github.com/users/${query}/repos`);
+
+export default search;

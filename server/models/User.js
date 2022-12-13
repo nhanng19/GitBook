@@ -2,8 +2,11 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
+<<<<<<< HEAD
 //import schema from Project.js
 const projectSchema = require("./Project");
+=======
+>>>>>>> 4116f16ccd2a6a88f64ed1df9c54a37baa58562b
 
 const userSchema = new Schema(
   {
@@ -28,10 +31,19 @@ const userSchema = new Schema(
     linkedin: {
       type: String,
     },
+<<<<<<< HEAD
     myProjects: [projectSchema],
     url: {
       type: String, 
     },
+=======
+    projects: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Project",
+      },
+    ],
+>>>>>>> 4116f16ccd2a6a88f64ed1df9c54a37baa58562b
   },
   {
     toJSON: {
