@@ -6,12 +6,13 @@ import ProjectView from "../components/Project/ProjectView";
 
 const Home = () => {
   return (
-    <>
+
+    <Main>
       <ProjectView />
       {/* <Chat /> */}
       {/* <JoinChat /> */}
-    </>
+    </Main>
   );
 };
 
-export default Home;
+export default Home

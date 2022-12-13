@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const db = require("./config/connection");
-const cors = require('cors');
 
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
@@ -33,7 +32,6 @@ startServer();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
 
 if (process.env.NODE_ENV === "production") {
