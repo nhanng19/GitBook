@@ -1,7 +1,14 @@
+import styles from "./About.module.css";
+
 const About = () => {
     return (
         <>
-        <h1>About Us</h1>
+        <div className={styles.header}>
+            <p>About Us</p>
+        </div>
+        <div className={styles.introOne}>
+            <p>Hello fellow developer! Welcome to Gitbook!</p>
+        </div>
         </>
     )
 }
