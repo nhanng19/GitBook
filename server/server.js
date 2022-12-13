@@ -1,39 +1,23 @@
 const express = require("express");
-const path = require("path");
-const db = require("./config/connection");
-
 const { ApolloServer } = require("apollo-server-express");
-const { typeDefs, resolvers } = require("./schemas");
+const path = require("path");
 const { authMiddleware } = require("./utils/auth");
+
+const { typeDefs, resolvers } = require("./schemas");
+const db = require("./config/connection");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const app = express();
 const PORT = process.env.PORT || 3001;
-
-// dependencies for socket.io
+const app = express();
 const server = require("http").createServer(app);
+// dependencies for socket.io
 const io =  require("socket.io")(server);
-
-
-const startServer = async () => {
-
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: authMiddleware,
-  });
-  await server.start();
-  server.applyMiddleware({ app });
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-};
-
-startServer();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
@@ -61,13 +45,28 @@ app.post("/create-payment-intent", async (req, res) => {
     })
   }
 });
+// Starting Apollo Server
+const startApolloServer = async (typeDefs, resolvers) => {
 
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: authMiddleware,
+  });
+  await server.start();
+  server.applyMiddleware({ app });
+  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+};
+
+startApolloServer(typeDefs, resolvers);
+
+//Opening MongoDB database
 db.once("open", () => {
   server.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
 });
 
 
-
+// Connecting Socket IO
 io.on("connection", socket => {
 
   // Welcome current user
