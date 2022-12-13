@@ -5,9 +5,7 @@ import ProjectView from "../components/Project/ProjectView";
 
 const Home = () => {
   return (
-    <Main>
       <ProjectView />
-    </Main>
   );
 };
 

@@ -8,14 +8,14 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import socketIO from 'socket.io-client';
-
+import Profile from "./pages/Profile";
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
 import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
-
+import Main from "./components/UI/Main";
 
 // const socket = socketIO.connect('http://localhost:3000');
 
@@ -29,7 +29,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorizatoin: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={<Profile />} />
           <Route path="/Home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<Chat />} /> */}
@@ -70,7 +70,9 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <div className="full-container">{routes}</div>
+            <Main>
+              <div>{routes}</div>
+            </Main>
           </>
         </Router>
       </React.Fragment>
