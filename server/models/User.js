@@ -28,6 +28,9 @@ const userSchema = new Schema(
     linkedin: {
       type: String,
     },
+    url: {
+      type: String,
+    },
     projects: [
       {
         type: Schema.Types.ObjectId,
