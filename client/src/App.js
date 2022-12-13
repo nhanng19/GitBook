@@ -20,6 +20,8 @@ import Content from "./components/UI/Content";
 import SideBar from "./components/UI/SideBar";
 import DonationPage from "./pages/Donation";
 
+import Main from "./components/UI/Main";
+
 
 // const socket = socketIO.connect('http://localhost:3000');
 
