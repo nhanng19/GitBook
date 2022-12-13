@@ -32,12 +32,25 @@ const typeDefs = gql`
 
   type Project {
     _id: ID
-    projectName: String
-    projectDescription: String
+    projectName: String!
+    projectDescription: String!
     projectRepo: String
     projectOwner: String
     createdAt: String
-    task: [String]
+    projectMembers: [User]
+    kanban: Kanban
+  }
+
+  type Kanban {
+    toDo: [KanbanItem]
+    inProgress: [KanbanItem]
+    done: [KanbanItem]
+  }
+
+  type KanbanItem {
+    kanbanId: ID
+    assignee: String
+    description: String
   }
 
   type Auth {

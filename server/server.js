@@ -10,7 +10,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-// const server = require("http").createServer(app);
+const server = require("http").createServer(app);
 // dependencies for socket.io
 // const io = require("socket.io")(server);
 

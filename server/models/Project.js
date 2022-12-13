@@ -23,28 +23,53 @@ const projectSchema = new Schema(
       default: Date.now,
       get: (timestamp) => dateFormat(timestamp),
     },
-    task: [
-      {
-        type: String,
-      },
-    ],
     projectMembers: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
       },
     ],
-    kanban: [
-      {
-        todo: [],
-      },
-      {
-        inProgress: [],
-      },
-      {
-        done: [],
-      },
-    ],
+    kanban: {
+      toDo: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+      inProgress: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+      done: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+    },
   },
   {
     timestamps: true,
@@ -53,7 +78,6 @@ const projectSchema = new Schema(
     },
   }
 );
-
 
 const Project = model("Project", projectSchema);
 
