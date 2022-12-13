@@ -63,7 +63,7 @@ const SignupForm = ({ setLoading }) => {
         addProject({
           variables: {
             projectName: project.name,
-            projectDescription: project.description,
+            projectDescription: project.description || "No description available",
             projectRepo: project.html_url,
             projectOwner: project.owner.login,
             createdAt: project.created_at,
