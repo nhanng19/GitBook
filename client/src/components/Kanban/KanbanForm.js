@@ -45,27 +45,28 @@ const KanbanForm = (props) => {
   return (
     <form onSubmit={submitHandler} className={classes.toDoForm}>
       <div className={classes.inputHeader}>
-        <label className={classes.formLabel}>To-do list:</label>
         <input
           ref={descriptionInputRef}
           className={classes.formInput}
           type="text"
+          placeholder="Enter Ticket"
+          autofocus
           // value={enteredDescription}
           // onChange={descriptionChangeHandler}
         ></input>
       </div>
       <div className={classes.inputBody}>
-        <label className={classes.formLabel}>Assigners:</label>
         <input
           ref={assigneeInputRef}
           type="text"
+          placeholder="Enter Assignee"
           // value={enteredAssignee}
           // onChange={assigneeChangeHandler}
           className={classes.formInput}
         ></input>
-        <button className={classes.addBtn}>Add</button>
-      </div>
+      </div>{" "}
       {!taskIsValid && <p>Please enter a valid input.</p>}
+      <button className={classes.addBtn}>Add</button>
     </form>
   );
 };

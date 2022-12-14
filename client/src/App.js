@@ -16,6 +16,7 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
+import SingleProject from "./pages/SingleProject"
 
 
 import Main from "./components/UI/Main";
@@ -52,10 +53,10 @@ function App() {
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
-          
           {/* <Route path="/friends" element={<Friends />} /> */}
           <Route path="/chat" element={<ChatPage />} />
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
+          <Route path="/projects/:projectId" element={<SingleProject />} />
         </Routes>
       </>
     );

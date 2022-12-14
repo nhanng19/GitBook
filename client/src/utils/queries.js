@@ -99,6 +99,19 @@ export const QUERY_PROJECT = gql`
   }
 `;
 
+export const QUERY_SINGLE_PROJECT = gql`
+  query getSingleproject($projectId: ID!) {
+    project(projectId: $projectId) {
+      _id
+      projectName
+      projectDescription
+      projectOwner
+      projectRepo
+      createdAt
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   query me {
     me {

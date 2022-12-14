@@ -7,6 +7,18 @@
   box-shadow: 0 7px 1rem rgba(0, 0, 0, 0.3);
 }
 
+.container{
+  display: flex;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex : 1;
+}
+
 .chat {
   min-height: 60rem;
   /* background-color: aqua; */
