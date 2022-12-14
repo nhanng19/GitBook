@@ -72,6 +72,7 @@ export const QUERY_PROJECTS = gql`
       projectDescription
       projectRepo
       projectOwner
+      createdAt
     }
   }
 `;
