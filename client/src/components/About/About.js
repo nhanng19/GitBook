@@ -11,7 +11,6 @@ const About = () => {
         </div>
         <div className={styles.introOne}>
             <p>Hello fellow developer! Welcome to Gitbook!</p>
-            {/* <img className={styles.logoPic} alt="Gitbook Logo" src={logo}></img> */}
         </div>
         <div className={styles.paraOne}>
             <p>
