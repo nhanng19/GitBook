@@ -11,7 +11,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
 // dependencies for socket.io
 const server = require("http").createServer(app);
 // const io = require("socket.io")(server);
@@ -67,10 +66,15 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Connecting Socket IO
     io.on("connection", (socket) => {
       // Welcome current user
-      socket.emit("message", "Welcome to Chat");
+      socket.emit("message",  formatMessage('Admin', 'Welcome to Chat'));
 
       // Broadcast when a user connects
-      socket.broadcast.emit("message", "A user has joined the chat");
+      socket.broadcast.emit("message", formatMessage('ChatBott', 'A user has joined the chat'));
+
+      // Listen for ChatMessage
+      socket.on("chatMessage", (msg) => {
+        socket.emit("message", formatMessage("USER", msg));
+      });
 
       // Broadcast when a user disconnect
       socket.on("disconnect", () => {

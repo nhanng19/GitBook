@@ -1,5 +1,6 @@
 import React from "react";
 import Kanban from "../Kanban/Kanban";
+import Chat from "../Chat/Chat";
 
 const ProjectView = ({ name, description, date, owner,repo }) => {
   const DUMMY_DESCRIPTION = `project description test, dummy description.`;

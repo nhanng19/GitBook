@@ -8,7 +8,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
@@ -17,9 +17,6 @@ import Home from "./pages/Home";
 import "./App.css";
 import Auth from "./utils/auth";
 import SingleProject from "./pages/SingleProject"
-import NavBar from "./components/NavBar/NavBar";
-import Content from "./components/UI/Content";
-import SideBar from "./components/UI/SideBar";
 
 
 import Main from "./components/UI/Main";
@@ -54,9 +51,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/Home" element={<Home />} />
-
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           <Route path="/chat" element={<ChatPage />} />
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
