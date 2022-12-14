@@ -7,7 +7,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
@@ -56,6 +56,8 @@ function App() {
           {/* <Route path="/friends" element={<Friends />} /> */}
           <Route path="/chat" element={<ChatPage />} />
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profiles/:username" element={<Profile />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
         </Routes>
       </>
