@@ -15,51 +15,9 @@ const app = express();
 // dependencies for socket.io
 const server = require("http").createServer(app);
 // const io = require("socket.io")(server);
-const http = require('http').Server(app);
-const cors = require('cors');
-const socketIO = require('socket.io')(http, {
-  cors: {
-      origin: "http://localhost:3000"
-  }
-});
-
-socketIO.on('connection', (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`);
-
-  // Welcome current user
-  socket.broadcast.emit('message', formatMessage('ChatBot', 'Welcome to Chat'));
-
-  // Broadcast when a user connects
-  socket.broadcast.emit('message', formatMessage('ChatBott', 'A user has joined the chat'));
-
-  // Listen for ChatMessage
-  socket.on('chatMessage', (msg) => {
-    socketIO.emit('message', formatMessage('USER', msg));
-  })
-
-  socket.on('disconnect', () => {
-    console.log('🔥: A user disconnected');
-  });
-});
-
-
-const startServer = async () => {
-
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: authMiddleware,
-  });
-  await server.start();
-  server.applyMiddleware({ app });
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-};
-
-startServer();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
 // Serve up static assets
 
@@ -109,10 +67,15 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Connecting Socket IO
     io.on("connection", (socket) => {
       // Welcome current user
-      socket.emit("message", "Welcome to Chat");
+      socket.emit("message",  formatMessage('Admin', 'Welcome to Chat'));
 
       // Broadcast when a user connects
-      socket.broadcast.emit("message", "A user has joined the chat");
+      socket.broadcast.emit("message", formatMessage('ChatBott', 'A user has joined the chat'));
+
+      // Listen for ChatMessage
+      socket.on("chatMessage", (msg) => {
+        socket.emit("message", formatMessage("USER", msg));
+      });
 
       // Broadcast when a user disconnect
       socket.on("disconnect", () => {
@@ -123,8 +86,3 @@ const startApolloServer = async (typeDefs, resolvers) => {
 };
 
 startApolloServer(typeDefs, resolvers);
-
-db.once("open", () => {
-  http.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-});
-

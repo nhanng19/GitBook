@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 
 const Chat = () => {
     
-    const socket = io('http://localhost:3001');
+    const socket = io('http://localhost:3000');
     
     // const ref = useRef(null);
 
