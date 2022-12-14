@@ -85,7 +85,6 @@ const resolvers = {
         console.log("Login error", err);
       }
     },
-
     addUser: async (parent, { username, email, password }) => {
       try {
         // create user using provided usename, email, and password
