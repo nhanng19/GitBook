@@ -56,19 +56,7 @@ const projectSchema = new Schema(
   }
 );
 
-  ],
-  kanban: [
-    {
-      todo: [],
-    },
-    {
-      inProgress: [],
-    },
-    {
-      done: [],
-    },
-  ],
-});
+  
 
 
 const Project = model("Project", projectSchema);
