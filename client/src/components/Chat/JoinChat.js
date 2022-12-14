@@ -1,9 +1,19 @@
 import React from "react";
 import styles from "./JoinChat.module.css";
+import { useNavigate } from 'react-router-dom';
 
 const JoinChat = () => {
+    const navigate = useNavigate();
+    const [userName, setUserName] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('userName', userName);
+        // navigate('/chat');
+    }
+
     return (
-        <form className={styles.joinContainer}>
+        <form className={styles.joinContainer} onSubmit={handleSubmit}>
             <div className={styles.form}>
                 <label>Username:</label>
                 <input
