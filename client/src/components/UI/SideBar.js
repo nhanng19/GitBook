@@ -24,7 +24,7 @@ const SideBar = (props) => {
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/myprofile"
-        >
+        > 
           <li className={classes.profileItem}>
             <ProfileItem />
           </li>

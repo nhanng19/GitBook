@@ -43,3 +43,11 @@ export const ADD_PROJECT = gql`
   }
 `;
 
+export const ADD_PICTURE = gql`
+  mutation addPicture($picture: String!) {
+    addPicture(picture: $picture) {
+        picture
+    }
+  }
+`
+

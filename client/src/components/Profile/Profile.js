@@ -1,7 +1,16 @@
-import React from "react";
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_PICTURE } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 import classes from "./Profile.module.css";
 
 const Profile = () => {
+
+  const submitPicture = () => {
+
+  }
+  
   return (
     <>
       <div className={classes.flex_container}>
@@ -18,8 +27,16 @@ const Profile = () => {
       </div>
       <div className={classes.flex_container}>
         <div className={classes.btns_container}>
-          <button>Add/Edit Image</button>
-          <button>Edit Profile</button>
+          <form onSubmit={submitPicture}>
+            <button>
+              <input
+                type="file"
+                name="picture"
+                accept="image/png, image/jpeg"
+              ></input>
+            </button>
+            <button>Edit Profile</button>
+          </form>
         </div>
         <div className={classes.btns_container}>
           <button>Change Password</button>
