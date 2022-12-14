@@ -46,7 +46,6 @@ const Landing = () => {
           </div>
         </div>
         <div className={styles.right}>
-          {" "}
           <div className={styles.img}>
             <div className={styles.icon}>
               <div>

@@ -17,7 +17,7 @@ const ProjectList = ({
       <div className={styles.cardFrame}>
         {projects &&
           projects.map((project) => (
-            <div className={styles.card}>
+            <div key={project._id} className={styles.card}>
               <h3>
                 <Link
                   style={{ textDecoration: "none" }}
