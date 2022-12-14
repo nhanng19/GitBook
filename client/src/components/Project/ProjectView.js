@@ -3,6 +3,7 @@ import classes from "./ProjectView.module.css";
 import Container from "../UI/Container";
 import ProjectInfo from "./ProjectInfo";
 import Kanban from "../Kanban/Kanban";
+import Chat from "../Chat/Chat";
 
 const ProjectView = () => {
   const DUMMY_DESCRIPTION = `project description test, dummy description.`;
@@ -14,7 +15,7 @@ const ProjectView = () => {
         description={DUMMY_DESCRIPTION}
       />
       <Kanban />
-      <div className={classes.chatBox}>
+      {/* <div className={classes.chatBox}>
         <div className={classes.chat}>
           <p>Richard : blah blah blah</p>
           <p>Nhan : lahb lahb lahb</p>
@@ -25,7 +26,8 @@ const ProjectView = () => {
           <textarea className={classes.chatInput}></textarea>
           <button className={` ${classes.sendBtn}`}>Send</button>
         </form>
-      </div>
+      </div> */}
+      <Chat />
     </Container>
   );
 };
