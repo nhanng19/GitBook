@@ -13,7 +13,6 @@ const projectSchema = new Schema(
     },
     projectRepo: {
       type: String,
-      require: true,
     },
     projectOwner: {
       type: String,
@@ -25,28 +24,53 @@ const projectSchema = new Schema(
       default: Date.now,
       get: (timestamp) => dateFormat(timestamp),
     },
-    task: [
-      {
-        type: String,
-      },
-    ],
     projectMembers: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
       },
     ],
-    kanban: [
-      {
-        todo: [],
-      },
-      {
-        inProgress: [],
-      },
-      {
-        done: [],
-      },
-    ],
+    kanban: {
+      toDo: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+      inProgress: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+      done: [
+        {
+          kanbanId: {
+            type: String,
+          },
+          assignee: {
+            type: String,
+          },
+          description: {
+            type: String,
+          },
+        },
+      ],
+    },
   },
   {
     timestamps: true,
