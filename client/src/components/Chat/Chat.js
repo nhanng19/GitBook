@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 
 const Chat = () => {
     
+    const userList = document.getElementById('user-list')
     const { username: userParam } = useParams();
 
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -20,8 +21,14 @@ const Chat = () => {
 
     const socket = io('http://localhost:3000');
     
-
+    // Join chatroom
     socket.emit('joinRoom', { username, room })
+
+    // Get room and users
+    socket.on('roomUsers', ({ room, users }) => {
+       
+        outputUsers(users);
+    });
 
     // Send message to server side.
     socket.on('message', message => {
@@ -53,17 +60,22 @@ const Chat = () => {
     }
 
 
+    // Add user to DOM
+    function outputUsers(users) {
+        
+        userList.innerHTML = `
+         ${users.map(user => `<li className={styles.user}>${user.username}</li>`).join('')}
+        `;
+    }
+
 
     return (
         <div className={styles.container}>
             <div className={styles.rightSideBar}>
                 <h2 className={styles.sideHeader}>Active Users:</h2>
                 <hr></hr>
-                <ul className={styles.userList}>
-                    <li className={styles.user}>Dat</li>
-                    <li className={styles.user}>Lydia</li>
-                    <li className={styles.user}>Richard</li>
-                    <li className={styles.user}>Nhan</li>
+                <ul className={styles.userList} id='user-list'>
+                    
                 </ul>
             </div>
             <div className={styles.mainChat}>
