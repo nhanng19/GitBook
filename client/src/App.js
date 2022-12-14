@@ -49,7 +49,7 @@ function App() {
     routes = (
       <>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Dashboard />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
