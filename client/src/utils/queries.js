@@ -64,19 +64,8 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_ALLPROJECTS = gql`
-  query getProjects {
-    projects {
-      _id
-      projectName
-      projectDescription
-      projectRepo
-      projectOwner
-    }
-  }
-`;
 export const QUERY_PROJECTS = gql`
-  query getProjects($username: String!) {
+  query getProjects {
     projects {
       _id
       projectName
@@ -87,17 +76,6 @@ export const QUERY_PROJECTS = gql`
   }
 `;
 
-export const QUERY_PROJECT = gql`
-  query getProjects {
-    projects {
-      _id
-      projectName
-      projectDescription
-      projectRepo
-      projectOwner
-    }
-  }
-`;
 
 export const QUERY_SINGLE_PROJECT = gql`
   query getSingleproject($projectId: ID!) {
@@ -119,6 +97,7 @@ export const QUERY_ME = gql`
       username
       email
       projects {
+        _id
         projectName
         projectDescription
         projectRepo
