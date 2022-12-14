@@ -77,6 +77,7 @@ const typeDefs = gql`
       createdAt: String
     ): Project
     removeProject(projectId: String!): Project
+
   }
 `;
 
