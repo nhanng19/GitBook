@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 // export const getMe = (token) => {
 //   return fetch("/api/users/me", {
@@ -29,7 +29,7 @@
 //   });
 // };
 
-// const search = (query) =>
-//   axios.get(`https://api.github.com/users/${query}/repos?sort=created`);
+const search = (query) =>
+  axios.get(`https://api.github.com/users/${query}/repos?sort=created`);
 
-// export default search;
+export default search;
