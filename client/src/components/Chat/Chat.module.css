@@ -1,23 +1,24 @@
 .container {
-    border-color: #285430;
-    background-color: #3b7946;
-    margin: 2rem;
-    height: 750px;
-    border-radius: 2rem;
+  background: #ffffff;
+  height: 90vh;
+  width: 100%;
+  padding: 25px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border: 2px solid var(--nav-color);
     display: flex;
 }
 
 .rightSideBar {
     width: 15%;
     height: 96%;
-    background-color: #B6E2A1;
+    background-color: var(--nav-color);
     text-align: center;
     font-size: 2rem;
-    border-radius: 1rem;
     margin: 1%;  
 }
 
 .sideHeader {
+    font-weight: bold;
     padding-top: 2rem;
 }
 
@@ -32,10 +33,10 @@
 }
 
 .header {
-    background-color: #B6E2A1;
+    background-color: var(--nav-color);;
     height: 90%;
     font-size: 2.0rem;
-    border-radius: 1rem;
+
     display: flex;
     justify-content: space-between;
 }
@@ -47,7 +48,6 @@
 
 .leaveBtn {
     background-color: rgb(184, 118, 118);
-    border-radius: 1rem;
     margin: auto 2% auto 0;
     padding: 0.5rem;
 }
@@ -59,6 +59,7 @@
     margin: 2%;
     overflow-y: scroll;
     font-size: 2rem;
+    padding: 20px;
 }
 
 .chatInput {
@@ -79,10 +80,12 @@
 .sendBtn {
     width: auto;
     font-size: 2.2rem;
-    background-color: rgb(24, 9, 243);
-    border-radius: 1rem;
+    background-color: var(--nav-color);;
     margin: auto;
     padding: 0.5rem;   
+}
+.sendBtn:hover {
+    opacity: 0.5;
 }
 
 .message {
