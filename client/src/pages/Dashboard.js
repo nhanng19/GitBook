@@ -26,14 +26,14 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <>
       {!userParam && <AddProject />}
       <ProjectList
         projects={user.projects}
         title={user.username}
         showUsername={false}
       />
-    </div>
+    </>
   );
 };
 
