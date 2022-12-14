@@ -39,8 +39,10 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addProject(
       projectName: String!
-      projectDescription: String!
+      projectDescription: String
       projectRepo: String!
+      projectOwner: String
+      createdAt: String
     ): Project
     removeProject(projectId: String!): Project
   }

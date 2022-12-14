@@ -1,5 +1,5 @@
 import styles from "./Landing.module.css";
-
+import {Link} from "react-scroll"
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faDiagramNext,
@@ -13,10 +13,10 @@ import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from "../LoginModal/LoginModal";
 import SignUpForm from "../SignupModal/SignupModal";
 import React, { useState } from "react";
-
+import LoadingSpinner from "../UI/LoadingSpinner";
 const Landing = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <div className={styles.wrapper}>
@@ -32,12 +32,20 @@ const Landing = () => {
               <a className={styles.btn} onClick={() => setShowModal(true)}>
                 Get Started
               </a>
-              <a className={styles.btn}>View Projects</a>
+              <Link
+                to="projects"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={1000}
+              >
+                View Projects
+              </Link>
+        
             </div>
           </div>
         </div>
         <div className={styles.right}>
-          {" "}
           <div className={styles.img}>
             <div className={styles.icon}>
               <div>
@@ -91,17 +99,22 @@ const Landing = () => {
             <Tab.Content>
               <Tab.Pane eventKey="login">
                 <LoginForm
+                  setLoading={setLoading}
                   style={{ width: "50%" }}
                   handleModalClose={() => setShowModal(false)}
                 />
               </Tab.Pane>
               <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
+                <SignUpForm
+                  setLoading={setLoading}
+                  handleModalClose={() => setShowModal(false)}
+                />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      {loading && <LoadingSpinner />}
     </>
   );
 };

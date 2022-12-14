@@ -16,6 +16,13 @@
   position: relative;
 }
 
+.card h3 {
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
 .card a {
     color: black;
     text-decoration: none
