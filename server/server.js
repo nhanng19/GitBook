@@ -66,10 +66,15 @@ const startApolloServer = async (typeDefs, resolvers) => {
     // Connecting Socket IO
     io.on("connection", (socket) => {
       // Welcome current user
-      socket.emit("message", "Welcome to Chat");
+      socket.emit("message",  formatMessage('Admin', 'Welcome to Chat'));
 
       // Broadcast when a user connects
-      socket.broadcast.emit("message", "A user has joined the chat");
+      socket.broadcast.emit("message", formatMessage('ChatBott', 'A user has joined the chat'));
+
+      // Listen for ChatMessage
+      socket.on("chatMessage", (msg) => {
+        socket.emit("message", formatMessage("USER", msg));
+      });
 
       // Broadcast when a user disconnect
       socket.on("disconnect", () => {

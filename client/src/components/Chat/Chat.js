@@ -59,7 +59,7 @@ const Chat = () => {
             <div className={styles.mainChat}>
                 <div className={styles.header}>
                     <p className={styles.roomId}>Current Room: Room.ID</p>
-                    <button className={styles.leaveBtn}>Leave Chat</button>
+                    {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
                 </div>
                 <div className={styles.chatBox} id='chatBox'>
                     
