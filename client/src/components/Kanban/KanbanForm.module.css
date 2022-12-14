@@ -1,9 +1,14 @@
 .toDoForm {
-  padding: 3rem;
-  text-align: center;
+  background: #ffffff;
+  width: 100%;
+  padding: 25px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border: 2px solid var(--nav-color);
+  margin-left: 7rem;
 }
 .toDoForm p {
-  font-size: 3rem;
+  font-size: 1rem;
   color: red;
   font-weight: bold;
 }
@@ -19,19 +24,29 @@
 }
 
 .formLabel {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 1rem;
 }
 
 .formInput {
-  font-size: 2.5rem;
+    padding: 1px;
+  width: 100%;
+ font: 400 16px/20px "Poppins", Helvetica, Arial, sans-serif;
   margin: 1rem;
+  border: 1px solid #ccc;
+  background: #fff;
   flex: 1 0 0;
 }
 
+.formInput:focus {
+    outline: 0;
+  border: 1px solid #aaa;
+}
+
 .addBtn {
-  font-size: 2rem;
-  margin: 1rem;
-  padding: 5px;
-  width: 10rem;
+  font-size: 15px
+ !important;
+  margin: 1rem !important;
+  padding: 5px !important;
+  width: 97% !important;
 }
