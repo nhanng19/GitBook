@@ -16,7 +16,7 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
-
+import SingleProject from "./pages/SingleProject"
 import NavBar from "./components/NavBar/NavBar";
 import Content from "./components/UI/Content";
 import SideBar from "./components/UI/SideBar";
@@ -56,10 +56,11 @@ function App() {
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/Home" element={<Home />} />
-          
+
           {/* <Route path="/friends" element={<Friends />} /> */}
           <Route path="/chat" element={<ChatPage />} />
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
+          <Route path="/projects/:projectId" element={<SingleProject />} />
         </Routes>
       </>
     );
