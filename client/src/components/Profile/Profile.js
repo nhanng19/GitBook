@@ -7,8 +7,8 @@ import classes from "./Profile.module.css";
 
 const Profile = () => {
 
-  const submitPicture = () => {
-
+  const submitPicture = (e) => {
+    
   }
   
   return (
