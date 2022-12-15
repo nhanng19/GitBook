@@ -4,22 +4,23 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import ProjectList from "../components/Project/ProjectList";
 import Auth from "../utils/auth";
 const Profile = () => {
- const { username: userParam } = useParams();
+  const { username: userParam } = useParams();
 
- const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-   variables: { username: userParam },
- });
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
 
-    const user = data?.me || data?.user || {};
-    return (
-      <>
-        <ProjectList
-          projects={user.projects}
-          title={user.username}
-          showUsername={true}
-        />
-      </>
-    );
-}
+  const user = data?.me || data?.user || {};
+console.log(user)
+  return (
+    <>
+      <ProjectList
+        projects={user.projects}
+        title={user.username}
+        showUsername={true}
+      />
+    </>
+  );
+};
 
 export default Profile;
