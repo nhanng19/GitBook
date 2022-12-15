@@ -1,39 +1,58 @@
 import styles from "./Chat.module.css";
 import { io } from "socket.io-client";
-// import { useRef } from 'react';
+
+import { QUERY_ME, QUERY_USER } from "../../utils/queries";
+import { useParams } from 'react-router-dom';
+import { useQuery } from "@apollo/client";
 
 const Chat = () => {
-  const socket = io("http://localhost:3000");
+    
+    const userList = document.getElementById('user-list')
+    const { username: userParam } = useParams();
 
-  // const ref = useRef(null);
+    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+        variables: { username: userParam },
+    });
 
-  // Message from server
-  socket.on("message", (message) => {
-    // const Box = ref.current;
-    // console.log(message);
-    outputMessage(message);
+    const user = data?.me || data?.user || {};
+    
+    const username = user.username
+    const room = 'tempRoomID'
+    console.log(room);
 
-    // Box.scrollTop = Box.scrollHeight;
-  });
+    const socket = io('http://localhost:3000');
+    
+    // Join chatroom
+    socket.emit('joinRoom', { username, room })
 
-  const submitForm = (e) => {
-    e.preventDefault();
+    // Get room and users
+    socket.on('roomUsers', ({ room, users }) => {
+       
+        outputUsers(users);
+    });
 
-    // retrieve text to send
-    const msg = e.target.elements.msg.value;
+    // Send message to server side.
+    socket.on('message', message => {
+        outputMessage(message);
+    })
 
-    // sending message to server
-    socket.emit("chatMessage", msg);
+    // Submit chat function
+    const submitForm = (e) => {
+        e.preventDefault();
+        // retrieve text to send
+        const msg = e.target.elements.msg.value;
+        // sending message to server
+        socket.emit('chatMessage', msg)
+        // Clear input and focus on input area
+        e.target.elements.msg.value = '';
+        e.target.elements.msg.focus();
+    }
 
-    // Clear input and focus on input area
-    e.target.elements.msg.value = "";
-    e.target.elements.msg.focus();
-  };
-
-  function outputMessage(message) {
-    const div = document.createElement("div");
-    div.classList.add("message");
-    div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
+    // function to recieve data from server and render it onto page
+    function outputMessage(message) {
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
         <p className="text">
             ${message.text}
         </p>`;
@@ -41,38 +60,45 @@ const Chat = () => {
     document.getElementById("chatBox").appendChild(div);
   }
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.rightSideBar}>
-        <h2 className={styles.sideHeader}>Active Users:</h2>
-        <hr></hr>
-        <ul className={styles.userList}>
-          <li className={styles.user}>Dat</li>
-          <li className={styles.user}>Lydia</li>
-          <li className={styles.user}>Richard</li>
-          <li className={styles.user}>Nhan</li>
-        </ul>
-      </div>
-      <div className={styles.mainChat}>
-        <div className={styles.header}>
-          <p className={styles.roomId}>Current Room: Room.ID</p>
-          {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
-        </div>
-        <div className={styles.chatBox} id="chatBox"></div>
-        <form className={styles.chatInput} id="chatForm" onSubmit={submitForm}>
-          <input
-            id="msg"
-            type="text"
-            placeholder="Enter message"
-            className={styles.chatText}
-            autoComplete="off"
-            required
-          ></input>
-          <button className={styles.sendBtn} type="submit">
-            Send
-          </button>
-        </form>
-      </div>
+
+    // Add user to DOM
+    function outputUsers(users) {
+        
+        userList.innerHTML = `
+         ${users.map(user => `<li className={styles.user}>${user.username}</li>`).join('')}
+        `;
+    }
+
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.rightSideBar}>
+                <h2 className={styles.sideHeader}>Active Users:</h2>
+                <hr></hr>
+                <ul className={styles.userList} id='user-list'>
+                    
+                </ul>
+            </div>
+            <div className={styles.mainChat}>
+                <div className={styles.header}>
+                    <p className={styles.roomId}>Current Room: {room}</p>
+                    {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
+                </div>
+                <div className={styles.chatBox} id='chatBox'>
+                    
+                </div>
+                <form className={styles.chatInput} id='chatForm' onSubmit={submitForm}>
+                    <input
+                        id="msg"
+                        type="text"
+                        placeholder="Enter message"
+                        className={styles.chatText}
+                        autoComplete="off"
+                        required>
+                    </input>
+                    <button className={styles.sendBtn} type='submit'>Send</button>
+                </form>
+            </div>
     </div>
   );
 };
