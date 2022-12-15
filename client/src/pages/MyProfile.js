@@ -7,6 +7,7 @@ import Auth from "../utils/auth";
 
 const MyProfile = () => {
   const { username: userParam } = useParams();
+
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
@@ -24,7 +25,8 @@ const MyProfile = () => {
 
   return (
     <>
-      <Profile />
+    {!userParam && <Profile />}
+      {/* <Profile /> */}
     </>
   );
 };

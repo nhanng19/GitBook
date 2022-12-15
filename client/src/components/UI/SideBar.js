@@ -11,7 +11,7 @@ import {
 import SideBarItem from "./SideBarItem";
 import Auth from "../..//utils/auth.js";
 import { NavLink } from "react-router-dom";
-import ProfileItem from "../NavBar/ProfileItem";
+// import ProfileItem from "../NavBar/ProfileItem";
 const SideBar = (props) => {
   const logout = (event) => {
     event.preventDefault();
@@ -20,7 +20,7 @@ const SideBar = (props) => {
   return (
     <nav className={classes.sidebar}>
       <ul className={classes.side_nav}>
-        <NavLink
+        {/* <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/myprofile"
@@ -28,7 +28,7 @@ const SideBar = (props) => {
           <li className={classes.profileItem}>
             <ProfileItem />
           </li>
-        </NavLink>
+        </NavLink> */}
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}

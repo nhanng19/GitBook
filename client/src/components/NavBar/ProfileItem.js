@@ -7,7 +7,7 @@ const ProfileItem = () => {
     <div className={classes.user_nav__user}>
       <a className={classes.side_nav_link}>
         <img src={profile} alt="User" className={classes.nav__profile} />
-        <span className="user-nav__user-name">Username</span>
+        <span className={classes.username}>Username</span>
       </a>
     </div>
   );

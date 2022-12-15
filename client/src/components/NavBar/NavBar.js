@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <header className={classes.navbar}>
       <Logo />
-      <SearchBar />
+      <SearchBar />      
       <NavBarItems />
     </header>
   );

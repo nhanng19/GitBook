@@ -1,8 +1,9 @@
 import React from "react";
 import { FaUserFriends, FaEnvelope } from "react-icons/fa";
-import classes from './NavBarItems.module.css';
+import classes from "./NavBarItems.module.css";
 import profile from "../../assets/profile(test).png";
 import ProfileItem from "./ProfileItem";
+import { NavLink } from "react-router-dom";
 
 const NavBarItems = () => {
   return (
@@ -19,7 +20,9 @@ const NavBarItems = () => {
         </svg>
         <span className={classes.user_nav__notification}>13</span>
       </div>
-      <ProfileItem />
+      <NavLink style={{ textDecoration: "none" }} to="/myprofile">
+        <ProfileItem />
+      </NavLink>
     </nav>
   );
 };

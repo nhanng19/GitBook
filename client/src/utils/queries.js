@@ -87,18 +87,6 @@ export const QUERY_PROJECTS = gql`
   }
 `;
 
-export const QUERY_PROJECT = gql`
-  query getProjects {
-    projects {
-      _id
-      projectName
-      projectDescription
-      projectRepo
-      projectOwner
-    }
-  }
-`;
-
 export const QUERY_ME = gql`
   query me {
     me {

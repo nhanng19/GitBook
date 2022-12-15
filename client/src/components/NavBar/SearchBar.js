@@ -1,10 +1,17 @@
-import React from 'react';
-import { FaSearch } from 'react-icons/fa';
-import classes from './SearchBar.module.css';
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import classes from "./SearchBar.module.css";
+import SearchMenu from "./SearchMenu";
 
 const SearchBar = () => {
-    return (
-        <form action="#" className={classes.search}>
+  const [showSearchMenu, setShowSearchMenu] = useState(false);
+  return (
+    <div className={classes.header}>
+      <form
+        action="#"
+        className={classes.search}
+        onClick={() => setShowSearchMenu(true)}
+      >
         <input
           type="text"
           className={classes.search__input}
@@ -16,7 +23,9 @@ const SearchBar = () => {
           </svg>
         </button>
       </form>
-    );
+      {showSearchMenu && <SearchMenu setShowSearchMenu={setShowSearchMenu} />}
+    </div>
+  );
 };
 
 export default SearchBar;

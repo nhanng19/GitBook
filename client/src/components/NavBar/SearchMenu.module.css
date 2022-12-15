@@ -1,0 +1,111 @@
+.header_left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5 1rem;
+    width: 100%;
+    /* z-index: 10; */
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    background-color: rgb(227, 227, 227);
+    padding: 10px 32px 10px 10px;
+    border-radius: 50px;
+    cursor: text;
+}
+
+.search input{
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.search input::placeholder {
+    transform: translateY(-1px);
+}
+
+.search_area {
+    position: absolute;
+    width: 40%;
+    margin-top: 33rem;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    background: white;
+    box-shadow: 0 12px 12px #333, inset 0 0 0 0 #777;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: all 0.2s;
+    -webkit-font-smoothing: antialiased;
+    z-index: 2;
+    min-height: 400px;
+    max-height: 70vh;
+    padding: 8px 16p 10px 6px;
+}
+@media screen and (max-width: 620px) {
+    .search_area {
+        width: 90%;
+    }
+}
+
+.search_wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 13px 20px 0px; 
+    width: 100%;  
+}
+
+
+.search {
+    padding: 10px 44px;
+    width: 100%;
+    gap: 4px;
+}
+
+.search input {
+    padding-left: 4px;
+}
+.search input::placeholder {
+    transform: translateY(-1px)
+}
+.search input:focus::placeholder {
+    transform: translateY(-1px);
+}
+.icon {
+    transform: translateY(-2px);
+}
+
+.search_history_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 14px;
+}
+.search_history_header span{
+    font-weight: 600;
+    font-size: 16px;
+}
+.search_history_header a{
+    cursor: pointer;
+    color: black;
+}
+
+

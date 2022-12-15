@@ -98,13 +98,13 @@ const resolvers = {
     },
     addPicture: async (parent, { picture }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { picture: {} }},
-          { $addToSet: { picture: picture }},
+          { picture: picture },
+          // { $pull: { picture: {} }},
+          // { $addToSet: { picture: picture }},
           { new: true }
         );
-
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');

@@ -43,7 +43,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 9;
+  z-index: 0;
   display: flex;
   height: 100vh;
   flex-direction: column;
