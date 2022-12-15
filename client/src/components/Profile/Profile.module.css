@@ -1,30 +1,15 @@
-.flex_container {
-    display: flex;
-    align-items: center;
-    padding: 2rem;
-    justify-content: center;
+.profile {
+  color: white;
 }
 
-.profileImage {
-    width: 14rem;
-}
-.profileHeader {
-    padding: 3rem;
-    margin-left: 5rem;
+.profile_top {
+  /* margin-top: 56px; */
+  box-shadow: 0 1px 2px #333;
+  background: var(--nav-color);
 }
 
-.profileHeader h1 {
-    padding: 1rem;
+.profile_container {
+  max-width: 945px;
+  margin: 0 auto;
 }
 
-.btns_container {
-    display: grid;
-}
-
-.btns_container button {
-    margin: 2rem;
-    font-family: inherit;
-    font-size: 2rem;
-    background-color: white;
-    padding: 2rem;
-}

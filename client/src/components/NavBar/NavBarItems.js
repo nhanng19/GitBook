@@ -20,9 +20,7 @@ const NavBarItems = () => {
         </svg>
         <span className={classes.user_nav__notification}>13</span>
       </div>
-      <NavLink style={{ textDecoration: "none" }} to="/myprofile">
-        <ProfileItem />
-      </NavLink>
+      <ProfileItem />
     </nav>
   );
 };

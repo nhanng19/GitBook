@@ -14,7 +14,9 @@ const SearchMenu = ({ setShowSearchMenu }) => {
   useClickOutside(menu, () => {
     setShowSearchMenu(false);
   });
-  useEffect(() => {input.current.focus()}, [])
+  useEffect(() => {
+    input.current.focus();
+  }, []);
   return (
     <div
       className={`${classes.header_left} ${classes.search_area} ${classes.scrollbar}`}

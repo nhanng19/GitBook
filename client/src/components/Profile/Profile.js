@@ -3,13 +3,18 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_PICTURE } from "../../utils/mutations";
 import { QUERY_USER } from "../../utils/queries";
+
 import Auth from "../../utils/auth";
 import classes from "./Profile.module.css";
+import Cover from "./Cover";
+import ProfilePictureInfos from "./ProfilePictureInfos";
+import ProfileMenu from "./ProfileMenu";
 
 const Profile = () => {
   const [imageFile, setImageFile] = useState("");
 
-  const [addPicture, { error }] = useMutation(ADD_PICTURE
+  const [addPicture, { error }] = useMutation(
+    ADD_PICTURE
     // , {
     // update(cache, { data: { addPicture } }) {
     //   try {
@@ -23,17 +28,17 @@ const Profile = () => {
     //     console.error(err);
     //   }
     // },
-  // }
+    // }
   );
 
   const handleFileChange = () => {
-    const value = document.getElementById('fileInput').files[0]
+    const value = document.getElementById("fileInput").files[0];
     setImageFile(value);
   };
 
   const submitPicture = async (e) => {
     e.preventDefault();
-    
+
     const formData = await new FormData();
     formData.append("file", imageFile);
     formData.append("upload_preset", "profileImgs");
@@ -47,51 +52,25 @@ const Profile = () => {
     ).then((r) => r.json());
 
     const cloudinaryUrl = data.url;
-    console.log(cloudinaryUrl)
-    await addPicture({ variables: {
-      picture: cloudinaryUrl
-    }});
-    setImageFile("")
-
+    console.log(cloudinaryUrl);
+    await addPicture({
+      variables: {
+        picture: cloudinaryUrl,
+      },
+    });
+    setImageFile("");
   };
 
   return (
-    <>
-      <div className={classes.flex_container}>
-        <div>
-          <img
-            className={classes.profileImage}
-            src="https://res.cloudinary.com/dc2xiz0gi/image/upload/v1670957376/profileImgs/Untitled_design_4_usytaj.png"
-          />
-        </div>
-        <div className={classes.profileHeader}>
-          <h1>Username</h1>
-          <h1>Github Link</h1>
+    <div className={classes.profile}>
+      <div className={classes.profile_top}>
+        <div className={classes.profile_container}>
+          <Cover />
+          <ProfilePictureInfos />
+          <ProfileMenu />
         </div>
       </div>
-      <div className={classes.flex_container}>
-        <div className={classes.btns_container}>
-          <form onSubmit={submitPicture}
-          onChange={handleFileChange}
-          >
-            
-              <input
-                id="fileInput"
-                type="file"
-                name="profile"
-                label="Select profile picture"
-                accept="image/jpg, image/jpeg, image/png"
-              />
-            
-            <button type="submit">submit image</button>
-          </form>
-        </div>
-        <div className={classes.btns_container}>
-          <button>Change Password</button>
-          <button>SomethingMore</button>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

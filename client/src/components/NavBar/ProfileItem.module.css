@@ -3,6 +3,12 @@
   border-radius: 50%;
   margin-right: 1rem;
 }
+.active > * {
+  background-color: #f7faec;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 .side_nav_link:link,
 .side_nav_link:visited {
   color: #333;
