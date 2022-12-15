@@ -3,7 +3,7 @@ import KanbanForm from "./KanbanForm";
 import classes from "./KanbanNewTask.module.css";
 import KanbanContext from "../../store/kanban-context";
 import ProjectInfo from "../Project/ProjectInfo";
-const KanbanNewTask = ({ name, date, description, owner, repo, props }) => {
+const KanbanNewTask = ({ name, date, description, owner, repo }) => {
   const kanbanCtx = useContext(KanbanContext);
 
   const [isAdding, setIsAdding] = useState(false);
@@ -32,7 +32,6 @@ const KanbanNewTask = ({ name, date, description, owner, repo, props }) => {
   return (
     <div className={classes.new_task}>
       <div className={classes.left}>
-        {" "}
         <ProjectInfo
           title={name}
           date={date}
@@ -44,7 +43,7 @@ const KanbanNewTask = ({ name, date, description, owner, repo, props }) => {
 
       <div className={classes.right}>
 
-          <KanbanForm
+        <KanbanForm
             onSaveTaskData={saveTaskDataHandler}
             onCancel={stopAddingHandler}
           />
