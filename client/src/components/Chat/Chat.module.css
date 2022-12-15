@@ -5,96 +5,89 @@
   padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: 2px solid var(--nav-color);
-    display: flex;
+  display: flex;
 }
 
 .rightSideBar {
-    width: 15%;
-    height: 96%;
-    background-color: var(--nav-color);
-    text-align: center;
-    font-size: 2rem;
-    margin: 1%;  
+  width: 15%;
+  height: 96%;
+  background-color: var(--nav-color);
+  text-align: center;
+  font-size: 2rem;
+  margin: 1%;
 }
 
 .sideHeader {
-    font-weight: bold;
-    padding-top: 2rem;
+  font-weight: bold;
+  padding-top: 2rem;
 }
 
 .user {
-    list-style: none
+  list-style: none;
 }
 
 .mainChat {
-    margin-top: 1%;
-    width: 82%;
-    height: 10%;
+  margin-top: 1%;
+  width: 82%;
+  height: 10%;
 }
 
 .header {
-    background-color: var(--nav-color);;
-    height: 90%;
-    font-size: 2.0rem;
+  background-color: var(--nav-color);
+  height: 90%;
+  font-size: 2rem;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .roomId {
-   font-weight: bolder; 
-   margin: auto 0 auto 2%;
+  font-weight: bolder;
+  margin: auto 0 auto 2%;
 }
 
 .leaveBtn {
-    background-color: rgb(184, 118, 118);
-    margin: auto 2% auto 0;
-    padding: 0.5rem;
+  background-color: rgb(184, 118, 118);
+  margin: auto 2% auto 0;
+  padding: 0.5rem;
 }
 
 .chatBox {
-    height: 750%;
-    background-color: white;
-    border: 3px solid rgba(59, 59, 59, 0.377);
-    margin: 2%;
-    overflow-y: scroll;
-    font-size: 2rem;
-    padding: 20px;
+  height: 750%;
+  background-color: white;
+  border: 3px solid rgba(59, 59, 59, 0.377);
+  margin: 2%;
+  overflow-y: scroll;
+  font-size: 2rem;
+  padding: 20px;
 }
 
 .chatInput {
-    height: 60%;
-    display: flex;
-    margin: 0 2% 0 2%;
+  height: 60%;
+  display: flex;
+  margin: 0 2% 0 2%;
 }
 
 .chatText {
-    height: 100%;
-    width: 92%;
-    background-color: white;
-    font-size: 2rem;
-    line-height: 100%;
-    padding: 1rem;
+  height: 100%;
+  width: 92%;
+  background-color: white;
+  font-size: 2rem;
+  line-height: 100%;
+  padding: 1rem;
 }
 
 .sendBtn {
-    width: auto;
-    font-size: 2.2rem;
-    background-color: var(--nav-color);;
-    margin: auto;
-    padding: 0.5rem;   
+  width: auto;
+  font-size: 2.2rem;
+  background-color: var(--nav-color);
+  margin: auto;
+  padding: 0.5rem;
 }
 .sendBtn:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .message {
-    background-color: #B6E2A1;
+  background-color: #b6e2a1;
 }
-
-
-
-
-
-
-
