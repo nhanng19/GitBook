@@ -1,6 +1,7 @@
 .kanbanBox {
-    padding: 2rem;
-    display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10rem;
   }
   
   

@@ -1,5 +1,6 @@
 import styles from "./Chat.module.css";
 import { io } from "socket.io-client";
+
 import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import { useParams } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
@@ -56,8 +57,8 @@ const Chat = () => {
             ${message.text}
         </p>`;
 
-        document.getElementById('chatBox').appendChild(div);
-    }
+    document.getElementById("chatBox").appendChild(div);
+  }
 
 
     // Add user to DOM
@@ -98,8 +99,8 @@ const Chat = () => {
                     <button className={styles.sendBtn} type='submit'>Send</button>
                 </form>
             </div>
-        </div>
-    )
+    </div>
+  );
 };
 
 export default Chat;
