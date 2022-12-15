@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./ProfilePictureInfos.module.css";
 import {
   BsFillCameraFill,
@@ -6,12 +6,15 @@ import {
   BsPencilFill,
   BsFillPlusCircleFill,
 } from "react-icons/bs";
+import ProfilePicture from "./ProfilePicture";
 
 const ProfilePictureInfos = () => {
+  const [show, setShow] = useState(true);
   const userPicture =
     "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671125789/profileImgs/i5jfxsozvva85zhjhqz0.png";
   return (
     <div className={classes.profile_img_wrap}>
+      {show && <ProfilePicture />}
       <div className={classes.profile_w_left}>
         <div className={classes.profile_w_img}>
           <div
@@ -28,9 +31,7 @@ const ProfilePictureInfos = () => {
           </div>
         </div>
         <div className={classes.profile_w_col}>
-          <div className={classes.profile_name}>
-            Richard You
-          </div>
+          <div className={classes.profile_name}>Richard You</div>
           <div className={classes.profile_friend_count}></div>
           <div className={classes.profile_friend_imgs}></div>
         </div>
