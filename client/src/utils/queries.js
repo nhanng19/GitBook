@@ -2,19 +2,16 @@ import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
   query users {
-    user(username: $username) {
+    users {
       _id
       username
       email
-      github
-      linkedin
       projects {
         _id
         projectName
         projectDescription
         projectOwner
         createdAt
-        task
       }
     }
   }
