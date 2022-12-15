@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import classes from "./KanbanForm.module.css";
-
+import { QUERY_USERS } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+import LoadingSpinner from "../UI/LoadingSpinner";
 const KanbanForm = (props) => {
   const [taskIsValid, setTaskIsValid] = useState(true);
-
+  const formRef = useRef();
   const assigneeInputRef = useRef();
   const descriptionInputRef = useRef();
 
@@ -17,6 +19,8 @@ const KanbanForm = (props) => {
   //     setTaskIsValid(false);
   //   }
   // }, [assigneeInputRef, descriptionInputRef]);
+  const { loading, data } = useQuery(QUERY_USERS);
+  const users = data?.users || [];
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -39,35 +43,52 @@ const KanbanForm = (props) => {
 
     props.onSaveTaskData(taskData);
     // setEnteredAssignee("");
-    // setEnteredDescription("");
+    // setEnteredDescription("");    
+    assigneeInputRef.current.reset();
+    descriptionInputRef.current.reset();
   };
 
   return (
-    <form onSubmit={submitHandler} className={classes.toDoForm}>
-      <div className={classes.inputHeader}>
-        <input
-          ref={descriptionInputRef}
-          className={classes.formInput}
-          type="text"
-          placeholder="Enter Ticket"
-          autofocus
-          // value={enteredDescription}
-          // onChange={descriptionChangeHandler}
-        ></input>
-      </div>
-      <div className={classes.inputBody}>
-        <input
-          ref={assigneeInputRef}
-          type="text"
-          placeholder="Enter Assignee"
-          // value={enteredAssignee}
-          // onChange={assigneeChangeHandler}
-          className={classes.formInput}
-        ></input>
-      </div>{" "}
-      {!taskIsValid && <p>Please enter a valid input.</p>}
-      <button className={classes.addBtn}>Add</button>
-    </form>
+    <>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <form
+          ref={formRef}
+          onSubmit={submitHandler}
+          className={classes.toDoForm}
+        >
+          <h1>Add a ticket</h1>{" "}
+          {!taskIsValid && <p>Please enter a valid input.</p>}
+          <div className={classes.inputHeader}>
+            <input
+              ref={descriptionInputRef}
+              className={classes.formInput}
+              type="text"
+              placeholder="Enter Ticket"
+              autofocus
+              // value={enteredDescription}
+              // onChange={descriptionChangeHandler}
+            ></input>
+          </div>
+          <div className={classes.inputBody}>
+            <select
+              ref={assigneeInputRef}
+              className={classes.selectInput}
+              name="cars"
+            >
+              <option value="" disabled selected>
+                Choose an assignee
+              </option>
+              {users.map((user) => (
+                <option value={user.username}>{user.username}</option>
+              ))}
+            </select>
+          </div>
+          <button className={classes.addBtn}>Add</button>
+        </form>
+      )}
+    </>
   );
 };
 

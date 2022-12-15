@@ -7,6 +7,10 @@
   border: 2px solid var(--nav-color);
   margin-left: 7rem;
 }
+
+.toDoForm h1 {
+  float: left;
+}
 .toDoForm p {
   font-size: 1rem;
   color: red;
@@ -29,23 +33,34 @@
 }
 
 .formInput {
-    padding: 1px;
+  padding: 1px;
   width: 100%;
- font: 400 16px/20px "Poppins", Helvetica, Arial, sans-serif;
+  font: 400 16px/20px "Poppins", Helvetica, Arial, sans-serif;
   margin: 1rem;
   border: 1px solid #ccc;
   background: #fff;
   flex: 1 0 0;
 }
 
+.selectInput {
+  margin: 1rem;
+  flex: 1 0 0;
+  width: 100%;
+  font-size: 1.5rem;
+  border: 1px solid #ccc;
+}
+
+.selectInput:focus {
+  outline: 0;
+}
+
 .formInput:focus {
-    outline: 0;
+  outline: 0;
   border: 1px solid #aaa;
 }
 
 .addBtn {
-  font-size: 15px
- !important;
+  font-size: 15px !important;
   margin: 1rem !important;
   padding: 5px !important;
   width: 97% !important;

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import { FaGithub } from "react-icons/fa";
 const ProjectList = ({
-  repoProjects,
   projects,
   title,
   showUsername = true,

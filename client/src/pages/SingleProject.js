@@ -2,12 +2,11 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_PROJECT } from "../utils/queries";
 import ProjectView from "../components/Project/ProjectView";
-
-const SingleProject = () => {
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+const SingleProject = ({ socket }) => {
   const { projectId } = useParams();
 
   const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
-    // pass URL parameter
     variables: { projectId: projectId },
   });
 
@@ -15,13 +14,19 @@ const SingleProject = () => {
 
   return (
     <>
-      <ProjectView
-        name={project.projectName}
-        description={project.projectDescription}
-        date={project.createdAt}
-        owner={project.projectOwner}
-        repo={project.projectRepo}
-      />
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <ProjectView
+          name={project.projectName}
+          description={project.projectDescription}
+          date={project.createdAt}
+          owner={project.projectOwner}
+          repo={project.projectRepo}
+          projectId={project._id}
+          socket={socket}
+        />
+      )}
     </>
   );
 };

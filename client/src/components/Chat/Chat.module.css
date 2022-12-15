@@ -1,11 +1,29 @@
-.container {
-  background: #ffffff;
-  height: 90vh;
+.overlay {
+  height: 100%;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(24, 24, 24, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  height: 80vh;
+  width: 80%;
   padding: 25px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: 2px solid var(--nav-color);
   display: flex;
+  z-index: 11;
 }
 
 .rightSideBar {
@@ -28,7 +46,7 @@
 
 .mainChat {
   margin-top: 1%;
-  width: 82%;
+  width: 100%;
   height: 10%;
 }
 
@@ -53,6 +71,9 @@
 }
 
 .chatBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   height: 750%;
   background-color: white;
   border: 3px solid rgba(59, 59, 59, 0.377);

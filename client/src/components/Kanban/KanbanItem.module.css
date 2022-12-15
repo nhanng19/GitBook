@@ -11,7 +11,7 @@
 .itemHeader {
   display: flex;
   position: relative;
-  padding-left: 15px;
+  padding-left: 1rem;
   padding-top: 7px;
 }
 .itemAssigner {
@@ -35,5 +35,6 @@
 .itemDescription {
   font-size: 1.3rem;
   padding: 5px 5px 2px 5px;
+  margin-left: 2rem;
   width: 100%;
 }
