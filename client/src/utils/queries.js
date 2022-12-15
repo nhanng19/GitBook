@@ -9,6 +9,7 @@ export const QUERY_USERS = gql`
       github
       linkedin
       projects {
+        _id
         projectName
         projectDescription
         projectOwner
@@ -25,6 +26,7 @@ export const QUERY_USER = gql`
       username
       email
       projects {
+        _id
         projectName
         projectDescription
         projectRepo
