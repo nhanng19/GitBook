@@ -1,26 +1,11 @@
 import styles from "./Chat.module.css";
-import { io } from "socket.io-client";
-import { useState } from "react";
-import { QUERY_ME, QUERY_USER } from "../../utils/queries";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
-const Chat = () => {
-  const socket = io("http://localhost:3000");
+const Chat = ({ roomId, currentName, socket, showChat }) => {
+  const username = currentName;
+  const room = roomId;
   const userList = document.getElementById("user-list");
-  const { username: userParam } = useParams();
-
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  });
-
-  const user = data?.me || data?.user || {};
-
-  const username = user.username;
-  const room = "tempRoomID";
-
   // function to recieve data from server and render it onto page
-  async function outputMessage(message) {
+  const outputMessage = (message) => {
     const div = document.createElement("div");
     div.classList.add("message");
     div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
@@ -29,16 +14,16 @@ const Chat = () => {
         </p>`;
 
     document.getElementById("chatBox").appendChild(div);
-  }
+  };
 
   // Add user to DOM
-  function outputUsers(users) {
+  const outputUsers = (users) => {
     userList.innerHTML = `
          ${users
            .map((user) => `<li className={styles.user}>${user.username}</li>`)
            .join("")}
         `;
-  }
+  };
   // Submit chat function
   const submitForm = (e) => {
     e.preventDefault();
@@ -57,43 +42,49 @@ const Chat = () => {
   useEffect(() => {
     // Get room and users
     socket.on("roomUsers", ({ room, users }) => {
-      outputUsers(user.username);
+      outputUsers(users);
     });
-
-    // Send message to server side.
     socket.off("message").on("message", (message) => {
       outputMessage(message);
     });
+    // Send message to server side.
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.rightSideBar}>
-        <h2 className={styles.sideHeader}>Active Users:</h2>
-        <hr></hr>
-        <ul className={styles.userList} id="user-list"></ul>
-      </div>
-      <div className={styles.mainChat}>
-        <div className={styles.header}>
-          <p className={styles.roomId}>Current Room: {room}</p>
-          {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
+    <>
+      <div onClick={showChat} className={styles.overlay}></div>
+      <div className={styles.container}>
+        <div className={styles.rightSideBar}>
+          <h2 className={styles.sideHeader}>Active Users:</h2>
+          <hr></hr>
+          <ul className={styles.userList} id="user-list"></ul>
         </div>
-        <div className={styles.chatBox} id="chatBox"></div>
-        <form className={styles.chatInput} id="chatForm" onSubmit={submitForm}>
-          <input
-            id="msg"
-            type="text"
-            placeholder="Enter message"
-            className={styles.chatText}
-            autoComplete="off"
-            required
-          ></input>
-          <button className={styles.sendBtn} type="submit">
-            Send
-          </button>
-        </form>
+        <div className={styles.mainChat}>
+          <div className={styles.header}>
+            <p className={styles.roomId}>Current Room: {room}</p>
+            {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
+          </div>
+          <div className={styles.chatBox} id="chatBox"></div>
+          <form
+            className={styles.chatInput}
+            id="chatForm"
+            onSubmit={submitForm}
+          >
+            <input
+              id="msg"
+              type="text"
+              placeholder="Enter message"
+              className={styles.chatText}
+              autoComplete="off"
+              required
+            ></input>
+            <button className={styles.sendBtn} type="submit">
+              Send
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
