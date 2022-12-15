@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -16,8 +15,9 @@ import Home from "./pages/Home";
 // import Container from './components/UI/Container';
 import "./App.css";
 import Auth from "./utils/auth";
-import SingleProject from "./pages/SingleProject"
-
+import SingleProject from "./pages/SingleProject";
+import React, { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 
 import Main from "./components/UI/Main";
 
@@ -43,6 +43,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io(`http://localhost:3000`);
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
+
   let routes;
 
   if (Auth.loggedIn()) {
@@ -54,11 +62,14 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
-          <Route path="/chat" element={<ChatPage />} />
+          {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/profiles/:username" element={<Profile />} />
-          <Route path="/projects/:projectId" element={<SingleProject />} />
+          <Route
+            path="/projects/:projectId"
+            element={<SingleProject socket={socket} />}
+          />
         </Routes>
       </>
     );
@@ -77,7 +88,7 @@ function App() {
         <Router>
           <>
             <Main>
-              <div>{routes}</div>
+              {socket ? <div>{routes}</div> : <div>Not Connected</div>}
             </Main>
           </>
         </Router>
