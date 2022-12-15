@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 import Main from "./components/UI/Main";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -88,7 +89,7 @@ function App() {
         <Router>
           <>
             <Main>
-              {socket ? <div>{routes}</div> : <div>Not Connected</div>}
+              {socket ? <div>{routes}</div> : <LoadingSpinner/>}
             </Main>
           </>
         </Router>
