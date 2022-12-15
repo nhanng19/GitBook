@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./ProjectInfo.module.css";
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const ProjectInfo = (props) => {
   return (
     <>
@@ -17,7 +18,7 @@ const ProjectInfo = (props) => {
 
         <h4 className={classes.projectDescription}>{props.description}</h4>
         <p className={classes.projectDate}>
-          Created {props.date} by {props.owner}
+          Created {props.date} by <Link to={`/profiles/${props.owner}`}>{props.owner}</Link>
         </p>
       </div>
     </>
