@@ -13,7 +13,6 @@ const KanbanBoardInProgress = (props) => {
   const taskMoveToProgressHandler = (id) => {
     kanbanCtx.moveTaskBC(id);
   };
-console.log(inProgressTasks)
   return (
     <div className={classes.kanban}>
       <div className={classes.kanbanHeader}>In-Progress</div>

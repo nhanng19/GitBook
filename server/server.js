@@ -3,6 +3,7 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const formatMessage = require("./utils/message");
 const { authMiddleware } = require("./utils/auth");
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/users')
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -57,7 +58,7 @@ app.use(cors());
 //  });
 
 // dependencies for socket.io
-const server = require("http").createServer(app);
+// const server = require("http").createServer(app);
 // const io = require("socket.io")(server);
 
 app.use(express.urlencoded({ extended: true }));
@@ -81,7 +82,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 
   //Opening MongoDB database
   db.once("open", () => {
-    const server = app.listen(PORT, () =>
+    const server = require("http").createServer(app).listen(PORT, () =>
       console.log(`🌍 Now listening on localhost:${PORT}`)
     );
     let transporter = nodemailer.createTransport({
@@ -126,15 +127,39 @@ const startApolloServer = async (typeDefs, resolvers) => {
     const io = require("socket.io")(server);
     // Connecting Socket IO
     io.on("connection", (socket) => {
-      // Welcome current user
-      socket.emit("message", "Welcome to Chat");
 
-      // Broadcast when a user connects
-      socket.broadcast.emit("message", "A user has joined the chat");
+      socket.on('joinRoom', ({ username, room }) => {
+        const user = userJoin(socket.id, username, room);
+
+        socket.join(user.room);
+        
+        // Welcome current user
+        socket.broadcast.emit("message",  formatMessage('Admin', `Welcome ${user.username}`));
+        // Broadcast when a user connects
+        socket.broadcast.to(user.room).emit("message", formatMessage('ChatBott', `${user.username} has joined the chat`));
+
+        io.to(user.room).emit('roomUsers', {
+          room: user.room,
+          users: getRoomUsers(user.room)
+        })
+      });
+      
+      // Listen for ChatMessage
+      socket.on("chatMessage", (msg) => {
+        const user = getCurrentUser(socket.id);
+
+        io.to(user.room).emit("message", formatMessage(user.username, msg));
+      });
 
       // Broadcast when a user disconnect
       socket.on("disconnect", () => {
-        io.emit("message", "A user has left the chat");
+        const user = userLeave(socket.id);
+
+        if(user) {
+          io.to(user.room).emit("message", formatMessage('Admin', `${user.username} has left the chat`));
+        }
+
+        
       });
     });
   });

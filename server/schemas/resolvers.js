@@ -5,10 +5,12 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("projects");
+      return User.find().populate("projects").select("-__v -password");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("projects");
+      return User.findOne({ username })
+        .populate("projects")
+        .select("-__v -password");
     },
     projects: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -83,7 +85,6 @@ const resolvers = {
         console.log("Login error", err);
       }
     },
-
     addUser: async (parent, { username, email, password }) => {
       try {
         // create user using provided usename, email, and password
@@ -95,6 +96,19 @@ const resolvers = {
         console.log("Sign up error", err);
       }
     },
+    // addPicture: async (parent, { picture }, context) => {
+    //   if (context.user) {
+    //     const updatedUser = await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { picture: {} }},
+    //       { $addToSet: { picture: picture }},
+    //       { new: true }
+    //     );
+
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // }
   },
 };
 

@@ -25,8 +25,8 @@ const userSchema = new Schema(
     picture: {
       type: String,
       trim: true,
-      default:
-        "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1670957376/profileImgs/Untitled_design_4_usytaj.png",
+      // default:
+        // "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1670957376/profileImgs/Untitled_design_4_usytaj.png",
     },
     projects: [
       {
@@ -56,28 +56,25 @@ const userSchema = new Schema(
         ref: "User",
       },
     ],
-    requests: [
-      {
-        type: Array,
-        default: [],
-      },
-    ],
-    search: [
-      {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-        },
-      },
-    ],
+    // requests: [
+    //   {
+    //     type: Array,
+    //     default: [],
+    //   },
+    // ],
+    // search: [
+    //   {
+    //     user: {
+    //       type: Schema.Types.ObjectId,
+    //       ref: "User",
+    //     },
+    //   },
+    // ],
     details: {
       bio: {
         type: String,
       },
       job: {
-        type: String,
-      },
-      workplace: {
         type: String,
       },
       highSchool: {

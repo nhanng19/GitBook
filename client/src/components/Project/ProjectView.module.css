@@ -1,34 +1,28 @@
-.chatBox {
-  min-height: 20rem;
-  margin: 3rem;
-
-  border: 3px solid black;
-  border-radius: 10px;
-  box-shadow: 0 7px 1rem rgba(0, 0, 0, 0.3);
+.showChat {
+  font-size: 4rem;
+  color: var(--nav-color);
+  cursor: pointer;
 }
 
-.chat {
-  min-height: 60rem;
-  /* background-color: aqua; */
-  padding: 3rem;
-}
-.chat > * {
-  font-size: 2rem;
+.showChat:hover {
+  color: #a9b188;
 }
 
-.chatForm {
-  /* background-color: red; */
+.list {
+  position: absolute;
+  bottom: 0;
+  right: 3rem;
+  list-style: none;
   display: flex;
-  padding: 10px;
+  flex-direction: column;
+  align-items: center;
 }
 
-.chatInput {
-  width: 100%;
-  font-size: 1.5rem;
-  padding: 10px;
+.list::after {
+  content: "";
+  display: block;
+  background-color: var(--nav-color);
+  width: 0.2rem;
+  height: 10rem;
 }
 
-.sendBtn {
-  width: 7rem;
-  font-size: 1.7rem;
-}

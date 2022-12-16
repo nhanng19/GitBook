@@ -1,32 +1,67 @@
 import React from "react";
-import classes from "./ProjectView.module.css";
-import Container from "../UI/Container";
-import ProjectInfo from "./ProjectInfo";
 import Kanban from "../Kanban/Kanban";
+import Chat from "../Chat/Chat";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { useState } from "react";
+import { QUERY_ME, QUERY_USER } from "../../utils/queries";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import styles from "./ProjectView.module.css";
+import { FaComment } from "react-icons/fa";
+const ProjectView = ({
+  name,
+  description,
+  date,
+  owner,
+  repo,
+  projectId,
+  socket,
+}) => {
+  const { username: userParam } = useParams();
 
-const ProjectView = () => {
-  const DUMMY_DESCRIPTION = `project description test, dummy description.`;
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
+
+  const user = data?.me || data?.user || {};
+  const [chat, showChat] = useState(false);
+  const toggleChat = () => {
+    showChat(!chat);
+  };
   return (
-    <Container>
-      <ProjectInfo
-        title="project title"
-        date="2022/12/27"
-        description={DUMMY_DESCRIPTION}
-      />
-      <Kanban />
-      <div className={classes.chatBox}>
-        <div className={classes.chat}>
-          <p>Richard : blah blah blah</p>
-          <p>Nhan : lahb lahb lahb</p>
-          <p>Dat : ahbl ahbl ahbl</p>
-          <p>Lydia : hbla hbla hbla</p>
-        </div>
-        <form className={classes.chatForm}>
-          <textarea className={classes.chatInput}></textarea>
-          <button className={` ${classes.sendBtn}`}>Send</button>
-        </form>
-      </div>
-    </Container>
+    <>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Kanban
+            name={name}
+            description={description}
+            date={date}
+            owner={owner}
+            repo={repo}
+          />
+          <div>
+            <ul className = {styles.list}>
+              <li>
+                <a className={styles.showChat} onClick={toggleChat}>
+                  <FaComment />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {chat && (
+            <Chat
+              socket={socket}
+              roomId={projectId}
+              currentName={user.username}
+              showChat={toggleChat}
+            />
+          )}
+        </>
+      )}
+    </>
   );
 };
 

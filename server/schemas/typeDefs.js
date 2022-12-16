@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -6,19 +6,51 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    picture: String
+    projects: [Project]!
+    verified: Boolean
+    friends: [User]
+    followings: [User]
+    followers: [User]
+    details: Details
+  }
+
+  type Details {
+    bio: String
+    job: String
+    highSchool: String
+    college: String
+    currentCity: String
+    gender: String
+    bYear: Int
+    bMonth: Int
+    bDay: Int
     github: String
     linkedin: String
-    projects: [Project]!
+    instagram: String
   }
 
   type Project {
     _id: ID
-    projectName: String
-    projectDescription: String
+    projectName: String!
+    projectDescription: String!
     projectRepo: String
     projectOwner: String
     createdAt: String
-    task: [String]
+    projectMembers: [User]
+    kanban: Kanban
+  }
+
+  type Kanban {
+    toDo: [KanbanItem]
+    inProgress: [KanbanItem]
+    done: [KanbanItem]
+  }
+
+  type KanbanItem {
+    kanbanId: ID
+    assignee: String
+    description: String
   }
 
   type Auth {
@@ -40,7 +72,7 @@ const typeDefs = gql`
     addProject(
       projectName: String!
       projectDescription: String
-      projectRepo: String!
+      projectRepo: String
       projectOwner: String
       createdAt: String
     ): Project

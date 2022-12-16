@@ -56,7 +56,7 @@ const SideBar = (props) => {
             <FaFolder size="2rem" color="#333" />
           </SideBarItem>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/Chat"
@@ -64,7 +64,7 @@ const SideBar = (props) => {
           <SideBarItem name="Chat" href="">
             <FaRocketchat size="2rem" color="#333" />
           </SideBarItem>
-        </NavLink>
+        </NavLink> */}
 
           <SideBarItem name="DONATION" href="https://donate.stripe.com/test_bIY00k8w9eTw1AQ9AA">
             <FaDonate size="2rem" color="#333" />

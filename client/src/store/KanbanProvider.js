@@ -4,17 +4,17 @@ import KanbanContext from "./kanban-context";
 
 const DUMMY_DATA_TODO = [
   {
-    id: "k1",
+    id: "toDok1",
     assignee: "Richard",
     description: "testing description one",
   },
   {
-    id: "k2",
+    id: "toDok2",
     assignee: "Fay",
     description: "testing description two",
   },
   {
-    id: "k3",
+    id: "toDok3",
     assignee: "RandomGuy",
     description: "testing description three",
   },
@@ -22,14 +22,14 @@ const DUMMY_DATA_TODO = [
 
 const DUMMY_DATA_IN_PROGRESS = [
   {
-    id: "k1",
+    id: "InProgressk1",
     assignee: "John",
     description: "testing for inprogress kanban board",
   },
 ];
 const DUMMY_DATA_DONE = [
   {
-    id: "k1",
+    id: "Donek1",
     assignee: "John",
     description: "testing for done kanban board",
   },
