@@ -45,7 +45,7 @@ const SignupForm = ({ setLoading }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const subResponse = await fetch("/", {
+    const subResponse = await fetch("/Dashboard", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

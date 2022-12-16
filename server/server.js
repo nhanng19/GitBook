@@ -63,7 +63,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
         : console.log(`=== Server is ready to take messages: ${success} ===`);
      });
     
-     app.post("/", function (req, res) {
+     app.post("/Dashboard", function (req, res) {
       let mailOptions = {
         from: process.env.EMAIL,
         to: `${req.body.userData.email}`,
