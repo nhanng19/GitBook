@@ -1,0 +1,31 @@
+.header {
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.introOne {
+    font-size: 30px;
+    margin: 10px;
+}
+
+.paraOne {
+    font-size: 17px;
+    padding: 10px;
+}
+
+.usage {
+    padding: 10px;
+}
+
+.usageTitle {
+    font-size: 30px;
+}
+
+.points {
+    font-size: 17px;
+}
+
+.creators {
+    font-size: 30px;
+}

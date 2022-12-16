@@ -19,6 +19,7 @@ import Auth from "./utils/auth";
 import SingleProject from "./pages/SingleProject";
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import About from "./pages/AboutPage";
 
 import Main from "./components/UI/Main";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
@@ -67,6 +68,7 @@ function App() {
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
+          <Route path="/About" element={<About />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profiles/:username" element={<Profile />} />
           <Route

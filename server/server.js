@@ -8,10 +8,15 @@ const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/u
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+const nodemailer = require("nodemailer");
+require("dotenv").config();
+const cors = require("cors");
+
+app.use(cors());
+
 // dependencies for socket.io
 // const server = require("http").createServer(app);
 // const io = require("socket.io")(server);
@@ -25,29 +30,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-app.get("/config", (req, res) => {
-  res.send({
-    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
-  });
-});
-
-app.post("/create-payment-intent", async (req, res) => {
-  try {
-    const paymentIntent = await stripe.paymentIntent.create({
-      currency: "usd",
-      automatic_payment_methods: {
-        enabled: true,
-      },
-    });
-    res.send({ clientSecret: paymentIntent.client_secret });
-  } catch (e) {
-    return res.status(400).send({
-      error: {
-        message: e.message,
-      },
-    });
-  }
-});
 // Starting Apollo Server
 const startApolloServer = async (typeDefs, resolvers) => {
   const apolloServer = new ApolloServer({
@@ -63,6 +45,45 @@ const startApolloServer = async (typeDefs, resolvers) => {
     const server = require("http").createServer(app).listen(PORT, () =>
       console.log(`🌍 Now listening on localhost:${PORT}`)
     );
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.EMAIL,
+        pass: process.env.WORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+      },
+     });
+    
+     transporter.verify((err, success) => {
+      err
+        ? console.log(err)
+        : console.log(`=== Server is ready to take messages: ${success} ===`);
+     });
+    
+     app.post("/Dashboard", function (req, res) {
+      let mailOptions = {
+        from: process.env.EMAIL,
+        to: `${req.body.userData.email}`,
+        subject: "Gitbook Registration",
+        text: "Hello there! Welcome to Gitbook! Begin your exciting journey of collaborating with fellow developers now!",
+      };
+     
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          res.json({
+            status: "fail",
+          });
+        } else {
+          console.log("== Message Sent ==");
+          res.json({
+            status: "success",
+          });
+        }
+      });
+     });
     const io = require("socket.io")(server);
     // Connecting Socket IO
     io.on("connection", (socket) => {

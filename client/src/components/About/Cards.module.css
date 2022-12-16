@@ -1,0 +1,16 @@
+.cardContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin: 15px;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.text {
+    font-size: 15px;
+}

@@ -45,6 +45,21 @@ const SignupForm = ({ setLoading }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const subResponse = await fetch("/Dashboard", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ userData }),
+    })
+    .then((res) => res.json())
+    .then(() => {
+      setUserData({
+        username: "",
+        email: "",
+        password: "",
+      })
+    })
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -74,11 +89,11 @@ const SignupForm = ({ setLoading }) => {
       setShowAlert(err);
     }
 
-    setUserData({
-      username: "",
-      email: "",
-      password: "",
-    });
+    // setUserData({
+    //   username: "",
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   return (

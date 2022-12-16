@@ -41,6 +41,15 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
+          to="/About"
+        >
+          <SideBarItem name="ABOUT" href="">
+            <FaFolder size="2rem" color="#333" />
+          </SideBarItem>
+        </NavLink>
+        <NavLink
+          style={{ textDecoration: "none" }}
+          className={(navData) => (navData.isActive ? classes.active : "")}
           to="/Dashboard"
         >
           <SideBarItem name="DASHBOARD" href="">

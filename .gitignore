@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules
-.env
 client/.pnp
 .pnp.js
 
@@ -13,6 +12,7 @@ client/coverage
 client/build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
