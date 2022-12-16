@@ -8,7 +8,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
-import MyProfile from './pages/MyProfile';
+import MyProfile from "./pages/MyProfile";
 import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
@@ -92,9 +92,7 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <Main>
-              {socket ? <div>{routes}</div> : <LoadingSpinner/>}
-            </Main>
+            <Main>{socket ? <div>{routes}</div> : <LoadingSpinner />}</Main>
           </>
         </Router>
       </React.Fragment>
