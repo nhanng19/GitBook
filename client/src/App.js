@@ -49,7 +49,7 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`http://localhost:3000`);
+    const newSocket = io(`https://calm-shelf-74011.herokuapp.com`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
