@@ -1,6 +1,20 @@
+.header {
+  flex: 0 0 40%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+@media screen and (max-width: 620px) {
+    
+  .header {
+    order: 1;
+    flex: 0 0 100%;
+  }
+}
 /* search bar */
 .search {
-    flex: 0 0 40%;
+    flex: 0 0 100%;
   
     display: flex;
     align-items: center;

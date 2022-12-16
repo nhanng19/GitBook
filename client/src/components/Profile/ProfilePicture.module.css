@@ -1,0 +1,21 @@
+.pictureBox {
+    width: 700px;
+    height: 62vh;
+}
+
+.update_picture_wrap {
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.update_picture_button {
+    display: flex;
+    gap: 10px;
+}
+.update_picture_button button {
+    height: 3rem;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+}
+

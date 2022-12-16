@@ -11,8 +11,8 @@ import {
 import SideBarItem from "./SideBarItem";
 import Auth from "../..//utils/auth.js";
 import { NavLink } from "react-router-dom";
+// import ProfileItem from "../NavBar/ProfileItem";
 const SideBar = (props) => {
-
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -20,6 +20,15 @@ const SideBar = (props) => {
   return (
     <nav className={classes.sidebar}>
       <ul className={classes.side_nav}>
+        {/* <NavLink
+          style={{ textDecoration: "none" }}
+          className={(navData) => (navData.isActive ? classes.active : "")}
+          to="/myprofile"
+        > 
+          <li className={classes.profileItem}>
+            <ProfileItem />
+          </li>
+        </NavLink> */}
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
@@ -66,9 +75,12 @@ const SideBar = (props) => {
           </SideBarItem>
         </NavLink> */}
 
-          <SideBarItem name="DONATION" href="https://donate.stripe.com/test_bIY00k8w9eTw1AQ9AA">
-            <FaDonate size="2rem" color="#333" />
-          </SideBarItem>
+        <SideBarItem
+          name="DONATION"
+          href="https://donate.stripe.com/test_bIY00k8w9eTw1AQ9AA"
+        >
+          <FaDonate size="2rem" color="#333" />
+        </SideBarItem>
 
         <SideBarItem name="LOGOUT" onClick={logout} href="">
           <FaSignOutAlt size="2rem" color="#333" />
