@@ -3,16 +3,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./ProfileItem.module.css";
 
-const ProfileItem = ({username, picture}) => {
+const ProfileItem = ({ username, picture }) => {
+  
   return (
-    <NavLink
-      className={(navData) => (navData.isActive ? classes.active : "")}
-      to="/myprofile"
-    >
-      <a className={classes.side_nav_link}>
-        <img src={picture} alt="User" className={classes.nav__profile} />
-        <span className={classes.username}>{username}</span>
-      </a>
+    <NavLink className={classes.profile_link} to="/myprofile">
+      <img src={picture} alt="User" className={classes.nav__profile} />
+      <span className={classes.username}>{username}</span>
     </NavLink>
   );
 };

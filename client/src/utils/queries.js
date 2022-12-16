@@ -96,6 +96,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      picture
       projects {
         _id
         projectName
