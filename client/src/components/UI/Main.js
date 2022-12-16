@@ -17,8 +17,8 @@ const Main = (props) => {
 
   return (
     <>
-      {Auth.loggedIn() && <NavBar />}
-      {visible && <div className={classes.navbar_card} ref={el}></div>}
+      {/* {Auth.loggedIn() && <NavBar />}
+      {visible && <div className={classes.navbar_card} ref={el}></div>} */}
       <Content>
         {Auth.loggedIn() && <SideBar />}
         <main className={Auth.loggedIn() ? classes.main : ""}>
