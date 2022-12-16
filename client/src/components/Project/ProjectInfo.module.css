@@ -1,23 +1,33 @@
-.projectTitle {
-    display: inline-block;
-    font-size: 4rem;
-    text-align: left;
-    /* margin-right: 4rem; */
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .projectDate {
-    font-size: 2rem;
-    margin-left: 3rem;
-    display: inline-block;
-  }
-  
-  .projectDescription {
-    font-size: 2rem;
-    text-align: left;
-    border: 1px solid black;
-    padding: 2rem;
-    margin: 1rem 6rem;
-    min-height: 14rem;
-  }
+.container {
+  background: #ffffff;
+  padding: 2.4rem;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border: 2px solid var(--nav-color);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.container h3 {
+  font-size: 2em;
+  white-space: nowrap;
+  font-weight: bold;
+}
+.container p {
+  font-size: 1.5rem;
+}
+.git {
+  color: black;
+  font-size: 2.4rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+}
+
+.git:hover {
+  color: var(--nav-color) !important;
+}

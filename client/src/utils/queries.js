@@ -2,18 +2,16 @@ import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
   query users {
-    user(username: $username) {
+    users {
       _id
       username
       email
-      github
-      linkedin
       projects {
+        _id
         projectName
         projectDescription
         projectOwner
         createdAt
-        task
       }
     }
   }
@@ -25,6 +23,7 @@ export const QUERY_USER = gql`
       username
       email
       projects {
+        _id
         projectName
         projectDescription
         projectRepo
@@ -64,7 +63,7 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_ALLPROJECTS = gql`
+export const QUERY_PROJECTS = gql`
   query getProjects {
     projects {
       _id
@@ -72,17 +71,21 @@ export const QUERY_ALLPROJECTS = gql`
       projectDescription
       projectRepo
       projectOwner
+      createdAt
     }
   }
 `;
-export const QUERY_PROJECTS = gql`
-  query getProjects($username: String!) {
-    projects {
+
+
+export const QUERY_SINGLE_PROJECT = gql`
+  query getSingleproject($projectId: ID!) {
+    project(projectId: $projectId) {
       _id
       projectName
       projectDescription
-      projectRepo
       projectOwner
+      projectRepo
+      createdAt
     }
   }
 `;
@@ -94,6 +97,7 @@ export const QUERY_ME = gql`
       username
       email
       projects {
+        _id
         projectName
         projectDescription
         projectRepo

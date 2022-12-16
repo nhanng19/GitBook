@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import { FaGithub } from "react-icons/fa";
 const ProjectList = ({
-  repoProjects,
   projects,
   title,
   showUsername = true,
 }) => {
   return (
     <>
-      
       <div className={styles.header}>
         <h2>{title}'s projects</h2>
       </div>
@@ -39,12 +37,15 @@ const ProjectList = ({
               </div>
               <div>
                 {showUsername ? (
-                  <Link to={`/profiles/${project.projectOwner}`}>
-                    {project.projectOwner} <br />
+                  <div className = {styles.owner}>
+                    <Link to={`/profiles/${project.projectOwner}`}>
+                      {project.projectOwner}
+                    </Link>{" "}
+                    <br />
                     <span style={{ fontSize: "1rem" }}>
                       {project.createdAt}
                     </span>
-                  </Link>
+                  </div>
                 ) : (
                   <>
                     <span style={{ fontSize: "1.em" }}>

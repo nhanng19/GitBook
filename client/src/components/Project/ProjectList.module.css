@@ -4,6 +4,7 @@
   gap: 10rem;
 }
 
+
 .card {
   padding: 2.4rem;
   background-color: white;
@@ -24,12 +25,11 @@
 }
 
 .card a {
-    color: black;
-    text-decoration: none
+  
 }
 
 .card a:hover {
-    color: var(--nav-color)
+  text-decoration: underline !important;
 }
 
 .header {
@@ -41,9 +41,12 @@
 }
 
 .header h2 {
-  text-transform: capitalize;
   font-size: 2.4rem;
   color: black;
+}
+
+.owner a{
+  font-size: 1.5rem;
 }
 
 .git {
@@ -63,7 +66,8 @@
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2
+    -webkit-line-clamp: 2;
+    max-width: 20rem;
 }
 
 .cardFrame > p {
