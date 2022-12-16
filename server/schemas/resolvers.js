@@ -113,3 +113,5 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+// activate account mutation: (not using yet)

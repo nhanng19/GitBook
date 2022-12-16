@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -5,24 +8,23 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { io } from "socket.io-client";
+
+
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./pages/MyProfile";
 import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
-// import Project from './pages/Project/Project';
 import Home from "./pages/Home";
-// import Container from './components/UI/Container';
-import "./App.css";
-import Auth from "./utils/auth";
-import SingleProject from "./pages/SingleProject";
-import React, { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 import About from "./pages/AboutPage";
+import SingleProject from "./pages/SingleProject";
 
-import Main from "./components/UI/Main";
+import Auth from "./utils/auth";
+
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+import Main from "./components/UI/Main";
+import "./App.css";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
