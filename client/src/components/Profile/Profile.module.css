@@ -1,0 +1,15 @@
+.profile {
+  color: white;
+}
+
+.profile_top {
+  /* margin-top: 56px; */
+  box-shadow: 0 1px 2px #333;
+  background: var(--nav-color);
+}
+
+.profile_container {
+  max-width: 945px;
+  margin: 0 auto;
+}
+

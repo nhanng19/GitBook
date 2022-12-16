@@ -1,9 +1,49 @@
+.profileItem {
+  text-align: center;
+  position: relative;
+}
+.profileItem:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .profileItem {
+    flex: 1;
+  }
+  .profileItem:not(:last-child) {
+    margin-bottom: 0rem;
+  }
+}
+.profileItem:before {
+  /* content: ""; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--background2);
+  transform: scaleY(0);
+  transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+    background-color 0.1s;
+}
+.profileItem:hover::before,
+.profileItem::before {
+  transform: scaleY(1);
+  width: 100%;
+  /* background: #CCD6A6;     */
+}
+
+.profileItem:active::before {
+  background-color: var(--background2);
+}
+
+
 .sidebar {
   background-color: var(--nav-color);
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 9;
+  z-index: 0;
   display: flex;
   height: 100vh;
   flex-direction: column;
@@ -16,6 +56,27 @@
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
+}
+
+.side_nav_link:link,
+.side_nav_link:visited {
+  color: #333;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+@media screen and (max-width: 900px) {
+  .side_nav_link:link,
+  .side_nav_link:visited {
+    justify-content: center;
+    padding: 2rem;
+  }
 }
 
 .side_nav span {

@@ -96,19 +96,19 @@ const resolvers = {
         console.log("Sign up error", err);
       }
     },
-    // addPicture: async (parent, { picture }, context) => {
-    //   if (context.user) {
-    //     const updatedUser = await User.findByIdAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { picture: {} }},
-    //       { $addToSet: { picture: picture }},
-    //       { new: true }
-    //     );
-
-    //     return updatedUser;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // }
+    addPicture: async (parent, { picture }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { picture: picture },
+          // { $pull: { picture: {} }},
+          // { $addToSet: { picture: picture }},
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
 };
 

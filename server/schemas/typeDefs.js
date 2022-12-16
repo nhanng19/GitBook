@@ -58,6 +58,7 @@ const typeDefs = gql`
     user: User
   }
 
+
   type Query {
     users: [User]
     user(username: String!): User
@@ -77,6 +78,8 @@ const typeDefs = gql`
       createdAt: String
     ): Project
     removeProject(projectId: String!): Project
+    addPicture(picture: String!): User
+
   }
 `;
 
