@@ -5,7 +5,7 @@ import profile from "../../assets/profile(test).png";
 import ProfileItem from "./ProfileItem";
 import { NavLink } from "react-router-dom";
 
-const NavBarItems = () => {
+const NavBarItems = ({username, picture}) => {
   return (
     <nav className={classes.user_nav}>
       <div className={classes.user_nav__icon_box}>
@@ -20,7 +20,7 @@ const NavBarItems = () => {
         </svg>
         <span className={classes.user_nav__notification}>13</span>
       </div>
-      <ProfileItem />
+      <ProfileItem username={username} picture={picture} />
     </nav>
   );
 };
