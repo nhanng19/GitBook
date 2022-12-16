@@ -17,46 +17,6 @@ const cors = require("cors");
 
 app.use(cors());
 
-// let transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     type: "OAuth2",
-//     user: process.env.EMAIL,
-//     pass: process.env.WORD,
-//     clientId: process.env.OAUTH_CLIENTID,
-//     clientSecret: process.env.OAUTH_CLIENT_SECRET,
-//     refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-//   },
-//  });
-
-//  transporter.verify((err, success) => {
-//   err
-//     ? console.log(err)
-//     : console.log(`=== Server is ready to take messages: ${success} ===`);
-//  });
-
-//  app.post("/", function (req, res) {
-//   let mailOptions = {
-//     from: process.env.EMAIL,
-//     to: `${req.body.userData.email}`,
-//     subject: "Gitbook Registration",
-//     text: "Hello there! Welcome to Gitbook! Begin your exciting journey of collaborating with fellow developers now!",
-//   };
- 
-//   transporter.sendMail(mailOptions, function (err, data) {
-//     if (err) {
-//       res.json({
-//         status: "fail",
-//       });
-//     } else {
-//       console.log("== Message Sent ==");
-//       res.json({
-//         status: "success",
-//       });
-//     }
-//   });
-//  });
-
 // dependencies for socket.io
 // const server = require("http").createServer(app);
 // const io = require("socket.io")(server);
