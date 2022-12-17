@@ -1,0 +1,27 @@
+.infosBox {
+    height: 70vh;
+    width: 800px;
+}
+
+.details_wrapper {
+    padding: 1rem;
+    overflow-y: auto;
+    height: 60vh;
+}
+.details_col {
+    display: flex;
+    flex-direction: column;
+}
+.details_col span:first-of-type {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+.details_col span:last-of-type {
+    color: var(--color-secondary);
+    font-size: 14px;
+}
+.details_header {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 20px;
+  }

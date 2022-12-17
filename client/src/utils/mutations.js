@@ -331,3 +331,59 @@ export const ADD_PICTURE = gql`
     }
   }
 `;
+
+export const ADD_COVER = gql`
+  mutation addCover($cover: String!) {
+    addCover(cover: $cover) {
+      cover
+    }
+  }
+`;
+
+export const EDIT_DETAILS = gql`
+  mutation editDetails(
+    $bio: String!
+    $job: String!
+    $workPlace: String!
+    $highSchool: String!
+    $college: String!
+    $currentCity: String!
+    $gender: String!
+    $bYear: Int!
+    $bMonth: Int!
+    $bDay: Int!
+    $github: String!
+    $linkedin: String!
+    $instagram: String!
+    ) {
+    editDetails(
+      bio: $bio
+      job: $job
+      workPlace: $workPlace
+      highSchool: $highSchool
+      college: $college
+      currentCity: $currentCity
+      gender: $gender
+      bYear: $bYear
+      bMonth: $bMonth
+      bDay: $bDay
+      github: $github
+      linkedin: $linkedin
+      instagram: $instagram
+      ) {
+        bio
+        job
+        workPlace
+        highSchool
+        college
+        currentCity
+        gender
+        bYear
+        bMonth
+        bDay
+        github
+        linkedin
+        instagram
+    }
+  }
+`;

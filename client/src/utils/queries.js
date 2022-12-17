@@ -37,6 +37,8 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      picture
+      cover
       projects {
         _id
         projectName
@@ -78,6 +80,7 @@ export const QUERY_USER = gql`
       details {
         bio
         job
+        workPlace
         highSchool
         college
         currentCity
@@ -156,6 +159,8 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      picture
+      cover
       projects {
         _id
         projectName
@@ -197,6 +202,7 @@ export const QUERY_ME = gql`
       details {
         bio
         job
+        workPlace
         highSchool
         college
         currentCity

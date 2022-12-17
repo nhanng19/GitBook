@@ -31,7 +31,7 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
-          to="/Home"
+          to="/home"
         >
           <>
             <SideBarItem name="HOME" href="">
@@ -42,7 +42,7 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
-          to="/About"
+          to="/about"
         >
           <>
             <SideBarItem name="ABOUT" href="">
@@ -53,7 +53,7 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
-          to="/Dashboard"
+          to="/dashboard"
         >
           <>
             <SideBarItem name="DASHBOARD" href="">
@@ -64,7 +64,7 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
-          to="/Profile"
+          to={`/profile/${props.username}/projects`}
         >
           <>
             <SideBarItem name="PROFILE" href="">

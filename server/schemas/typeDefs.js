@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     picture: String
+    cover: String
     projects: [Project]!
     verified: Boolean
     friends: [User]
@@ -18,6 +19,7 @@ const typeDefs = gql`
   type Details {
     bio: String
     job: String
+    workPlace: String
     highSchool: String
     college: String
     currentCity: String
@@ -75,6 +77,22 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
+  
+  input DetailsInput {
+    bio: String
+    job: String
+    workPlace: String
+    highSchool: String
+    college: String
+    currentCity: String
+    gender: String
+    bYear: Int
+    bMonth: Int
+    bDay: Int
+    github: String
+    linkedin: String
+    instagram: String
+  }
 
   type Query {
     users: [User]
@@ -124,6 +142,24 @@ const typeDefs = gql`
     ): Project
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User
+    addCover(cover: String!): User
+    editDetails(
+      bio: String!
+      job: String!
+      workPlace: String!
+      highSchool: String!
+      college: String!
+      currentCity: String!
+      gender: String!
+      bYear: Int
+      bMonth: Int
+      bDay: Int
+      github: String!
+      linkedin: String!
+      instagram: String!
+    ): Details
+    addFriend(username: String!): User
+    cancelRequest(username: String!): User
   }
 `;
 

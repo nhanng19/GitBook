@@ -1,9 +1,4 @@
-:root {
-    --background1: #f4e6c3 !important;
-    --background2: #FFFBE9;
-    --text-color: black;
-    --nav-color: #CCD6A6;
-}
+
 
 
 * {
@@ -21,6 +16,7 @@ html {
     box-sizing: border-box;
     /* 62.5% is come from that 16px * 62.5% is 10px. so our 1rem = 10px. easy to calculate the px size using rem */
     font-size: 62.5%; 
+    overflow-y: scroll;
 }
 
 body {
@@ -34,34 +30,4 @@ body {
     line-height: 1.6;
     color: rgb(2, 2, 2);
     min-height: 100vh
-}
-.blur {
-    position: fixed;
-    top:0 ;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.768);
-    z-index: 99;
-}
-
-.postBox {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--nav-color);
-    box-shadow: 0 12px 20px 0 #777, 0 2px 4px 0 #777, 
-    inset 0 0 0 1px #777;
-    min-height: 220px;
-    width: 500px;
-    border-radius: 5px;
-}
-
-.box_header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
 }
