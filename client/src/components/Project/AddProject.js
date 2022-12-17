@@ -72,7 +72,7 @@ const AddProject = () => {
     <div>
       {Auth.loggedIn() ? (
         <>
-          <div data-aos="flip-up"className={styles.container}>
+          <div data-aos="fade-in"className={styles.container}>
             <form className={styles.contact} onSubmit={handleFormSubmit}>
               <h3>Add a new project</h3>
               <h4>New projects have Kanban boards and chat rooms!</h4>

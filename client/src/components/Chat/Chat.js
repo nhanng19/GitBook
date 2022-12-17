@@ -53,7 +53,7 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
   return (
     <>
       <div onClick={showChat} className={styles.overlay}></div>
-        <div data-aos="fade-in" className={styles.container}>
+        <div data-aos="fade-down" className={styles.container}>
           <div className={styles.rightSideBar}>
             <h2 className={styles.sideHeader}>Active Users:</h2>
             <hr></hr>

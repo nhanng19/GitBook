@@ -4,7 +4,6 @@ import { QUERY_USERS } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { ADD_TICKET } from "../../utils/mutations";
-import { QUERY_ME, QUERY_PROJECTS } from "../../utils/queries";
 import LoadingSpinner from "../UI/LoadingSpinner";
 const KanbanForm = ({ projectId }) => {
   const [taskIsValid, setTaskIsValid] = useState(true);
@@ -24,27 +23,8 @@ const KanbanForm = ({ projectId }) => {
   // }, [assigneeInputRef, descriptionInputRef]);
   const { loading, data } = useQuery(QUERY_USERS);
   const users = data?.users || [];
-  const [addTicket] = useMutation(ADD_TICKET, {
-    update(cache, { data: { addTicket } }) {
-      try {
-        const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+  const [addTicket] = useMutation(ADD_TICKET);
 
-        cache.writeQuery({
-          query: QUERY_PROJECTS,
-          data: { projects: [addTicket, ...projects] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, projects: [...me.projects, addTicket] } },
-      });
-    },
-  });
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -59,12 +39,12 @@ const KanbanForm = ({ projectId }) => {
       return;
     }
 
-    if ( enteredAssignee.trim().length !== 0 ||
+    if (
+      enteredAssignee.trim().length !== 0 ||
       enteredDescription.trim().length !== 0
-    ){
+    ) {
       setTaskIsValid(true);
     }
-
 
     // const taskData = {
     //   assignee: enteredAssignee,
@@ -91,7 +71,7 @@ const KanbanForm = ({ projectId }) => {
         <LoadingSpinner />
       ) : (
         <form
-          data-aos="flip-up"
+          data-aos="fade-in"
           ref={formRef}
           onSubmit={submitHandler}
           className={classes.toDoForm}

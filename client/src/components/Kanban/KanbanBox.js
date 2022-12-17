@@ -6,7 +6,7 @@ import KanbanBoardDone from "./KanbanBoardDone";
 
 const KanbanBox = ({ project }) => {
   return (
-    <div data-aos = "fade-in"className={classes.kanbanBox}>
+    <div data-aos = "fade-in" data-aos-delay="100"className={classes.kanbanBox}>
       <KanbanBoardToDo project={project} />
       <KanbanBoardInProgress project={project} />
       <KanbanBoardDone project={project} />

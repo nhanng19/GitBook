@@ -155,8 +155,6 @@ const KanbanItem = (props) => {
   }
   return (
     <div
-      data-aos="flip-up"
-      data-aos-duration="10"
       className={classes.kanbanItem}
     >
       <div className={classes.itemHeader}>

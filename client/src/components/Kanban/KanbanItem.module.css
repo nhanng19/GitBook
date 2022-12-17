@@ -7,6 +7,7 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: 2px solid var(--nav-color);
   margin-bottom: 1rem;
+  animation: 0.75s ease-out 0s 0.75 flipUp;
 }
 .itemHeader {
   display: flex;
@@ -26,15 +27,39 @@
 .itemButton svg {
   margin: 5px;
   cursor: pointer;
-  color: var(--nav-color)
+  color: var(--nav-color);
 }
 
 .itemButton svg:hover {
-  color: #a4ac87
+  color: #a4ac87;
 }
 .itemDescription {
   font-size: 1.3rem;
   padding: 5px 5px 2px 5px;
   margin-left: 2rem;
   width: 100%;
+}
+
+#target {
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  margin-bottom: 150vh;
+  margin-top: 150vh;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  width: 200px;
+}
+
+@keyframes flipUp {
+ 0% {
+    transform: perspective(2500px) rotateX(-90deg);
+ }
+  100% {
+    transform: perspective(2500px) rotateX(0);
+  }
 }
