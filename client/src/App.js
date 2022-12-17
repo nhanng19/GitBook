@@ -45,6 +45,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// need to change localhost to heroku link
 function App() {
   const [socket, setSocket] = useState(null);
 
