@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_PICTURE } from "../../utils/mutations";
-import { QUERY_USER } from "../../utils/queries";
+
 
 import Auth from "../../utils/auth";
-import classes from "./Profile.module.css";
+import classes from "./ProfileContainer.module.css";
 import Cover from "./Cover";
 import ProfilePictureInfos from "./ProfilePictureInfos";
 import ProfileMenu from "./ProfileMenu";
 
-const Profile = () => {
+const ProfileContainer = ({ user }) => {
   const [imageFile, setImageFile] = useState("");
 
   const [addPicture, { error }] = useMutation(
@@ -74,4 +74,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfileContainer;

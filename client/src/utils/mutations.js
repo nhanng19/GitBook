@@ -51,3 +51,11 @@ export const ADD_PICTURE = gql`
   }
 `
 
+export const ADD_COVER = gql`
+  mutation addCover($cover: String!) {
+    addCover(cover: $cover) {
+        cover
+    }
+  }
+`
+

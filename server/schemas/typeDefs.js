@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     picture: String
+    cover: String
     projects: [Project]!
     verified: Boolean
     friends: [User]
@@ -79,6 +80,7 @@ const typeDefs = gql`
     ): Project
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User
+    addCover(cover: String!): User
 
   }
 `;

@@ -33,15 +33,15 @@
   }
   
   .open_cover_menu {
-      background: #ccc;
+      background: var(--background1);
       color: black;
       position: absolute;
       right: 0;
       padding: 10px;
       width: 300px;
       border-radius: 10px;
-      box-shadow: 0 12px 28px 0 #333, 0 2px 4px 0 rgb(69, 67, 67),
-      inset 0 0 0 px #777;
+      box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2),
+      inset 0 0 0 px var(--shadow-inset);
       z-index: 99;
   }
   .open_cover_menu_item {

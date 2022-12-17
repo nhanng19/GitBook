@@ -31,6 +31,12 @@ const userSchema = new Schema(
       default:
         "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1670957376/profileImgs/Untitled_design_4_usytaj.png",
     },
+    cover: {
+      type: String,
+      trim: true,
+      default:
+        "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1666303496/rwho7b0f95odntml1mwz.png"
+    },
     projects: [
       {
         type: Schema.Types.ObjectId,

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+// import rootReducer from "./reducers";
+// const store = createStore(rootReducer, composeWithDevTools());
 
 import {
   ApolloClient,
@@ -11,10 +16,10 @@ import { setContext } from "@apollo/client/link/context";
 import { io } from "socket.io-client";
 
 
-import Profile from "./pages/Profile";
+import Profile from './pages/Profile';
 import Dashboard from "./pages/Dashboard";
-import MyProfile from "./pages/MyProfile";
-import ChatPage from "./pages/ChatPage";
+// import MyProfile from "./pages/MyProfile";
+// import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
 import About from "./pages/AboutPage";
@@ -66,12 +71,13 @@ function App() {
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
           <Route path="/About" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/profiles/:username" element={<Profile />} />
           <Route
             path="/projects/:projectId"

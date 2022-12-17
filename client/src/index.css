@@ -4,7 +4,7 @@
   --text-color: black;
   --nav-color: #ccd6a6;
   --main-color: #ccd6a6;
-  --sub-color: #DAE2B6;
+  --sub-color: #dae2b6;
   --bg-primary: #fff;
   --bg-secondary: #f0f2f5;
   --bg-third: #e4e6eb;
@@ -57,7 +57,6 @@ code {
   cursor: pointer;
 }
 
-
 /* .active {
   border-bottom: 3px solid var(--sub-color);
   border-radius: 0;
@@ -67,7 +66,7 @@ code {
 
 .blur {
   position: fixed;
-  top:0 ;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -81,11 +80,15 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--nav-color);
-  box-shadow: 0 12px 20px 0 #777, 0 2px 4px 0 #777, 
-  inset 0 0 0 1px #777;
+  box-shadow: 0 12px 20px 0 #777, 0 2px 4px 0 #777, inset 0 0 0 1px #777;
   min-height: 220px;
   width: 500px;
   border-radius: 5px;
+}
+.postBox .small_circle {
+  position: absolute;
+  right: 16px;
+  top: 12px;
 }
 
 .box_header {
@@ -94,7 +97,23 @@ code {
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  font-weight: 700;
+  padding: 14px 15px 17px 15px;
+  border-bottom: 3px solid var(--bg-third);
 }
+
+/* .box_profile {
+  display: flex;
+  gap: 12px;
+  padding: 17px 17px 5px 17px;
+}
+.box_profile img {
+  width: 30px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+} */
+
 .circle_icon {
   position: relative;
   height: 40px;
@@ -109,9 +128,9 @@ code {
 }
 
 .hover1:hover {
-  background: var(--background1);
+  background: var(--background2);
+  text-decoration:none;
 }
 .hover2:hover {
-  background: var(--background2);
+  background: var(--background1);
 }
-

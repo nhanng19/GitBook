@@ -6,7 +6,7 @@ import classes from "./ProfileItem.module.css";
 const ProfileItem = ({ username, picture }) => {
   
   return (
-    <NavLink className={classes.profile_link} to="/myprofile">
+    <NavLink className={classes.profile_link} to="/profile">
       <img src={picture} alt="User" className={classes.nav__profile} />
       <span className={classes.username}>{username}</span>
     </NavLink>

@@ -1,11 +1,11 @@
 .profile {
-  color: white;
+  color: var(--color-primary);
 }
 
 .profile_top {
   /* margin-top: 56px; */
-  box-shadow: 0 1px 2px #333;
-  background: var(--nav-color);
+  box-shadow: 0 1px 2px var(--shadow-1);
+  background: var(--background1);
 }
 
 .profile_container {

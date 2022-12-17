@@ -1,20 +1,19 @@
 import React, { useRef, useState } from "react";
 import classes from "./Cover.module.css";
 import { BsFillCameraFill, BsFillFileImageFill } from "react-icons/bs";
-import useClickOutside from '../../helpers/useClickOutside';
+import useClickOutside from "../../helpers/useClickOutside";
 
-const Cover = () => {
+const Cover = ({ cover }) => {
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const menuRef = useRef(null);
-  useClickOutside(menuRef, () => setShowCoverMenu(false))
+  useClickOutside(menuRef, () => setShowCoverMenu(false));
 
-//   const profileCover = null;
-  const profileCover =
-    "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1666303496/rwho7b0f95odntml1mwz.png";
+  //   const profileCover = null;
+
   return (
-    <div className={classes.profile_cover} >
-      {profileCover && (
-        <img src={profileCover} className={classes.cover} alt="" />
+    <div className={classes.profile_cover}>
+      {cover && (
+        <img src={cover} className={classes.cover} alt="" />
       )}
 
       <div className={classes.update_cover_wrapper}>

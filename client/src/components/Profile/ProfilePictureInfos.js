@@ -14,7 +14,7 @@ const ProfilePictureInfos = () => {
     "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671125789/profileImgs/i5jfxsozvva85zhjhqz0.png";
   return (
     <div className={classes.profile_img_wrap}>
-      {show && <ProfilePicture />}
+      {!show && <ProfilePicture />}
       <div className={classes.profile_w_left}>
         <div className={classes.profile_w_img}>
           <div

@@ -16,7 +16,7 @@ const NavBar = () => {
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { username: userParam },
   });
-  const user = data?.me || data?.user || {};
+  const user = data?.me || {};
   
   return (
     <header className={classes.navbar}>
