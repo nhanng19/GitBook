@@ -16,6 +16,7 @@ html {
     box-sizing: border-box;
     /* 62.5% is come from that 16px * 62.5% is 10px. so our 1rem = 10px. easy to calculate the px size using rem */
     font-size: 62.5%; 
+    overflow-y: scroll;
 }
 
 body {

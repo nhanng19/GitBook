@@ -1,16 +1,26 @@
 .add_bio_wrap {
-    display: flex;
-    flex-direction: column; 
+  display: flex;
+  flex-direction: column;
 }
 
-.add_bio_wrap > *{
-    margin-top: 5px;
-    justify-content: space-between;
+.add_bio_wrap > * {
+  margin-top: 5px;
+  justify-content: space-between;
 }
 
 .flex-left {
-    font-size: 20px;
+  font-size: 20px;
 }
 .flex-left > * {
-    filter: invert(40%);
+  filter: invert(40%);
 }
+
+/* below is for relationship */
+/* .select_rel {
+  height: 30px;
+  outline: none;
+  border: none;
+  background: var(--bg-secondary);
+  margin: 10px 0;
+  padding: 0 10px;
+} */

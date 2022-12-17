@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import Detail from "./Detail";
 import classes from "./EditDetails.module.css";
+import { BsX, BsXLg } from "react-icons/bs";
+import useClickOutside from '../../helpers/useClickOutside';
 
 const EditDetails = ({
   username,
@@ -9,11 +11,15 @@ const EditDetails = ({
   infos,
   setVisible,
 }) => {
+  const modal =useRef(null)
+  useClickOutside(modal, () => setVisible(false))
   return (
     <div className={`blur`}>
-      <div className={`postBox ${classes.infosBox}`}>
+      <div className={`postBox ${classes.infosBox}`} ref={modal}>
         <div className={`box_header`}>
-          <div className={`small_circle`}>{/* exit icon */}</div>
+          <div className={`small_circle`} onClick={()=> setVisible(false)}>
+            <BsXLg />
+          </div>
           <span>Edit Details</span>
         </div>
         <div className={`${classes.details_wrapper} scrollbar`}>
@@ -110,7 +116,7 @@ const EditDetails = ({
             header="linkedin"
             value={infos?.linkedin}
             icon="linkedin"
-            placeholder="Add a linkedin"
+            placeholder="Add a linkedin url"
             name="linkedin"
             handleChange={handleChange}
             updateDetails={updateDetails}

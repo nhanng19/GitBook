@@ -7,11 +7,11 @@ import Bio from "./Bio";
 import { useMutation } from "@apollo/client";
 import { EDIT_DETAILS } from "../../utils/mutations";
 import EditDetails from "./EditDetails";
-import useClickOutside from "../../helpers/useClickOutside";
+import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
+
 
 const ProfileAbout = ({ details, username, visitor }) => {
-  const popup = useRef(null);
-  useClickOutside(popup, () => setVisible(false));
+  
   const [visible, setVisible] = useState(false);
   const [editDetails, { error }] = useMutation(EDIT_DETAILS);
 
@@ -55,6 +55,7 @@ const ProfileAbout = ({ details, username, visitor }) => {
         },
       });
       setShowBio(false);
+      console.log(infos.workPlace)
     } catch (err) {
       console.log(err);
     }
@@ -99,7 +100,7 @@ const ProfileAbout = ({ details, username, visitor }) => {
       {infos.job && (
         <div className={classes.info_profile}>
           <MdOutlineWork />
-          Work as {infos.job}
+          Work as {infos.job} at {infos.workPlace}
         </div>
       )}
       {infos?.college && (
@@ -120,6 +121,24 @@ const ProfileAbout = ({ details, username, visitor }) => {
           Lives in {infos.currentCity}
         </div>
       )}
+      {infos?.github && (
+        <div className={classes.info_profile}>
+          <BsGithub />
+          Github account: <a href={`github.com/${infos.github}`}>{infos.github}</a>
+        </div>
+      )}
+      {infos?.linkedin && (
+        <div className={classes.info_profile}>
+          <BsLinkedin />
+          Visit my <a href={infos.linkedin}>Linkedin</a>
+        </div>
+      )}
+      {infos?.instagram && (
+        <div className={classes.info_profile}>
+          <BsInstagram />
+          Visit my <a href={`instagram.com/${infos.instagram}`}>@{infos.instagram}</a>
+        </div>
+      )}
       {!visitor && (
         <button
           className="gray_btn hover1 w100"
@@ -134,6 +153,7 @@ const ProfileAbout = ({ details, username, visitor }) => {
           handleChange={handleChange}
           updateDetails={updateDetails}
           infos={infos}
+          setVisible={setVisible}
         />
       )}
     </div>

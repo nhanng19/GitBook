@@ -6,7 +6,7 @@
 .details_wrapper {
     padding: 1rem;
     overflow-y: auto;
-    height: 80vh;
+    height: 60vh;
 }
 .details_col {
     display: flex;

@@ -139,6 +139,7 @@ code {
   position: absolute;
   right: 16px;
   top: 12px;
+  cursor: pointer;
 }
 
 .box_header {
