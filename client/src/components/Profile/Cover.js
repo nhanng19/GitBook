@@ -10,12 +10,15 @@ import { ADD_COVER } from "../../utils/mutations";
 
 const Cover = ({ cover, visitor }) => {
   const [addCover, { error }] = useMutation(ADD_COVER);
-
+  const [coverImage, setCoverImage] = useState("");
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const [coverUrl, setCoverUrl] = useState(cover);
   const [loading, setLoading] = useState(false);
   const menuRef = useRef(null);
   const refInput = useRef(null);
+  useEffect(() => {
+    setCoverUrl(coverUrl);
+  }, [coverUrl]);
 
   useClickOutside(menuRef, () => setShowCoverMenu(false));
   const [errorCover, setErrorCover] = useState("");
@@ -39,7 +42,7 @@ const Cover = ({ cover, visitor }) => {
       setCoverImage(event.target.result);
     };
   };
-  const [coverImage, setCoverImage] = useState("");
+  
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -100,6 +103,7 @@ const Cover = ({ cover, visitor }) => {
       await setTimeout(() => {
         // setCoverUrl(data.url);
         setCoverImage("");
+        setCoverUrl(data.url);
       }, 1000);
     } catch (err) {
       setErrorCover(err.response.data.error);
@@ -160,7 +164,7 @@ const Cover = ({ cover, visitor }) => {
           />
         </div>
       )}
-      {cover && <img src={coverUrl} className={classes.cover} alt="" />}
+      {cover && !coverImage && <img src={coverUrl} className={classes.cover} alt="" />}
       {!visitor && (
         <div className={classes.update_cover_wrapper}>
           <div

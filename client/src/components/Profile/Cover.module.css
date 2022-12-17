@@ -6,6 +6,13 @@
   border-bottom-right-radius: 8px;
   background: white;
 }
+.profile_cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
 .update_cover_wrapper {
   position: absolute;
   bottom: 1rem;
@@ -25,6 +32,10 @@
 }
 .cover {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .open_cover_update i {
