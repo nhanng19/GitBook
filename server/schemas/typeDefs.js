@@ -113,6 +113,7 @@ const typeDefs = gql`
       instagram: String!
     ): Details
     addFriend(username: String!): User
+    cancelRequest(username: String!): User
   }
 `;
 
