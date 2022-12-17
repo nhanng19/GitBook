@@ -22,6 +22,9 @@ import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import Home from "./pages/Home";
 import About from "./pages/AboutPage";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import Main from "./components/UI/Main";
 import SingleProject from "./pages/SingleProject";
 
 import Auth from "./utils/auth";
@@ -59,6 +62,7 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    Aos.init({ duration: 1000 });
     const newSocket = io(`http://localhost:3000`);
     setSocket(newSocket);
     return () => newSocket.close();

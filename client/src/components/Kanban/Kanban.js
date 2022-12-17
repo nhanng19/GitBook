@@ -1,11 +1,16 @@
 import React from "react";
-import KanbanProvider from "../../store/KanbanProvider";
-
 import KanbanBox from "./KanbanBox";
 import KanbanNewTask from "./KanbanNewTask";
-import ProjectInfo from "../Project/ProjectInfo";
 
-const Kanban = ({ name, description, date, owner, repo, onShowChat }) => {
+const Kanban = ({
+  name,
+  description,
+  date,
+  owner,
+  repo,
+  projectId,
+  project,
+}) => {
   // const [tasksTodo, setTasksTodo] = useState(DUMMY_DATA_TODO);
   // const [tasksInProgress, setTasksInProgress] = useState(
   //   DUMMY_DATA_IN_PROGRESS
@@ -28,17 +33,16 @@ const Kanban = ({ name, description, date, owner, repo, onShowChat }) => {
 
   return (
     <>
-      <KanbanProvider>
-        {/* <KanbanForm onAddTask={addTaskHandler} /> */}
-        <KanbanNewTask
-          name={name}
-          description={description}
-          date={date}
-          owner={owner}
-          repo={repo}
-        />
-        <KanbanBox />
-      </KanbanProvider>
+      {/* <KanbanForm onAddTask={addTaskHandler} /> */}
+      <KanbanNewTask
+        name={name}
+        description={description}
+        date={date}
+        owner={owner}
+        repo={repo}
+        projectId={projectId}
+      />
+      <KanbanBox project={project} />
     </>
   );
 };

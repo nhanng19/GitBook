@@ -9,9 +9,7 @@ const SingleProject = ({ socket }) => {
   const { loading, data } = useQuery(QUERY_SINGLE_PROJECT, {
     variables: { projectId: projectId },
   });
-
   const project = data?.project || {};
-
   return (
     <>
       {loading ? (
@@ -24,6 +22,7 @@ const SingleProject = ({ socket }) => {
           owner={project.projectOwner}
           repo={project.projectRepo}
           projectId={project._id}
+          project={project}
           socket={socket}
         />
       )}

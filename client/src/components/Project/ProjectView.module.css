@@ -1,7 +1,12 @@
 .showChat {
   font-size: 4rem;
   color: var(--nav-color);
-  cursor: pointer;
+	background: none;
+
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
 }
 
 .showChat:hover {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProjectInfo = (props) => {
   return (
     <>
-      <div className={classes.container}>
+      <div data-aos="fade-in" className={classes.container}>
         <a
           className={classes.git}
           target="_blank"
@@ -18,7 +18,8 @@ const ProjectInfo = (props) => {
 
         <h4 className={classes.projectDescription}>{props.description}</h4>
         <p className={classes.projectDate}>
-          Created {props.date} by <Link to={`/profiles/${props.owner}`}>{props.owner}</Link>
+          Created {props.date} by{" "}
+          <Link to={`/profiles/${props.owner}`}>{props.owner}</Link>
         </p>
       </div>
     </>

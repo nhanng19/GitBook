@@ -1,33 +1,7 @@
-import React, { useState, useContext } from "react";
 import KanbanForm from "./KanbanForm";
 import classes from "./KanbanNewTask.module.css";
-import KanbanContext from "../../store/kanban-context";
 import ProjectInfo from "../Project/ProjectInfo";
-const KanbanNewTask = ({ name, date, description, owner, repo }) => {
-  const kanbanCtx = useContext(KanbanContext);
-
-  const [isAdding, setIsAdding] = useState(false);
-  const saveTaskDataHandler = (enteredTaskData) => {
-    kanbanCtx.addTask({
-      id: `${enteredTaskData.assignee}${Math.floor(Math.random() * 100000000)}`,
-      assignee: enteredTaskData.assignee,
-      description: enteredTaskData.description,
-    });
-    // const taskData = {
-    //   ...enteredTaskData,
-    //   id: Math.random().toString(),
-    // };
-    // props.onAddTask(taskData);
-    // setIsAdding(false);
-  };
-
-  const startAddingHandler = () => {
-    setIsAdding(true);
-  };
-
-  const stopAddingHandler = () => {
-    setIsAdding(false);
-  };
+const KanbanNewTask = ({ name, date, description, owner, repo, projectId }) => {
 
   return (
     <div className={classes.new_task}>
@@ -42,12 +16,7 @@ const KanbanNewTask = ({ name, date, description, owner, repo }) => {
       </div>
 
       <div className={classes.right}>
-
-        <KanbanForm
-            onSaveTaskData={saveTaskDataHandler}
-            onCancel={stopAddingHandler}
-          />
-   
+        <KanbanForm projectId={projectId} />
       </div>
     </div>
   );

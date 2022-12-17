@@ -5,7 +5,6 @@ import AddProject from "../components/Project/AddProject";
 import ProjectList from "../components/Project/ProjectList";
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import Auth from "../utils/auth";
 
 const Dashboard = () => {
   const { username: userParam } = useParams();

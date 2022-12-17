@@ -74,7 +74,7 @@ const AddProject = ({ setVisibleModal }) => {
     <div>
       {Auth.loggedIn() ? (
         <>
-          <div className={styles.container}>
+          <div data-aos="fade-in"className={styles.container}>
             <form className={styles.contact} onSubmit={handleFormSubmit}>
               <h3>Add a new project</h3>
               <h4>New projects have Kanban boards and chat rooms!</h4>
@@ -82,19 +82,17 @@ const AddProject = ({ setVisibleModal }) => {
                 <input
                   placeholder="Enter project name"
                   type="text"
-                  tabindex="1"
                   name="projectName"
                   value={projectName}
                   onChange={handleNameChange}
                   required
-                  autofocus
+                  autoFocus
                 />
               </fieldset>
               <fieldset>
                 <input
                   placeholder="Enter project link"
                   type="text"
-                  tabindex="2"
                   name="projectRepo"
                   value={projectRepo}
                   onChange={handleRepoChange}
@@ -106,7 +104,6 @@ const AddProject = ({ setVisibleModal }) => {
                 <textarea
                   placeholder="Enter project description"
                   type="text"
-                  tabindex="5"
                   name="projectDescription"
                   value={projectDescription}
                   onChange={handleDescriptionChange}

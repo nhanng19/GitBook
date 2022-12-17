@@ -31,7 +31,7 @@ class AuthService {
     // save token to local storage
       localStorage.setItem("id_token", idToken);
     setTimeout(() => {
-      window.location.assign("/Home");
+      window.location.assign("/");
     }, 2000);
   }
 

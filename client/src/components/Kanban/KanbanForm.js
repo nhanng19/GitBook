@@ -2,8 +2,10 @@ import React, { useState, useRef } from "react";
 import classes from "./KanbanForm.module.css";
 import { QUERY_USERS } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { ADD_TICKET } from "../../utils/mutations";
 import LoadingSpinner from "../UI/LoadingSpinner";
-const KanbanForm = (props) => {
+const KanbanForm = ({ projectId }) => {
   const [taskIsValid, setTaskIsValid] = useState(true);
   const formRef = useRef();
   const assigneeInputRef = useRef();
@@ -21,8 +23,9 @@ const KanbanForm = (props) => {
   // }, [assigneeInputRef, descriptionInputRef]);
   const { loading, data } = useQuery(QUERY_USERS);
   const users = data?.users || [];
+  const [addTicket] = useMutation(ADD_TICKET);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredAssignee = assigneeInputRef.current.value;
@@ -36,29 +39,44 @@ const KanbanForm = (props) => {
       return;
     }
 
-    const taskData = {
-      assignee: enteredAssignee,
-      description: enteredDescription,
-    };
+    if (
+      enteredAssignee.trim().length !== 0 ||
+      enteredDescription.trim().length !== 0
+    ) {
+      setTaskIsValid(true);
+    }
 
-    props.onSaveTaskData(taskData);
-    // setEnteredAssignee("");
-    // setEnteredDescription("");    
-    assigneeInputRef.current.reset();
-    descriptionInputRef.current.reset();
+    // const taskData = {
+    //   assignee: enteredAssignee,
+    //   description: enteredDescription,
+    // };
+
+    try {
+      await addTicket({
+        variables: {
+          projectId: projectId,
+          assignee: enteredAssignee,
+          description: enteredDescription,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
-
+  // assigneeInputRef.current.reset();
+  // descriptionInputRef.current.reset();
   return (
     <>
       {loading ? (
         <LoadingSpinner />
       ) : (
         <form
+          data-aos="fade-in"
           ref={formRef}
           onSubmit={submitHandler}
           className={classes.toDoForm}
         >
-          <h1>Add a ticket</h1>{" "}
+          <h1>Add a ticket</h1>
           {!taskIsValid && <p>Please enter a valid input.</p>}
           <div className={classes.inputHeader}>
             <input
@@ -66,7 +84,7 @@ const KanbanForm = (props) => {
               className={classes.formInput}
               type="text"
               placeholder="Enter Ticket"
-              autofocus
+              autoFocus
               // value={enteredDescription}
               // onChange={descriptionChangeHandler}
             ></input>
@@ -76,12 +94,15 @@ const KanbanForm = (props) => {
               ref={assigneeInputRef}
               className={classes.selectInput}
               name="cars"
+              defaultValue={"Choose an assignee"}
             >
-              <option value="" disabled selected>
+              <option value="Choose an assignee" disabled>
                 Choose an assignee
               </option>
               {users.map((user) => (
-                <option value={user.username}>{user.username}</option>
+                <option key={user.username} value={user.username}>
+                  {user.username}
+                </option>
               ))}
             </select>
           </div>

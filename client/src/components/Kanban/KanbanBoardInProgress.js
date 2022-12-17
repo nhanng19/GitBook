@@ -1,33 +1,24 @@
-import React, { useContext } from "react";
 import classes from "./KanbanBoard.module.css";
 import KanbanItem from "./KanbanItem";
-import KanbanContext from "../../store/kanban-context";
 
-const KanbanBoardInProgress = (props) => {
-  const kanbanCtx = useContext(KanbanContext);
-
-  const inProgressTasks = kanbanCtx.taskInProgress;
-  const taskMoveToPreviousHandler = (id) => {
-    kanbanCtx.moveTaskBA(id);
-  };
-  const taskMoveToProgressHandler = (id) => {
-    kanbanCtx.moveTaskBC(id);
-  };
+const KanbanBoardInProgress = ({ project }) => {
+  const inProgress = project.inProgress;
   return (
     <div className={classes.kanban}>
       <div className={classes.kanbanHeader}>In-Progress</div>
       <div>
-        {inProgressTasks.length !== 0 &&
-          inProgressTasks.map((task) => (
+        {inProgress.length !== 0 && (
+          inProgress.map((task) => (
             <KanbanItem
-              key={task.id}
+              project={project}
+              key={task._id}
               section="In-Progress"
-              assigner={task.assignee}
+              kanbanId={task._id}
+              assignee={task.assignee}
               description={task.description}
-              onMovePrevious={taskMoveToPreviousHandler.bind(null, task.id)}
-              onMoveForward={taskMoveToProgressHandler.bind(null, task.id)}
             />
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

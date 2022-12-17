@@ -12,6 +12,21 @@ export const QUERY_USERS = gql`
         projectDescription
         projectOwner
         createdAt
+        toDo {
+          _id
+          assignee
+          description
+        }
+        inProgress {
+          _id
+          assignee
+          description
+        }
+        done {
+          _id
+          assignee
+          description
+        }
       }
     }
   }
@@ -31,6 +46,21 @@ export const QUERY_USER = gql`
         projectRepo
         projectOwner
         createdAt
+        toDo {
+          _id
+          assignee
+          description
+        }
+        inProgress {
+          _id
+          assignee
+          description
+        }
+        done {
+          _id
+          assignee
+          description
+        }
       }
       friends {
         _id
@@ -75,6 +105,21 @@ export const QUERY_PROJECTS = gql`
       projectRepo
       projectOwner
       createdAt
+      toDo {
+        _id
+        assignee
+        description
+      }
+      inProgress {
+        _id
+        assignee
+        description
+      }
+      done {
+        _id
+        assignee
+        description
+      }
     }
   }
 `;
@@ -89,6 +134,21 @@ export const QUERY_SINGLE_PROJECT = gql`
       projectOwner
       projectRepo
       createdAt
+      toDo {
+        _id
+        assignee
+        description
+      }
+      inProgress {
+        _id
+        assignee
+        description
+      }
+      done {
+        _id
+        assignee
+        description
+      }
     }
   }
 `;
@@ -108,6 +168,21 @@ export const QUERY_ME = gql`
         projectRepo
         projectOwner
         createdAt
+        toDo {
+          _id
+          assignee
+          description
+        }
+        inProgress {
+          _id
+          assignee
+          description
+        }
+        done {
+          _id
+          assignee
+          description
+        }
       }
       friends {
         _id

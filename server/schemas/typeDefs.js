@@ -40,7 +40,25 @@ const typeDefs = gql`
     projectOwner: String
     createdAt: String
     projectMembers: [User]
-    kanban: Kanban
+    toDo: [toDo]
+    inProgress: [inProgress]
+    done: [done]
+  }
+
+  type toDo {
+    _id: ID
+    assignee: String
+    description: String
+  }
+  type inProgress {
+    _id: ID
+    assignee: String
+    description: String
+  }
+  type done {
+    _id: ID
+    assignee: String
+    description: String
   }
 
   type Kanban {
@@ -93,6 +111,34 @@ const typeDefs = gql`
       projectRepo: String
       projectOwner: String
       createdAt: String
+    ): Project
+    addTicket(projectId: ID!, assignee: String!, description: String!): Project
+    removeTicket(projectId: ID!, kanbanId: ID!): Project
+    todoProgress(
+      projectId: ID!
+      kanbanId: ID!
+      assignee: String!
+      description: String!
+    ): Project
+    removeProgress(projectId: ID!, kanbanId: ID!): Project
+    progressDone(
+      projectId: ID!
+      kanbanId: ID!
+      assignee: String!
+      description: String!
+    ): Project
+    removeDone(projectId: ID!, kanbanId: ID!): Project
+    doneProgress(
+      projectId: ID!
+      kanbanId: ID!
+      assignee: String!
+      description: String!
+    ): Project
+    progressTodo(
+      projectId: ID!
+      kanbanId: ID!
+      assignee: String!
+      description: String!
     ): Project
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User

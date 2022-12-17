@@ -48,7 +48,6 @@ const resolvers = {
 
         return project;
       }
-      throw new AuthenticationError("You need to be logged in!");
     },
     removeProject: async (parent, { projectId }, context) => {
       if (context.user) {
@@ -64,7 +63,118 @@ const resolvers = {
 
         return project;
       }
-      throw new AuthenticationError("You need to be logged in!");
+    },
+    addTicket: async (
+      parent,
+      { projectId, assignee, description },
+      context
+    ) => {
+      const project = await Project.findOneAndUpdate(
+        { _id: projectId },
+        { $addToSet: { toDo: { assignee, description } } },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return project;
+    },
+    removeTicket: async (parent, { projectId, kanbanId }, context) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          {
+            $pull: {
+              toDo: {
+                _id: kanbanId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+    },
+    todoProgress: async (
+      parent,
+      { projectId, kanbanId, assignee, description },
+      context
+    ) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          { $addToSet: { inProgress: { assignee, description } } },
+          { new: true }
+        );
+      }
+    },
+    removeProgress: async (parent, { projectId, kanbanId }, context) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          {
+            $pull: {
+              inProgress: {
+                _id: kanbanId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+    },
+    progressDone: async (
+      parent,
+      { projectId, kanbanId, assignee, description },
+      context
+    ) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          { $addToSet: { done: { assignee, description } } },
+          { new: true }
+        );
+      }
+    },
+    removeDone: async (parent, { projectId, kanbanId }, context) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          {
+            $pull: {
+              done: {
+                _id: kanbanId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+    },
+    doneProgress: async (
+      parent,
+      { projectId, kanbanId, assignee, description },
+      context
+    ) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          { $addToSet: { inProgress: { assignee, description } } },
+          { new: true }
+        );
+      }
+    },
+    progressTodo: async (
+      parent,
+      { projectId, kanbanId, assignee, description },
+      context
+    ) => {
+      if (context.user) {
+        return Project.findOneAndUpdate(
+          { _id: projectId },
+          { $addToSet: { toDo: { assignee, description } } },
+          { new: true }
+        );
+      }
     },
     login: async (parent, { email, password }) => {
       try {
