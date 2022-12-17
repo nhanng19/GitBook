@@ -107,9 +107,183 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
-    }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addCover: async (parent, { cover }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { cover: cover },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    editDetails: async (
+      parent,
+      {
+        bio,
+        job,
+        workPlace,
+        highSchool,
+        college,
+        currentCity,
+        gender,
+        bYear,
+        bMonth,
+        bDay,
+        github,
+        linkedin,
+        instagram,
+      },
+      context
+    ) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            details: {
+              bio: bio,
+              job: job,
+              workPlace: workPlace,
+              highSchool: highSchool,
+              college: college,
+              currentCity: currentCity,
+              gender: gender,
+              bYear: bYear,
+              bMonth: bMonth,
+              bDay: bDay,
+              github: github,
+              linkedin: linkedin,
+              instagram: instagram,
+            },
+          },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addFriend: async (parent, { username }, context) => {
+      // TODO: make if statement to avoid adding myself friend.
+
+      if (context.user) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+
+        // check if sender already made friend request, or friend with receiver
+
+        if (
+          !receiver.requests.includes(sender._id) &&
+          !receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $addToSet: { requests: sender._id },
+          });
+          await receiver.findOneAndUpdate({
+            $addToSet: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $addToSet: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+        throw new AuthenticationError(
+          "You already requested friend to the user"
+        );
+      }
+    },
+    cancelRequest: async (parent, { username }, context) => {
+      if (context.user.username !== username) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+        // check if sender already made friend request, or friend with receiver
+        if (
+          receiver.requests.includes(sender._id) &&
+          !receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $pull: { requests: sender._id },
+          });
+          await receiver.findOneAndUpdate({
+            $pull: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $pull: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+
+        throw new AuthenticationError("You can't cancel a request to yourself");
+      }
+    },
+    follow: async (parent, { username }, context) => {
+      if (context.user.username !== username) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+        // check if sender already made friend request, or friend with receiver
+        if (
+          !receiver.followers.includes(receiver.username._id) &&
+          !receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $addToSet: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $addToSet: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+
+        throw new AuthenticationError("You can't cancel a request to yourself");
+      }
+    },
+    unFollow: async (parent, { username }, context) => {
+      if (context.user.username !== username) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+        // check if sender already made friend request, or friend with receiver
+        if (
+          receiver.requests.includes(sender._id) &&
+          receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $pull: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $pull: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+
+        throw new AuthenticationError("You can't cancel a request to yourself");
+      }
+    },
+    cancelRequest: async (parent, { username }, context) => {
+      if (context.user.username !== username) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+        // check if sender already made friend request, or friend with receiver
+        if (
+          receiver.requests.includes(sender._id) &&
+          receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $pull: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $pull: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+
+        throw new AuthenticationError("You can't cancel a request to yourself");
+      }
+    }, 
   },
 };
 
 module.exports = resolvers;
+
+// activate account mutation: (not using yet)

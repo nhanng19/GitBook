@@ -1,12 +1,218 @@
+:root {
+  --background1: #f4e6c3 !important;
+  --background2: #fffbe9;
+  --text-color: black;
+  --nav-color: #ccd6a6;
+  --main-color: #ccd6a6;
+  --sub-color: #dae2b6;
+  --bg-primary: #fff;
+  --bg-secondary: #f0f2f5;
+  --bg-third: #e4e6eb;
+  --color-primary: #050505;
+  --color-secondary: #65676b;
+  --divider: #ced0d4;
+  --dark-bg-primary: #18191a;
+  --dark-bg-secondary: #242526;
+  --dark-bg-third: #3a3b3c;
+  --dark-color-primary: #242526;
+  --dark-color-secondary: #b0b3b8;
+  --blue-color: #1876f2;
+  --green-color: #42b72a;
+  --light-blue-color: #e7f3ff;
+  --border-color: #ccced2;
+  --shadow-1: rgba(0, 0, 0, 0.2);
+  --shadow-2: rgba(0, 0, 0, 0.1);
+  --shadow-3: rgba(0, 0, 0, 0.3);
+  --shadow-inset: rgba(255, 255, 255, 0.5);
+}
+
 body {
   margin: 0;
   font-family: "Poppins" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FFFBE9 !important;
+  background-color: #fffbe9 !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* buttons */
+.main_btn {
+  border: none;
+  outline: none;
+  background: var(--main-color);
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.blue_btn {
+  border: none;
+  outline: none;
+  background: var(--blue-color);
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.gray_btn {
+  border: none;
+  outline: none;
+  background: #777;
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* .active {
+  border-bottom: 3px solid var(--sub-color);
+  border-radius: 0;
+  height: 56px;
+  transform:translateX(0);
+} */
+
+.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.768);
+  z-index: 99;
+}
+
+.w100 {
+  width: 100%;
+  margin: 10px 0;
+}
+.details_input {
+  margin-top: 10px;
+  background: var(background1) !important;
+}
+.details_input:focus {
+  outline-color: var(--blue-color);
+  outline-offset: 1px; 
+}
+.remaining {
+  font-size: 12px;
+  color: var(--color-secondary);
+  align-self: flex-end;
+  margin-top: 2px;
+}
+.postBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--nav-color);
+  box-shadow: 0 12px 20px 0 #777, 0 2px 4px 0 #777, inset 0 0 0 1px #777;
+  min-height: 220px;
+  width: 500px;
+  border-radius: 5px;
+}
+.postBox .small_circle {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  cursor: pointer;
+}
+
+.box_header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 14px 15px 17px 15px;
+  border-bottom: 3px solid var(--bg-third);
+}
+
+/* .box_profile {
+  display: flex;
+  gap: 12px;
+  padding: 17px 17px 5px 17px;
+}
+.box_profile img {
+  width: 30px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+} */
+
+.circle_icon {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  background: var(--bg-third);
+  cursor: pointer;
+}
+
+.hover1:hover {
+  background: var(--background2);
+  text-decoration:none;
+}
+.hover2:hover {
+  background: var(--background1);
+}
+
+.postError {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  opacity: 0.8;
+  display: flex;
+  gap: 10;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  color: #b94a48;
+  animation: anim 0.3s;
+  border-radius: 5px;
+  padding: 3rem;
+}
+.postError_error {
+  width: 75%;
+  font-weight: 600;
+}
+@keyframes anim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }

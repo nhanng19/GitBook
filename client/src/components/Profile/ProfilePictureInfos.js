@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./ProfilePictureInfos.module.css";
 import {
   BsFillCameraFill,
@@ -7,43 +7,54 @@ import {
   BsFillPlusCircleFill,
 } from "react-icons/bs";
 import ProfilePicture from "./ProfilePicture";
+import useClickOutside from "../../helpers/useClickOutside";
 
-const ProfilePictureInfos = () => {
-  const [show, setShow] = useState(true);
-  const userPicture =
-    "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671125789/profileImgs/i5jfxsozvva85zhjhqz0.png";
+const ProfilePictureInfos = ({ user, visitor }) => {
+  
+  const [show, setShow] = useState(false);
+  const  [picture, setPicture] = useState(user.picture);
+  useEffect(()=> {
+    setPicture(picture);
+  }, [picture])
+  
+  const popup = useRef(null);
+  useClickOutside(popup, () => setShow(false));
   return (
-    <div className={classes.profile_img_wrap}>
-      {show && <ProfilePicture />}
+    <div className={classes.profile_img_wrap} ref={popup}>
+      {show && <ProfilePicture  user={user} setShow={setShow} setPicture={setPicture} />}
       <div className={classes.profile_w_left}>
         <div className={classes.profile_w_img}>
           <div
             className={classes.profile_w_bg}
             style={{
               backgroundSize: "cover",
-              backgroundImage: `url(${userPicture})`,
+              backgroundImage: `url(${picture})`,
             }}
           ></div>
-          <div className={`${classes.profile_circle}`}>
-            <i>
-              <BsFillCameraFill color="black" size="2rem" />
-            </i>
-          </div>
+          {!visitor && (
+            <div className={`${classes.profile_circle}`} onClick={() => setShow((prev) => !prev)}>
+              <i>
+                <BsFillCameraFill color="black" size="2rem" />
+              </i>
+            </div>
+          )}
         </div>
         <div className={classes.profile_w_col}>
-          <div className={classes.profile_name}>Richard You</div>
+          <div className={classes.profile_name}>{user.username}</div>
           <div className={classes.profile_friend_count}></div>
           <div className={classes.profile_friend_imgs}></div>
         </div>
       </div>
-      <div className={classes.profile_w_right}>
-        <div className={classes.gray_btn}>
-          <i>
-            <BsPencilFill />
-          </i>
-          <span>Edit Profile</span>
+      {!visitor && (
+        <div className={classes.profile_w_right}>
+          <div className={`${classes.gray_btn} hover1`}>
+            <i>
+              <BsPencilFill />
+            </i>
+            <span>Edit Profile</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

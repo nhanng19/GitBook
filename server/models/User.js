@@ -16,7 +16,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, "Must use a valid email address"],
+      match: [
+        /^([a-z\d\.-]+)@([a-z\d-]+).([a-z]{2, 12})(\.[a-z]{2, 12})?$/,
+        "Must use a valid email address",
+      ],
     },
     password: {
       type: String,
@@ -27,6 +30,10 @@ const userSchema = new Schema(
       trim: true,
       default:
         "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1670957376/profileImgs/Untitled_design_4_usytaj.png",
+    },
+    cover: {
+      type: String,
+      trim: true,
     },
     projects: [
       {
@@ -75,6 +82,9 @@ const userSchema = new Schema(
         type: String,
       },
       job: {
+        type: String,
+      },
+      workPlace: {
         type: String,
       },
       highSchool: {
@@ -135,21 +145,21 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual('friendCount').get(function () {
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
-})
-userSchema.virtual('followerCount').get(function () {
+});
+userSchema.virtual("followerCount").get(function () {
   return this.followers.length;
-})
-userSchema.virtual('followingCount').get(function () {
+});
+userSchema.virtual("followingCount").get(function () {
   return this.followings.length;
-})
-userSchema.virtual('projectCount').get(function () {
+});
+userSchema.virtual("projectCount").get(function () {
   return this.projects.length;
-})
-userSchema.virtual('birthDate').get(function () {
-  return `${this.bMonth}/${this.bDay}/${this.bYear}`
-})
+});
+userSchema.virtual("birthDate").get(function () {
+  return `${this.bMonth}/${this.bDay}/${this.bYear}`;
+});
 
 const User = model("User", userSchema);
 

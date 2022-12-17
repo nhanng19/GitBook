@@ -9,22 +9,20 @@
   border-radius: 10px;
 }
 
-.side_nav_link:link,
-.side_nav_link:visited {
+.profile_link:link,
+.profile_link:visited {
   color: #333;
   text-decoration: none;
-  text-transform: uppercase;
   display: block;
   padding: 1.5rem 3rem;
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 10;
+  position: relative;  
 }
 
 @media screen and (max-width: 900px) {
-  .side_nav_link:link,
-  .side_nav_link:visited {
+  .profile_link:link,
+  .profile_link:visited {
     justify-content: center;
     padding: 2rem;
   }

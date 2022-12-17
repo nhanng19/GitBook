@@ -1,3 +1,11 @@
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+// import rootReducer from "./reducers";
+// const store = createStore(rootReducer, composeWithDevTools());
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -5,24 +13,25 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { io } from "socket.io-client";
+
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
-import MyProfile from './pages/MyProfile';
-import ChatPage from "./pages/ChatPage";
+// import MyProfile from "./pages/MyProfile";
+// import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
-// import Project from './pages/Project/Project';
 import Home from "./pages/Home";
-// import Container from './components/UI/Container';
-import "./App.css";
-import Auth from "./utils/auth";
-import SingleProject from "./pages/SingleProject";
-import React, { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 import About from "./pages/AboutPage";
+import SingleProject from "./pages/SingleProject";
 
-import Main from "./components/UI/Main";
+import Auth from "./utils/auth";
+
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+import Main from "./components/UI/Main";
+import "./App.css";
+import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
+import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
+import ProfileFriends from "./components/ProfileFriends/ProfileFriends";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -64,12 +73,21 @@ function App() {
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="projects" element={<ProfileProjects />} />
+            <Route path="about" element={<ProfileAbout />} />
+            <Route path="friends" element={<ProfileFriends />} />
+          </Route>
+          <Route path="/profile/:username" element={<Profile />}>
+            <Route path="projects" element={<ProfileProjects />} />
+            <Route path="about" element={<ProfileAbout />} />
+            <Route path="friends" element={<ProfileFriends />} />
+          </Route>
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
-          <Route path="/About" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/about" element={<About />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/profiles/:username" element={<Profile />} />
           <Route
             path="/projects/:projectId"
@@ -92,9 +110,7 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <Main>
-              {socket ? <div>{routes}</div> : <LoadingSpinner/>}
-            </Main>
+            <Main>{socket ? <div>{routes}</div> : <LoadingSpinner />}</Main>
           </>
         </Router>
       </React.Fragment>
