@@ -1,10 +1,17 @@
 import React, { useCallback, useRef, useState } from "react";
 import classes from "./UpdateProfilePicture.module.css";
-import { BsXLg } from "react-icons/bs";
+import { BsXLg, BsCrop } from "react-icons/bs";
+import {BiTimer} from 'react-icons/bi'
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import {MdOutlinePublic} from 'react-icons/md'
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../helpers/getCroppedImg";
+import { useMutation } from "@apollo/client";
+import { ADD_PICTURE } from "../../utils/mutations";
 
-const UpdateProfilePicture = ({ setImage, image }) => {
+const UpdateProfilePicture = ({ setImage, image, setError, user }) => {
+  const [addPicture, { error }] = useMutation(ADD_PICTURE);
+
   const [description, setDescription] = useState("");
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -42,6 +49,33 @@ const UpdateProfilePicture = ({ setImage, image }) => {
     },
     [croppedAreaPixels]
   );
+  const UpdateProfilePicture = async() => {
+    try {
+      let img = await getCroppedImage();
+      let blob = await fetch(img).then((b) => b.blob());
+      const path = `${user.username}/profile_pictures`;
+      let formData = new FormData();
+      formData.append('file', blob);
+      formData.append('upload_preset', 'profileImgs');
+      const cloudName= "dc2xiz0gi";
+      const data = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    ).then((r) => r.json());
+    console.log(data.url);
+      await addPicture({
+        variables: {
+          picture: data.url,
+        },
+      });
+      
+      
+    } catch (err) {
+      setError(err.response.data.error);
+    }
+  }
 
   return (
     <div className={`postBox ${classes.update_img}`}>
@@ -79,7 +113,9 @@ const UpdateProfilePicture = ({ setImage, image }) => {
         </div>
         <div className={classes.slider}>
           <div className={classes.slider_circle} onClick={() => zoomOut()}>
-            <i>minusicon</i>
+            <i className={classes.icons}>
+              <AiOutlineMinus />
+            </i>
           </div>
           <input
             type="range"
@@ -91,28 +127,35 @@ const UpdateProfilePicture = ({ setImage, image }) => {
             onChange={(e) => setZoom(e.target.value)}
           />
           <div className={classes.slider_circle} onClick={() => zoomIn()}>
-            <i>plus icon</i>
+            <i className={classes.icons}>
+              <AiOutlinePlus />
+            </i>
           </div>
         </div>
       </div>
       <div className={classes.flex_up}>
-        <div
-          className={classes.gray_btn}
-          onClick={() => getCroppedImage("show")}
-        >
-          <i></i>Crop photo
+        <div className="grey_btn" onClick={() => getCroppedImage("show")}>
+          <i>
+            <BsCrop />
+          </i>
+          Crop photo
         </div>
-        <div className={classes.gray_btn}>
-          <i className={classes.temp_icon}></i>Make Temporary
+        <div className="grey_btn">
+          <i>
+            <BiTimer />
+          </i>
+          Make Temporary
         </div>
       </div>
       <div className={classes.flex_p_t}>
-        <i>public icon</i>
-        YOur profile picture is public
+        <i>
+          <MdOutlinePublic />
+        </i>
+        Your profile picture is public
       </div>
       <div className={classes.update_submit_wrap}>
         <div className={classes.blue_link}>Cancel</div>
-        <button className={classes.blue_btn} onClick={() => getCroppedImage()}>
+        <button className={classes.blue_btn} onClick={() => UpdateProfilePicture()}>
           Save
         </button>
       </div>

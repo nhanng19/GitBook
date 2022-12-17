@@ -1,4 +1,4 @@
-.update_image {
+.update_img {
   width: 700px !important;
   height: 800px;
 }
@@ -17,15 +17,15 @@
   padding: 1.1rem;
   font-size: 16px;
   font-family: inherit;
-  background: var(--nav-color);
-  color: black;
+  background: var(--background2);
+  color: var(--color-primary);
 }
 
 .textarea_blue:focus {
-  outline-color: lightblue;
+  outline-color: var(--blue-color);
 }
 .textarea_blue:hover {
-  border-color: lightskyblue;
+  border-color: var(--color-secondary);
 }
 .update_center {
   position: relative;
@@ -66,7 +66,7 @@
   -webkit-appearance: none;
   width: 55%;
   height: 4px;
-  background: #ced0d4;
+  background: black;
 }
 
 .slider input[type="range"]::-webkit-slider-thumb {
@@ -76,8 +76,8 @@
   outline: none;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 2px 2px #333, 0 2px 2px 0 #333, inset 0 0 0 1px #333;
-  border: 1px solid #777
+  box-shadow: 0 2px 2px var(--shadow-1), 0 2px 2px 0 var(--shadow-2), inset 0 0 0 1px var(--shadow-inset);
+  border: 1px solid var(--bg-third)
 }
 
 .slider_circle {
@@ -104,7 +104,7 @@
     padding : 15px;
     color: black;
     font-size: 17px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--bg-third);
 }
 
 .update_submit_wrap {
@@ -118,7 +118,7 @@
 }
 
 .blue_link {
-    color: black;
+    color: var(--blue-color);
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;

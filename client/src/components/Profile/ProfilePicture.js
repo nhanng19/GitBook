@@ -3,7 +3,7 @@ import classes from "./ProfilePicture.module.css";
 import { BsXLg, BsPlusLg } from "react-icons/bs";
 import UpdateProfilePicture from "./UpdateProfilePicture";
 
-const ProfilePicture = () => {
+const ProfilePicture = ({ user }) => {
   const refInput = useRef(null);
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
@@ -38,7 +38,7 @@ const ProfilePicture = () => {
       />
       <div className={`postBox ${classes.pictureBox}`}>
         <div className="box_header">
-          <div className={classes.box_circle}>
+          <div className={`small_circle`}>
             <i>
               <BsXLg />
             </i>
@@ -48,7 +48,7 @@ const ProfilePicture = () => {
         <div className={classes.update_picture_wrap}>
           <div className={classes.update_picture_button}>
             <button
-              className={classes.light_blue_btn}
+              className="blue_btn"
               onClick={() => refInput.current.click()}
             >
               <i>
@@ -73,11 +73,15 @@ const ProfilePicture = () => {
         )}
         <div className={classes.old_pictures_wrap}></div>
       </div>
-      {
-        image && <UpdateProfilePicture setImage={setImage} image={image}/>
-      }
+      {image && (
+        <UpdateProfilePicture
+          setImage={setImage}
+          image={image}
+          setError={setError}
+          user={user}
+        />
+      )}
     </div>
-
   );
 };
 
