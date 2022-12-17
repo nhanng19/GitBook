@@ -1,0 +1,24 @@
+.info_profile {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--color-primary);
+}
+.info_profile > *  {
+filter: invert(40%);
+}
+
+.info_text  {
+    word-break: break-word;
+}
+.info_col {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.info_col button{
+    width: 100%;
+}

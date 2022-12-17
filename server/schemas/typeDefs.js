@@ -59,6 +59,20 @@ const typeDefs = gql`
     user: User
   }
   
+  input DetailsInput {
+    bio: String
+    job: String
+    highSchool: String
+    college: String
+    currentCity: String
+    gender: String
+    bYear: Int
+    bMonth: Int
+    bDay: Int
+    github: String
+    linkedin: String
+    instagram: String
+  }
 
   type Query {
     users: [User]
@@ -81,6 +95,7 @@ const typeDefs = gql`
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User
     addCover(cover: String!): User
+    editDetails(details: DetailsInput): Details
   }
 `;
 

@@ -65,7 +65,7 @@ code {
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
-  color: #fff;
+  color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +81,7 @@ code {
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
-  color: #fff;
+  color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,6 +106,24 @@ code {
   z-index: 99;
 }
 
+.w100 {
+  width: 100%;
+  margin: 10px 0;
+}
+.details_input {
+  margin-top: 10px;
+  background: var(background1) !important;
+}
+.details_input:focus {
+  outline-color: var(--blue-color);
+  outline-offset: 1px; 
+}
+.remaining {
+  font-size: 12px;
+  color: var(--color-secondary);
+  align-self: flex-end;
+  margin-top: 2px;
+}
 .postBox {
   position: fixed;
   top: 50%;
