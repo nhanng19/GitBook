@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import classes from "./ProfileAbout.module.css";
 import { MdOutlineWork } from "react-icons/md";
 import { IoMdSchool } from "react-icons/io";
@@ -10,11 +11,15 @@ import EditDetails from "./EditDetails";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 
-const ProfileAbout = ({ details, username, visitor }) => {
-  
+const ProfileAbout = () => {
+  const outletCtx = useOutletContext();
+
   const [visible, setVisible] = useState(false);
   const [editDetails, { error }] = useMutation(EDIT_DETAILS);
-
+const details = outletCtx[0][0];
+const username = outletCtx[0][1];
+const visitor = outletCtx[0][2];
+console.log(details);
   const initial = {
     bio: details?.bio ? details.bio : "",
     job: details?.job ? details.job : "",

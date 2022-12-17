@@ -1,20 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import classes from "./ProfileMenu.module.css";
 
 const ProfileMenu = () => {
+  const params = useParams();
+  console.log(params.username)
   return (
     <div className={classes.profile_menu_wrap}>
       <div className={classes.profile_menu}>
-        <Link to="/" className={`${classes.profile_menu_active} hover1`}>
+        <NavLink
+          to={`projects`}
+          className={(navData) =>
+            navData.isActive
+              ? `${classes.profile_menu_active} hover1`
+              : "hover1"
+          }
+        >
           Projects
-        </Link>
-        <Link to="/" className={`${classes.active} hover1`}>
+        </NavLink>
+        <NavLink
+          to={`about`}
+          className={(navData) =>
+            navData.isActive
+              ? `${classes.profile_menu_active} hover1`
+              : "hover1"
+          }
+        >
           About
-        </Link>
-        <Link to="/" className={`${classes.active} hover1`}>
+        </NavLink>
+        <NavLink
+          to={`friends`}
+          className={(navData) =>
+            navData.isActive
+              ? `${classes.profile_menu_active} hover1`
+              : "hover1"
+          }
+        >
           Friends
-        </Link>
+        </NavLink>
       </div>
     </div>
   );

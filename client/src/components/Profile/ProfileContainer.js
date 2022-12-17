@@ -1,14 +1,23 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
-
+import { Outlet } from "react-router-dom";
 
 import classes from "./ProfileContainer.module.css";
 import Cover from "./Cover";
 import ProfilePictureInfos from "./ProfilePictureInfos";
 import ProfileMenu from "./ProfileMenu";
 import ProfileAbout from "../ProfileAbout/ProfileAbout";
+import ProfileProjects from "../ProfileProjects/ProfileProjects";
+import ProfileFriends from "../ProfileFriends/ProfileFriends";
 
 const ProfileContainer = ({ user, visitor }) => {
+  // const [currentDetails, setCurrentDetails] = useState(user.details);
+  // const [currentUsername, setCurrentUsername] = useState(user.username);
+  // const [currentVisitor, setCurrentVisitor] = useState(visitor);
+  const details = user.details;
+  const username = user.username;
+
+  const [currentUser, setCurrentUser] = useState([details, username, visitor]);
 
   return (
     <div className={classes.profile}>
@@ -22,7 +31,7 @@ const ProfileContainer = ({ user, visitor }) => {
       <div className={classes.profile_bottom}>
         <div className={classes.profile_container}>
           <div className={classes.bottom_container}>
-            <ProfileAbout details={user.details} username={user.username} visitor={visitor} />
+            <Outlet context={[currentUser]} />
           </div>
         </div>
       </div>

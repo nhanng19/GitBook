@@ -13,13 +13,17 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  let visitor = data?.me ? false : true;
-  
-// console.log(user.details)
+  console.log(user);
+  // let visitor = data?.me ? false : true;
+
+  // console.log(user.details)
   // navigate to personal profile page if username is your
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/profile" />;
-  }
+  // <Navigate to="/profile" />
+  let visitor = !userParam
+    ? false
+    : Auth.loggedIn() && Auth.getProfile().data.username === userParam
+    ? false
+    : true;
 
   if (loading) {
     return <div>Loading...</div>;

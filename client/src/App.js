@@ -29,6 +29,9 @@ import Auth from "./utils/auth";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import Main from "./components/UI/Main";
 import "./App.css";
+import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
+import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
+import ProfileFriends from "./components/ProfileFriends/ProfileFriends";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -70,12 +73,20 @@ function App() {
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="projects" element={<ProfileProjects />} />
+            <Route path="about" element={<ProfileAbout />} />
+            <Route path="friends" element={<ProfileFriends />} />
+          </Route>
+          <Route path="/profile/:username" element={<Profile />}>
+            <Route path="projects" element={<ProfileProjects />} />
+            <Route path="about" element={<ProfileAbout />} />
+            <Route path="friends" element={<ProfileFriends />} />
+          </Route>
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}
-          <Route path="/About" element={<About />} />
+          <Route path="/about" element={<About />} />
           {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/profiles/:username" element={<Profile />} />
           <Route
