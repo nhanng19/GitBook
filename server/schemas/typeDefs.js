@@ -19,6 +19,7 @@ const typeDefs = gql`
   type Details {
     bio: String
     job: String
+    workPlace: String
     highSchool: String
     college: String
     currentCity: String
@@ -62,6 +63,7 @@ const typeDefs = gql`
   input DetailsInput {
     bio: String
     job: String
+    workPlace: String
     highSchool: String
     college: String
     currentCity: String
@@ -95,7 +97,21 @@ const typeDefs = gql`
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User
     addCover(cover: String!): User
-    editDetails(details: DetailsInput!): User
+    editDetails(
+      bio: String!
+      job: String!
+      workPlace: String!
+      highSchool: String!
+      college: String!
+      currentCity: String!
+      gender: String!
+      bYear: Int
+      bMonth: Int
+      bDay: Int
+      github: String!
+      linkedin: String!
+      instagram: String!
+    ): Details
   }
 `;
 

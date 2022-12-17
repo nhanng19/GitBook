@@ -107,7 +107,7 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     addCover: async (parent, { cover }, context) => {
       if (context.user) {
@@ -118,19 +118,51 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-    editDetails: async (parent, { details }, context) => {
+    editDetails: async (
+      parent,
+      {
+        bio,
+        job,
+        workPlace,
+        highSchool,
+        college,
+        currentCity,
+        gender,
+        bYear,
+        bMonth,
+        bDay,
+        github,
+        linkedin,
+        instagram,
+      },
+      context
+    ) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { details: details },
+          { details: {
+            bio: bio,
+            job: job,
+            workPlace: workPlace,
+            highSchool: highSchool,
+            college: college,
+            currentCity: currentCity,
+            gender: gender,
+            bYear: bYear,
+            bMonth : bMonth,
+            bDay : bDay,
+            github: github,
+            linkedin : linkedin,
+            instagram: instagram,
+          } },
           { new: true }
         );
         return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
-    }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 

@@ -1,63 +1,101 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./ProfileAbout.module.css";
 import { MdOutlineWork } from "react-icons/md";
 import { IoMdSchool } from "react-icons/io";
-import {HiHome} from 'react-icons/hi';
+import { HiHome } from "react-icons/hi";
 import Bio from "./Bio";
 import { useMutation } from "@apollo/client";
 import { EDIT_DETAILS } from "../../utils/mutations";
-
+import EditDetails from "./EditDetails";
+import useClickOutside from "../../helpers/useClickOutside";
 
 const ProfileAbout = ({ details, username, visitor }) => {
+  const popup = useRef(null);
+  useClickOutside(popup, () => setVisible(false));
+  const [visible, setVisible] = useState(false);
   const [editDetails, { error }] = useMutation(EDIT_DETAILS);
 
   const initial = {
-    bio: details?.bio ? details.bio : "this is my bio",
-    job: details?.job ? details.job : "test",
-    highSchool: details?.highSchool ? details.highSchool : "highschool",
-    college: details?.college ? details.college : "somecollege",
-    currentCity: details?.currentCity ? details.currentCity : "Anaheim",
-    gender: details?.gender ? details.gender : "Male",
-    bYear: details?.bYear ? details.bYear : 1994,
-    bMonth: details?.bMonth ? details.bMonth : 2,
-    bDay: details?.bDay ? details.bDay : 4,
-    github: details?.github ? details.github : "YichanYou",
-    linkedin: details?.linkedin ? details.linkedin : "Linkedin",
-    instagram: details?.instagram ? details.instagram : "instagram",
+    bio: details?.bio ? details.bio : "",
+    job: details?.job ? details.job : "",
+    workPlace: details?.workPlace ? details.workPlace : "",
+    highSchool: details?.highSchool ? details.highSchool : "",
+    college: details?.college ? details.college : "",
+    currentCity: details?.currentCity ? details.currentCity : "",
+    gender: details?.gender ? details.gender : "",
+    bYear: details?.bYear ? details.bYear : "",
+    bMonth: details?.bMonth ? details.bMonth : "",
+    bDay: details?.bDay ? details.bDay : "",
+    github: details?.github ? details.github : "",
+    linkedin: details?.linkedin ? details.linkedin : "",
+    instagram: details?.instagram ? details.instagram : "",
   };
+  
   const [infos, setInfos] = useState(initial);
-  const  [showBio, setShowBio] = useState(false);
+  const [showBio, setShowBio] = useState(false);
   const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
-  const handleBioChange = (e) => {
-    setInfos({ ...infos, bio: e.target.value });
-    setMax(100 - e.target.value.length);
-  };
   const updateDetails = async () => {
     try {
-      console.log(infos);
+      
       await editDetails({
         variables: {
-          details: infos,
+          bio: infos.bio,
+          job: infos.job,
+          workPlace: infos.workPlace,
+          highSchool: infos.highSchool,
+          college: infos.college,
+          currentCity: infos.currentCity,
+          gender: infos.gender,
+          bYear: infos.bYear,
+          bMonth: infos.bMonth,
+          bDay: infos.bDay,
+          github: infos.github,
+          linkedin: infos.linkedin,
+          instagram: infos.instagram,
         },
       });
       setShowBio(false);
     } catch (err) {
       console.log(err);
     }
-  }
-useEffect(() => {
-  setInfos(infos);
-}, [infos]);
+  };
+  useEffect(() => {
+    setInfos(infos);
+  }, [infos]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    setInfos({ ...infos, [name]: value });
+    setMax(100 - e.target.value.length);
+  };
   return (
     <div className={classes.profile_card}>
       <div className={classes.profile_card_header}>About {username}</div>
       {infos.bio && !showBio && (
         <div className={classes.info_col}>
           <span className={classes.info_text}>{infos.bio}</span>
-          {!visitor && <button className="gray_btn hover1" onClick={() => setShowBio(true)}>Edit Bio</button>}
+          {!visitor && (
+            <button
+              className="gray_btn hover1"
+              onClick={() => setShowBio(true)}
+            >
+              Edit Bio
+            </button>
+          )}
         </div>
       )}
-      {showBio && <Bio infos={infos} handleBioChange={handleBioChange} updateDetails={updateDetails} setShowBio={setShowBio} max={max} />}
+      {showBio && (
+        <Bio
+          infos={infos}
+          handleChange={handleChange}
+          updateDetails={updateDetails}
+          setShowBio={setShowBio}
+          inputValue={infos?.bio}
+          max={max}
+          placeholder="Add Bio"
+          name="bio"
+        />
+      )}
       {infos.job && (
         <div className={classes.info_profile}>
           <MdOutlineWork />
@@ -78,11 +116,26 @@ useEffect(() => {
       )}
       {infos?.currentCity && (
         <div className={classes.info_profile}>
-          
+          <HiHome />
           Lives in {infos.currentCity}
         </div>
       )}
-      {!visitor && <button className="gray_btn hover1 w100">Edit Details</button>}
+      {!visitor && (
+        <button
+          className="gray_btn hover1 w100"
+          onClick={() => setVisible(true)}
+        >
+          Edit Details
+        </button>
+      )}
+      {visible && !visitor && (
+        <EditDetails
+          username={username}
+          handleChange={handleChange}
+          updateDetails={updateDetails}
+          infos={infos}
+        />
+      )}
     </div>
   );
 };

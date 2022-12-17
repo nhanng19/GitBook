@@ -15,7 +15,7 @@
 
 .profile_w_img {
   position: relative;
-  z-index: 999;
+  z-index: 50;
 }
 
 .profile_w_bg {

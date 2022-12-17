@@ -84,6 +84,9 @@ const userSchema = new Schema(
       job: {
         type: String,
       },
+      workPlace: {
+        type: String,
+      },
       highSchool: {
         type: String,
       },
