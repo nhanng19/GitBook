@@ -49,6 +49,7 @@ const AddProject = ({ setVisibleModal }) => {
       setProjectDescription("");
       setProjectRepo("");
       setVisibleModal(false);
+      
     } catch (err) {
       console.error(err);
     }

@@ -142,26 +142,57 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { details: {
-            bio: bio,
-            job: job,
-            workPlace: workPlace,
-            highSchool: highSchool,
-            college: college,
-            currentCity: currentCity,
-            gender: gender,
-            bYear: bYear,
-            bMonth : bMonth,
-            bDay : bDay,
-            github: github,
-            linkedin : linkedin,
-            instagram: instagram,
-          } },
+          {
+            details: {
+              bio: bio,
+              job: job,
+              workPlace: workPlace,
+              highSchool: highSchool,
+              college: college,
+              currentCity: currentCity,
+              gender: gender,
+              bYear: bYear,
+              bMonth: bMonth,
+              bDay: bDay,
+              github: github,
+              linkedin: linkedin,
+              instagram: instagram,
+            },
+          },
           { new: true }
         );
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    addFriend: async (parent, { username }, context) => {
+      // TODO: make if statement to avoid adding myself friend.
+
+      if (context.user) {
+        const sender = await User.findById(context.user._id);
+        const receiver = await User.findOne({ username });
+
+        // check if sender already made friend request, or friend with receiver
+
+        if (
+          !receiver.requests.includes(sender._id) &&
+          !receiver.friends.includes(sender._id)
+        ) {
+          await receiver.findOneAndUpdate({
+            $addToSet: { requests: sender._id },
+          });
+          await receiver.findOneAndUpdate({
+            $addToSet: { followers: sender._id },
+          });
+          await sender.findOneAndUpdate({
+            $addToSet: { following: receiver._id },
+          });
+          return [sender, receiver];
+        }
+        throw new AuthenticationError(
+          "You already requested friend to the user"
+        );
+      }
     },
   },
 };

@@ -59,7 +59,7 @@ const SideBar = (props) => {
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
-          to={`/profile/${props.username}`}
+          to={`/profile/${props.username}/projects`}
         >
           <SideBarItem name="PROFILE" href="">
             <FaFolder size="2rem" color="#333" />

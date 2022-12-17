@@ -112,6 +112,7 @@ const typeDefs = gql`
       linkedin: String!
       instagram: String!
     ): Details
+    addFriend(username: String!): User
   }
 `;
 
