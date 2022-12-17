@@ -16,8 +16,9 @@ const ProfileContainer = ({ user, visitor }) => {
   // const [currentVisitor, setCurrentVisitor] = useState(visitor);
   const details = user.details;
   const username = user.username;
+  const projects = user.projects;
 
-  const [currentUser, setCurrentUser] = useState([details, username, visitor]);
+  const [currentUser, setCurrentUser] = useState([details, username, visitor, projects]);
 
   return (
     <div className={classes.profile}>
@@ -31,7 +32,7 @@ const ProfileContainer = ({ user, visitor }) => {
       <div className={classes.profile_bottom}>
         <div className={classes.profile_container}>
           <div className={classes.bottom_container}>
-            <Outlet context={[currentUser]} />
+            <Outlet context={currentUser} />
           </div>
         </div>
       </div>

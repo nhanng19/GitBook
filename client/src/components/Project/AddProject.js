@@ -5,7 +5,7 @@ import { QUERY_PROJECTS, QUERY_ME } from "../../utils/queries";
 import styles from "./AddProject.module.css";
 import Auth from "../../utils/auth";
 
-const AddProject = () => {
+const AddProject = ({ setVisibleModal }) => {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectRepo, setProjectRepo] = useState("");
@@ -48,6 +48,7 @@ const AddProject = () => {
       setProjectName("");
       setProjectDescription("");
       setProjectRepo("");
+      setVisibleModal(false);
     } catch (err) {
       console.error(err);
     }

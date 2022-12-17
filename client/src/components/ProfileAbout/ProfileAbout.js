@@ -10,16 +10,15 @@ import { EDIT_DETAILS } from "../../utils/mutations";
 import EditDetails from "./EditDetails";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 
-
 const ProfileAbout = () => {
   const outletCtx = useOutletContext();
 
   const [visible, setVisible] = useState(false);
   const [editDetails, { error }] = useMutation(EDIT_DETAILS);
-const details = outletCtx[0][0];
-const username = outletCtx[0][1];
-const visitor = outletCtx[0][2];
-console.log(details);
+  const details = outletCtx[0];
+  const username = outletCtx[1];
+  const visitor = outletCtx[2];
+  
   const initial = {
     bio: details?.bio ? details.bio : "",
     job: details?.job ? details.job : "",
@@ -35,13 +34,12 @@ console.log(details);
     linkedin: details?.linkedin ? details.linkedin : "",
     instagram: details?.instagram ? details.instagram : "",
   };
-  
+
   const [infos, setInfos] = useState(initial);
   const [showBio, setShowBio] = useState(false);
   const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
   const updateDetails = async () => {
     try {
-      
       await editDetails({
         variables: {
           bio: infos.bio,
@@ -60,7 +58,7 @@ console.log(details);
         },
       });
       setShowBio(false);
-      console.log(infos.workPlace)
+      console.log(infos.workPlace);
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +68,7 @@ console.log(details);
   }, [infos]);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setInfos({ ...infos, [name]: value });
     setMax(100 - e.target.value.length);
   };
@@ -129,7 +127,8 @@ console.log(details);
       {infos?.github && (
         <div className={classes.info_profile}>
           <BsGithub />
-          Github account: <a href={`github.com/${infos.github}`}>{infos.github}</a>
+          Github account:{" "}
+          <a href={`github.com/${infos.github}`}>{infos.github}</a>
         </div>
       )}
       {infos?.linkedin && (
@@ -141,7 +140,8 @@ console.log(details);
       {infos?.instagram && (
         <div className={classes.info_profile}>
           <BsInstagram />
-          Visit my <a href={`instagram.com/${infos.instagram}`}>@{infos.instagram}</a>
+          Visit my{" "}
+          <a href={`instagram.com/${infos.instagram}`}>@{infos.instagram}</a>
         </div>
       )}
       {!visitor && (
