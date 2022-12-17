@@ -1,18 +1,23 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./UpdateProfilePicture.module.css";
 import { BsXLg, BsCrop } from "react-icons/bs";
-import {BiTimer} from 'react-icons/bi'
+import { BiTimer } from "react-icons/bi";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import {MdOutlinePublic} from 'react-icons/md'
+import { MdOutlinePublic } from "react-icons/md";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import { useMutation } from "@apollo/client";
 import { ADD_PICTURE } from "../../utils/mutations";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
-const UpdateProfilePicture = ({ setImage, image, setError, user }) => {
+const UpdateProfilePicture = ({ setImage, image, setError, user, setPicture, setShow }) => {
   const [addPicture, { error }] = useMutation(ADD_PICTURE);
 
-  const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -49,53 +54,53 @@ const UpdateProfilePicture = ({ setImage, image, setError, user }) => {
     },
     [croppedAreaPixels]
   );
-  const UpdateProfilePicture = async() => {
+  const updateProfilePicture = async () => {
     try {
       let img = await getCroppedImage();
       let blob = await fetch(img).then((b) => b.blob());
-      const path = `${user.username}/profile_pictures`;
+      // const path = `${user.username}/profile_pictures`;
       let formData = new FormData();
-      formData.append('file', blob);
-      formData.append('upload_preset', 'profileImgs');
-      const cloudName= "dc2xiz0gi";
-      const data = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    ).then((r) => r.json());
-    console.log(data.url);
+      formData.append("file", blob);
+      formData.append("upload_preset", "profileImgs");
+      const cloudName = "dc2xiz0gi";
+      const data = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      ).then((r) => r.json());
+      console.log(data.url);
+      setPicture(data.url);
+      const spinner = await setLoading(true);
       await addPicture({
         variables: {
           picture: data.url,
         },
       });
       
-      
+      await setTimeout(() => {
+        setShow(false)        
+      }, 1000);
     } catch (err) {
       setError(err.response.data.error);
     }
-  }
+  };
 
   return (
     <div className={`postBox ${classes.update_img}`}>
       <div className="box_header">
-        <div className={classes.box_circle} onClick={() => setImage("")}>
+        <div
+          className="small_circle"
+          onClick={() => {
+            setImage("");
+          }}
+        >
           <i>
             <BsXLg />
           </i>
         </div>
         <span>Update Profile Picture</span>
-      </div>
-      <div className="update_image_desc">
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-          className={`${classes.textarea_blue} ${classes.details_input}`}
-        ></textarea>
       </div>
       <div className={classes.update_center}>
         <div className={classes.cropper}>
@@ -154,11 +159,17 @@ const UpdateProfilePicture = ({ setImage, image, setError, user }) => {
         Your profile picture is public
       </div>
       <div className={classes.update_submit_wrap}>
-        <div className={classes.blue_link}>Cancel</div>
-        <button className={classes.blue_btn} onClick={() => UpdateProfilePicture()}>
+        <div className={classes.blue_link} onClick={() => setImage("")}>
+          Cancel
+        </div>
+        <button
+          className={classes.blue_btn}
+          onClick={() => updateProfilePicture()}
+        >
           Save
         </button>
       </div>
+      {loading && <LoadingSpinner />}
     </div>
   );
 };

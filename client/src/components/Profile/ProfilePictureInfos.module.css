@@ -10,11 +10,12 @@
 .profile_w_left {
   display: flex;
   gap: 1rem;
-  padding: 1rem 13px 0 13px;
+  padding: 1rem 13px 0 13px;  
 }
 
 .profile_w_img {
   position: relative;
+  z-index: 999;
 }
 
 .profile_w_bg {
@@ -62,10 +63,14 @@
     margin-left: 5px;    
 }
 .gray_btn {
-    background: grey;
+    background: white;
     font-size: 2rem;
     border-radius: 10px;
     padding: 3px 10px;
+    font-family: inherit;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
 }
 
 .invert {

@@ -34,8 +34,6 @@ const userSchema = new Schema(
     cover: {
       type: String,
       trim: true,
-      default:
-        "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1666303496/rwho7b0f95odntml1mwz.png"
     },
     projects: [
       {

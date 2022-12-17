@@ -72,7 +72,7 @@ code {
   gap: 6px;
   cursor: pointer;
 }
-.grey_btn {
+.gray_btn {
   border: none;
   outline: none;
   background: #777;
@@ -165,4 +165,35 @@ code {
 }
 .hover2:hover {
   background: var(--background1);
+}
+
+.postError {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  opacity: 0.8;
+  display: flex;
+  gap: 10;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  color: #b94a48;
+  animation: anim 0.3s;
+  border-radius: 5px;
+  padding: 3rem;
+}
+.postError_error {
+  width: 75%;
+  font-weight: 600;
+}
+@keyframes anim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }

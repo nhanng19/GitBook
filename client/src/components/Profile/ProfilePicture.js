@@ -2,9 +2,12 @@ import React, { useRef, useState } from "react";
 import classes from "./ProfilePicture.module.css";
 import { BsXLg, BsPlusLg } from "react-icons/bs";
 import UpdateProfilePicture from "./UpdateProfilePicture";
+import useClickOutside from '../../helpers/useClickOutside';
 
-const ProfilePicture = ({ user }) => {
+const ProfilePicture = ({ user, setShow, setPicture }) => {
   const refInput = useRef(null);
+  const popup = useRef(null);
+  useClickOutside(popup, () => setShow(false))
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
   const handleImage = (e) => {
@@ -28,7 +31,7 @@ const ProfilePicture = ({ user }) => {
     };
   };
   return (
-    <div className="blur">
+    <div className="blur" ref={popup}>
       <input
         type="file"
         ref={refInput}
@@ -36,9 +39,9 @@ const ProfilePicture = ({ user }) => {
         onChange={handleImage}
         accept="image/jpeg, image/png, image/webp, image/gif"
       />
-      <div className={`postBox ${classes.pictureBox}`}>
+      <div className={`postBox ${classes.pictureBox}`} >
         <div className="box_header">
-          <div className={`small_circle`}>
+          <div className={`small_circle`} onClick={() => setShow(false)}>
             <i>
               <BsXLg />
             </i>
@@ -79,6 +82,8 @@ const ProfilePicture = ({ user }) => {
           image={image}
           setError={setError}
           user={user}
+          setShow = {setShow}
+          setPicture = {setPicture}
         />
       )}
     </div>

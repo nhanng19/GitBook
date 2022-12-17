@@ -15,8 +15,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { io } from "socket.io-client";
 
-
-import Profile from './pages/Profile';
+import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 // import MyProfile from "./pages/MyProfile";
 // import ChatPage from "./pages/ChatPage";
