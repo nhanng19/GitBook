@@ -73,7 +73,7 @@ export const ADD_COVER = gql`
 export const EDIT_DETAILS = gql`
   mutation editDetails($details: details) {
     editDetails(details: $details) {
-      details
+        details
     }
   }
 `;

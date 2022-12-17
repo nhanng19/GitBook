@@ -95,7 +95,7 @@ const typeDefs = gql`
     removeProject(projectId: String!): Project
     addPicture(picture: String!): User
     addCover(cover: String!): User
-    editDetails(details: DetailsInput): Details
+    editDetails(details: DetailsInput!): User
   }
 `;
 
