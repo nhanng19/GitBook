@@ -30,47 +30,45 @@ const projectSchema = new Schema(
         ref: "User",
       },
     ],
-    kanban: {
-      toDo: [
-        {
-          kanbanId: {
-            type: String,
-          },
-          assignee: {
-            type: String,
-          },
-          description: {
-            type: String,
-          },
+    toDo: [
+      {
+        kanbanId: {
+          type: Schema.Types.ObjectId,
         },
-      ],
-      inProgress: [
-        {
-          kanbanId: {
-            type: String,
-          },
-          assignee: {
-            type: String,
-          },
-          description: {
-            type: String,
-          },
+        assignee: {
+          type: String,
         },
-      ],
-      done: [
-        {
-          kanbanId: {
-            type: String,
-          },
-          assignee: {
-            type: String,
-          },
-          description: {
-            type: String,
-          },
+        description: {
+          type: String,
         },
-      ],
-    },
+      },
+    ],
+    inProgress: [
+      {
+        kanbanId: {
+          type: Schema.Types.ObjectId,
+        },
+        assignee: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+      },
+    ],
+    done: [
+      {
+        kanbanId: {
+          type: Schema.Types.ObjectId,
+        },
+        assignee: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -79,9 +77,6 @@ const projectSchema = new Schema(
     },
   }
 );
-
-  
-
 
 const Project = model("Project", projectSchema);
 

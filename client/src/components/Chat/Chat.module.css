@@ -13,9 +13,8 @@
 
 .container {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100px;
+  left: 200px;
   background: #ffffff;
   height: 80vh;
   width: 80%;
@@ -23,7 +22,7 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: 2px solid var(--nav-color);
   display: flex;
-  z-index: 11;
+  z-index: 110000;
 }
 
 .rightSideBar {

@@ -6,7 +6,6 @@ import {
   FaFolder,
   FaDonate,
   FaSignOutAlt,
-  FaRocketchat,
 } from "react-icons/fa";
 import SideBarItem from "./SideBarItem";
 import Auth from "../..//utils/auth.js";
@@ -34,36 +33,44 @@ const SideBar = (props) => {
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/Home"
         >
-          <SideBarItem name="HOME" href="">
-            <FaHome size="2rem" color="#333" />
-          </SideBarItem>
+          <>
+            <SideBarItem name="HOME" href="">
+              <FaHome size="2rem" color="#333" />
+            </SideBarItem>
+          </>
         </NavLink>
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/About"
         >
-          <SideBarItem name="ABOUT" href="">
-            <FaFolder size="2rem" color="#333" />
-          </SideBarItem>
+          <>
+            <SideBarItem name="ABOUT" href="">
+              <FaFolder size="2rem" color="#333" />
+            </SideBarItem>
+          </>
         </NavLink>
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/Dashboard"
         >
-          <SideBarItem name="DASHBOARD" href="">
-            <FaClipboardCheck size="2rem" color="#333" />
-          </SideBarItem>
+          <>
+            <SideBarItem name="DASHBOARD" href="">
+              <FaClipboardCheck size="2rem" color="#333" />
+            </SideBarItem>
+          </>
         </NavLink>
         <NavLink
           style={{ textDecoration: "none" }}
           className={(navData) => (navData.isActive ? classes.active : "")}
           to="/Profile"
         >
-          <SideBarItem name="PROFILE" href="">
-            <FaFolder size="2rem" color="#333" />
-          </SideBarItem>
+          <>
+            <SideBarItem name="PROFILE" href="">
+              <FaFolder size="2rem" color="#333" />
+            </SideBarItem>
+          </>
         </NavLink>
         {/* <NavLink
           style={{ textDecoration: "none" }}

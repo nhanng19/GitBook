@@ -53,37 +53,37 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
   return (
     <>
       <div onClick={showChat} className={styles.overlay}></div>
-      <div className={styles.container}>
-        <div className={styles.rightSideBar}>
-          <h2 className={styles.sideHeader}>Active Users:</h2>
-          <hr></hr>
-          <ul className={styles.userList} id="user-list"></ul>
-        </div>
-        <div className={styles.mainChat}>
-          <div className={styles.header}>
-            <p className={styles.roomId}>Current Room: {room}</p>
-            {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
+        <div data-aos="fade-in" className={styles.container}>
+          <div className={styles.rightSideBar}>
+            <h2 className={styles.sideHeader}>Active Users:</h2>
+            <hr></hr>
+            <ul className={styles.userList} id="user-list"></ul>
           </div>
-          <div className={styles.chatBox} id="chatBox"></div>
-          <form
-            className={styles.chatInput}
-            id="chatForm"
-            onSubmit={submitForm}
-          >
-            <input
-              id="msg"
-              type="text"
-              placeholder="Enter message"
-              className={styles.chatText}
-              autoComplete="off"
-              required
-            ></input>
-            <button className={styles.sendBtn} type="submit">
-              Send
-            </button>
-          </form>
+          <div className={styles.mainChat}>
+            <div className={styles.header}>
+              <p className={styles.roomId}>Current Room: {room}</p>
+              {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
+            </div>
+            <div className={styles.chatBox} id="chatBox"></div>
+            <form
+              className={styles.chatInput}
+              id="chatForm"
+              onSubmit={submitForm}
+            >
+              <input
+                id="msg"
+                type="text"
+                placeholder="Enter message"
+                className={styles.chatText}
+                autoComplete="off"
+                required
+              ></input>
+              <button className={styles.sendBtn} type="submit">
+                Send
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
     </>
   );
 };

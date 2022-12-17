@@ -15,6 +15,7 @@ const ProjectView = ({
   owner,
   repo,
   projectId,
+  project,
   socket,
 }) => {
   const { username: userParam } = useParams();
@@ -40,13 +41,15 @@ const ProjectView = ({
             date={date}
             owner={owner}
             repo={repo}
+            projectId={projectId}
+              project={project}
           />
           <div>
-            <ul className = {styles.list}>
+            <ul className={styles.list}>
               <li>
-                <a className={styles.showChat} onClick={toggleChat}>
+                <button className={styles.showChat} onClick={toggleChat}>
                   <FaComment />
-                </a>
+                </button>
               </li>
             </ul>
           </div>

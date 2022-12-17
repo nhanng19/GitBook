@@ -9,7 +9,7 @@ const Slider = (props) => {
         <h1 className="featuredTitle">
           Featured Projects
         </h1>
-        <p data-aos="fade-right" className="featuredDescription">
+        <p className="featuredDescription">
             Real world applications utilizing GitBook services
         </p>
       </div>

@@ -1,32 +1,21 @@
-import React, { useContext } from "react";
 import classes from "./KanbanBoard.module.css";
 import KanbanItem from "./KanbanItem";
-import KanbanContext from "../../store/kanban-context";
 
-const KanbanBoardDone = (props) => {
-  const kanbanCtx = useContext(KanbanContext);
-
-  const doneTasks = kanbanCtx.taskDone;
-  const taskMoveToPreviousHandler = (id) => {
-    kanbanCtx.moveTaskCB(id);
-  };
-  const taskRemoveHandler = (id) => {
-    kanbanCtx.removeTask(id);
-  };
-
+const KanbanBoardDone = ({ project }) => {
+  const done = project.done;
   return (
     <div className={classes.kanban}>
       <div className={classes.kanbanHeader}>Done</div>
       <div>
-        {doneTasks.length !== 0 &&
-          doneTasks.map((task) => (
+        {done.length !== 0 &&
+          done.map((task) => (
             <KanbanItem
-              key={task.id}
+              project={project}
+              key={task._id}
               section="Done"
-              assigner={task.assignee}
+              kanbanId={task._id}
+              assignee={task.assignee}
               description={task.description}
-              onMovePrevious={taskMoveToPreviousHandler.bind(null, task.id)}
-              onRemove={taskRemoveHandler.bind(null, task.id)}
             />
           ))}
       </div>

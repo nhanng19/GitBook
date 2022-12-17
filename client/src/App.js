@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from './pages/MyProfile';
-import ChatPage from "./pages/ChatPage";
+// import ChatPage from "./pages/ChatPage";
 import LandingPage from "./pages/LandingPage";
 // import Project from './pages/Project/Project';
 import Home from "./pages/Home";
@@ -20,7 +20,8 @@ import SingleProject from "./pages/SingleProject";
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import About from "./pages/AboutPage";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 import Main from "./components/UI/Main";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
@@ -49,7 +50,8 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`https://calm-shelf-74011.herokuapp.com`);
+    Aos.init({ duration: 1000 });
+    const newSocket = io(`https://calm-shelf-74011.herokuapp.com/`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
@@ -62,9 +64,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/MyProfile
+          " element={<MyProfile />} />
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
           {/* < Route path="/Donation" element={<DonationPage />} /> */}

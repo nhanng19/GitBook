@@ -1,8 +1,8 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import ProjectList from "../components/Project/ProjectList";
-import Auth from "../utils/auth";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 const Profile = () => {
   const { username: userParam } = useParams();
 
@@ -11,14 +11,17 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-console.log(user)
   return (
     <>
-      <ProjectList
-        projects={user.projects}
-        title={user.username}
-        showUsername={true}
-      />
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <ProjectList
+          projects={user.projects}
+          title={user.username}
+          showUsername={true}
+        />
+      )}
     </>
   );
 };

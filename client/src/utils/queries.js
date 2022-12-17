@@ -86,6 +86,21 @@ export const QUERY_SINGLE_PROJECT = gql`
       projectOwner
       projectRepo
       createdAt
+      toDo {
+        _id
+        assignee
+        description
+      }
+      inProgress {
+        _id
+        assignee
+        description
+      }
+      done {
+        _id
+        assignee
+        description
+      }
     }
   }
 `;

@@ -15,7 +15,7 @@ const ProjectList = ({
       <div className={styles.cardFrame}>
         {projects &&
           projects.map((project) => (
-            <div key={project._id} className={styles.card}>
+            <div data-aos = "flip-up"key={project._id} className={styles.card}>
               <h3>
                 <Link
                   style={{ textDecoration: "none" }}
