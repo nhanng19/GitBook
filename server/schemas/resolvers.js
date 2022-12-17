@@ -218,69 +218,69 @@ const resolvers = {
         throw new AuthenticationError("You can't cancel a request to yourself");
       }
     },
-    follow: async (parent, { username }, context) => {
-      if (context.user.username !== username) {
-        const sender = await User.findById(context.user._id);
-        const receiver = await User.findOne({ username });
-        // check if sender already made friend request, or friend with receiver
-        if (
-          !receiver.followers.includes(receiver.username._id) &&
-          !receiver.friends.includes(sender._id)
-        ) {
-          await receiver.findOneAndUpdate({
-            $addToSet: { followers: sender._id },
-          });
-          await sender.findOneAndUpdate({
-            $addToSet: { following: receiver._id },
-          });
-          return [sender, receiver];
-        }
+    // follow: async (parent, { username }, context) => {
+    //   if (context.user.username !== username) {
+    //     const sender = await User.findById(context.user._id);
+    //     const receiver = await User.findOne({ username });
+    //     // check if sender already made friend request, or friend with receiver
+    //     if (
+    //       !receiver.followers.includes(receiver.username._id) &&
+    //       !receiver.friends.includes(sender._id)
+    //     ) {
+    //       await receiver.findOneAndUpdate({
+    //         $addToSet: { followers: sender._id },
+    //       });
+    //       await sender.findOneAndUpdate({
+    //         $addToSet: { following: receiver._id },
+    //       });
+    //       return [sender, receiver];
+    //     }
 
-        throw new AuthenticationError("You can't cancel a request to yourself");
-      }
-    },
-    unFollow: async (parent, { username }, context) => {
-      if (context.user.username !== username) {
-        const sender = await User.findById(context.user._id);
-        const receiver = await User.findOne({ username });
-        // check if sender already made friend request, or friend with receiver
-        if (
-          receiver.requests.includes(sender._id) &&
-          receiver.friends.includes(sender._id)
-        ) {
-          await receiver.findOneAndUpdate({
-            $pull: { followers: sender._id },
-          });
-          await sender.findOneAndUpdate({
-            $pull: { following: receiver._id },
-          });
-          return [sender, receiver];
-        }
+    //     throw new AuthenticationError("You can't cancel a request to yourself");
+    //   }
+    // },
+    // unFollow: async (parent, { username }, context) => {
+    //   if (context.user.username !== username) {
+    //     const sender = await User.findById(context.user._id);
+    //     const receiver = await User.findOne({ username });
+    //     // check if sender already made friend request, or friend with receiver
+    //     if (
+    //       receiver.requests.includes(sender._id) &&
+    //       receiver.friends.includes(sender._id)
+    //     ) {
+    //       await receiver.findOneAndUpdate({
+    //         $pull: { followers: sender._id },
+    //       });
+    //       await sender.findOneAndUpdate({
+    //         $pull: { following: receiver._id },
+    //       });
+    //       return [sender, receiver];
+    //     }
 
-        throw new AuthenticationError("You can't cancel a request to yourself");
-      }
-    },
-    cancelRequest: async (parent, { username }, context) => {
-      if (context.user.username !== username) {
-        const sender = await User.findById(context.user._id);
-        const receiver = await User.findOne({ username });
-        // check if sender already made friend request, or friend with receiver
-        if (
-          receiver.requests.includes(sender._id) &&
-          receiver.friends.includes(sender._id)
-        ) {
-          await receiver.findOneAndUpdate({
-            $pull: { followers: sender._id },
-          });
-          await sender.findOneAndUpdate({
-            $pull: { following: receiver._id },
-          });
-          return [sender, receiver];
-        }
+    //     throw new AuthenticationError("You can't cancel a request to yourself");
+    //   }
+    // },
+    // cancelRequest: async (parent, { username }, context) => {
+    //   if (context.user.username !== username) {
+    //     const sender = await User.findById(context.user._id);
+    //     const receiver = await User.findOne({ username });
+    //     // check if sender already made friend request, or friend with receiver
+    //     if (
+    //       receiver.requests.includes(sender._id) &&
+    //       receiver.friends.includes(sender._id)
+    //     ) {
+    //       await receiver.findOneAndUpdate({
+    //         $pull: { followers: sender._id },
+    //       });
+    //       await sender.findOneAndUpdate({
+    //         $pull: { following: receiver._id },
+    //       });
+    //       return [sender, receiver];
+    //     }
 
-        throw new AuthenticationError("You can't cancel a request to yourself");
-      }
-    }, 
+    //     throw new AuthenticationError("You can't cancel a request to yourself");
+    //   }
+    // }, 
   },
 };
 
