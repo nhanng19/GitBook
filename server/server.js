@@ -3,15 +3,10 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const socketServer = require('./socketServer');
 
 const { authMiddleware } = require("./utils/auth");
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers,
-} = require("./utils/users");
-const formatMessage = require("./utils/message");
+
 const { typeDefs, resolvers } = require("./schemas");
 
 const db = require("./config/connection");
@@ -64,75 +59,37 @@ const startApolloServer = async (typeDefs, resolvers) => {
       },
     });
 
-    transporter.verify((err, success) => {
-      err
-        ? console.log(err)
-        : console.log(`=== Server is ready to take messages: ${success} ===`);
-    });
+    // transporter.verify((err, success) => {
+    //   err
+    //     ? console.log(err)
+    //     : console.log(`=== Server is ready to take messages: ${success} ===`);
+    // });
 
-    app.post("/Dashboard", function (req, res) {
-      let mailOptions = {
-        from: process.env.EMAIL,
-        to: `${req.body.userData.email}`,
-        subject: "Gitbook Registration",
-        text: "Hello there! Welcome to Gitbook! Begin your exciting journey of collaborating with fellow developers now!",
-      };
+    // app.post("/Dashboard", function (req, res) {
+    //   let mailOptions = {
+    //     from: process.env.EMAIL,
+    //     to: `${req.body.userData.email}`,
+    //     subject: "Gitbook Registration",
+    //     text: "Hello there! Welcome to Gitbook! Begin your exciting journey of collaborating with fellow developers now!",
+    //   };
 
-      transporter.sendMail(mailOptions, function (err, data) {
-        if (err) {
-          res.json({
-            status: "fail",
-          });
-        } else {
-          console.log("== Message Sent ==");
-          res.json({
-            status: "success",
-          });
-        }
-      });
-    });
-    const io = require("socket.io")(server);
+      // transporter.sendMail(mailOptions, function (err, data) {
+      //   if (err) {
+      //     res.json({
+      //       status: "fail",
+      //     });
+      //   } else {
+      //     console.log("== Message Sent ==");
+      //     res.json({
+      //       status: "success",
+      //     });
+      //   }
+      // });
+    // });
     // Connecting Socket IO
-    io.on("connection", (socket) => {
-      socket.on("joinRoom", ({ username, room }) => {
-        const user = userJoin(socket.id, username, room);
-
-        socket.join(user.room);
-        
-        // Broadcast when a user connects
-        socket.broadcast.to(user.room).emit("message", formatMessage('ChatBot', `${user.username} has joined the chat`));
-
-        // Welcome current user
-        socket.broadcast.emit(
-          "message",
-          formatMessage("Admin", `Welcome ${user.username}`)
-        );
-
-        io.to(user.room).emit("roomUsers", {
-          room: user.room,
-          users: getRoomUsers(user.room),
-        });
-      });
-
-      // Listen for ChatMessage
-      socket.on("chatMessage", (msg) => {
-        const user = getCurrentUser(socket.id);
-
-        io.to(user.room).emit("message", formatMessage(user.username, msg));
-      });
-
-      // Broadcast when a user disconnect
-      socket.on("disconnect", () => {
-        const user = userLeave(socket.id);
-
-        if (user) {
-          io.to(user.room).emit(
-            "message",
-            formatMessage("Admin", `${user.username} has left the chat`)
-          );
-        }
-      });
-    });
+    // const io = require("socket.io")(server);
+    socketServer.registerSocketServer(server);
+    
   });
 };
 
