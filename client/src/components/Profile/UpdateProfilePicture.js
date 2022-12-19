@@ -82,6 +82,7 @@ const UpdateProfilePicture = ({ setImage, image, setError, user, setPicture, set
       await setTimeout(() => {
         setShow(false)        
       }, 1000);
+      await window.location.reload()
     } catch (err) {
       setError(err.response.data.error);
     }
