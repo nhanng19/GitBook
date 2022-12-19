@@ -105,15 +105,9 @@ const startApolloServer = async (typeDefs, resolvers) => {
         // Welcome current user
         socket.broadcast.emit(
           "message",
-          formatMessage("Admin", `Welcome ${user.username}`)
+          formatMessage("Admin", `${user.username} has joined the chat`)
         );
         // Broadcast when a user connects
-        socket.broadcast
-          .to(user.room)
-          .emit(
-            "message",
-            formatMessage("ChatBott", `${user.username} has joined the chat`)
-          );
 
         io.to(user.room).emit("roomUsers", {
           room: user.room,
