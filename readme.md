@@ -10,7 +10,7 @@ Social Content Management System
 
 Want an easy way to chat and collaborate with other developers? Tired of switching applications while working? Welcome to a GitBook, a perfect combination of Github, Facebook, and Slack! GitBook is an application that allows you to instantly connect to your Github account and chat/work with other Gitbook users. We wanted to create an efficient way for users to view Github repositories and chat with other users on various projects, while being able to assign specific roles on the projects.
 
-![](./assets/landing.png)
+![](./assets/landing.PNG)
 
 ## INSTALLATION
 
@@ -31,7 +31,7 @@ npm i && npm run develop
 ### GitHub Repositories API
 GitHub API makes it possible for us to connect your GitBook account to GitHub. You can keep all of your Github repositories and any other projects that you might have in one organized space! We also notify which project is in urgent need of your contribution as well. 
 
-![](/assets/github.png)
+![](/assets/github.PNG)
 
 ### MongoDB and Mongoose
 MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. This powerful database stores all GitBook projects, creating an open-source platform for all GitBook users to participate and contribute. 
