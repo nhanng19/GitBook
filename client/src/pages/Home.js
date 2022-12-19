@@ -8,6 +8,7 @@ import Main from "../components/UI/Main";
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROJECTS);
   const projects = data?.projects || [];
+  
   return (
     <>
       <Main>

@@ -3,6 +3,11 @@ import { useEffect } from "react";
 const Chat = ({ roomId, currentName, socket, showChat }) => {
   const username = currentName;
   const room = roomId;
+  
+//   socket.on('online-users', (message) => {
+//   console.log(message);
+// })
+
 
   // function to recieve data from server and render it onto page
   const outputMessage = (message) => {

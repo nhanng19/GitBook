@@ -62,10 +62,12 @@ function App() {
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
-    const newSocket = io(`https://localhost:3001`);
+    const newSocket = io(`http://localhost:3000`);
     setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+    
+    return () => newSocket.close()
+  }, []);
+  console.log(socket)
 
   let routes;
 
