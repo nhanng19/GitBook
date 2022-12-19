@@ -103,7 +103,6 @@ const Cover = ({ cover, visitor }) => {
         setCoverImage("");
         setCoverUrl(data.url);
       }, 1000);
-      await window.location.reload()
     } catch (err) {
       setErrorCover(err.response.data.error);
     }
