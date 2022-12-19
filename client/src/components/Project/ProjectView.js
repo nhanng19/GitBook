@@ -99,7 +99,7 @@ const ProjectView = ({
       const picUrl = returnPicture({message, picture});
     
 
-    div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${username}</p><span class="spanChat">(${message.time})</span>
+    div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${message.username}</p><span class="spanChat">(${message.time})</span>
         <p class="text">
             ${message.text}
         </p>`;
