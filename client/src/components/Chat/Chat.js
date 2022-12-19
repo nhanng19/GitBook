@@ -2,10 +2,9 @@ import styles from "./Chat.module.css";
 import { useEffect, useRef, useState } from "react";
 import useClickOutside from "../../helpers/useClickOutside";
 const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
-
   const popup = useRef(null);
   useClickOutside(popup, () => {
-    setChat(false)
+    setChat(false);
   });
 
   const username = currentName;
@@ -50,32 +49,27 @@ const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
 
   // Join chatroom
 
-  useEffect(() => {
-    //   // Get room and users
-    // socket.on("roomUsers", ({ room, users }) => {});
-    socket.off("message").on("message", (message) => {
-      outputMessage(message);
-    });
-    socket.on("message", (message) => {
-      outputMessage(message);
-    });
-    return () => socket.off("roomUsers");
-  }, []);
+  // useEffect(() => {
+  //   //   // Get room and users
+  //   // socket.on("roomUsers", ({ room, users }) => {});
+  //   socket.off("message").on("message", (message) => {
+  //     outputMessage(message);
+  //   });
+  //   socket.on("message", (message) => {
+  //     outputMessage(message);
+  //   });
+  //   return () => socket.off("roomUsers");
+  // }, []);
 
   useEffect(() => {
-    socket.on("announce", (message) => {
+    socket.once("announce", (message) => {
       console.log(message);
     });
-    socket.on("welcome", (message) => {
+    socket.once("welcome", (message) => {
       console.log(message);
     });
   }, []);
-
-  useEffect(() => {
-    if (chat) {
-      socket.emit("joinRoom", { username, room });
-    }
-  }, []);
+  
 
   return (
     <>

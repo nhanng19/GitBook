@@ -22,7 +22,9 @@ const userJoin = ({ socketId, room, username }) => {
 
 const userLeave = (socketId, room) => {
   if (usersInRoom.has(socketId)) {
-    console.log("it has in array");
+    usersInRoom.delete(socketId);
+    console.log("rest of the users")
+    console.log(usersInRoom)
   }
   // const index = users.findIndex((user) => user.id === id);
 

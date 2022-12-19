@@ -68,7 +68,7 @@ const registerSocketServer = (server) => {
 
       // Broadcast when a user connects
       socket.broadcast
-        .to(room)
+        // .to(room)
         .emit(
           "announce",
           formatMessage("ChatBot", `${username} has joined the chat`)
@@ -76,7 +76,7 @@ const registerSocketServer = (server) => {
 
       // Welcome current user
       socket.emit("welcome", formatMessage("Admin", `Welcome ${username}`));
-
+          // console.log('is this.. rendering twice?');
       // io.to(user.room).emit("roomUsers", {
       //   room: user.room,
       //   users: getRoomUsers(user.room),

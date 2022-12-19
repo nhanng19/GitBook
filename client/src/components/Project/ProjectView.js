@@ -27,13 +27,21 @@ const ProjectView = ({
 
   const user = data?.me || data?.user || {};
   const [chat, setChat] = useState(false);
-
+  const joinRoom = () => {
+    
+  }
   const username = user.username;
   const room = projectId;
   useEffect(() => {
+    if (chat) {
+      socket.emit("joinRoom", { username, room });
+      console.log('user joined')
+      
+    }
     if (!chat) {
+      // socket.off('joinRoom');
       socket.emit("leaveRoom", { username, room });
-      console.log('user left')
+      console.log("user left");
     }
   }, [chat]);
 
