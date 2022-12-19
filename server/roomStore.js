@@ -10,7 +10,7 @@ const getSocketServerInstance = () => {
   return io;
 };
 
-const userJoin = ({socketId, room, username}) => {
+const userJoin = ({ socketId, room, username }) => {
   usersInRoom.set(socketId, { username, room });
   console.log(`Users joined in ${room}`);
   console.log(usersInRoom);
@@ -20,13 +20,16 @@ const userJoin = ({socketId, room, username}) => {
 //     return users.find(user => user.id === id);
 // };
 
-const userLeave = (id) => {
-  const index = users.findIndex((user) => user.id === id);
-
-  if (index != -1) {
-    return users.splice(index, 1)[0];
+const userLeave = (socketId, room) => {
+  if (usersInRoom.has(socketId)) {
+    console.log("it has in array");
   }
-}
+  // const index = users.findIndex((user) => user.id === id);
+
+  // if (index != -1) {
+  //   return users.splice(index, 1)[0];
+  // }
+};
 
 const getRoomUsers = (room) => {
   // return users.filter(user => user.room === room);
@@ -36,7 +39,7 @@ const getRoomUsers = (room) => {
       users.push({ socketId: key, username: value.username });
     }
   });
-// console.log(usersInRoom);
+  // console.log(usersInRoom);
   return users;
 };
 module.exports = {
@@ -45,5 +48,5 @@ module.exports = {
   userLeave,
   getRoomUsers,
   setSocketServerInstance,
-  getSocketServerInstance
+  getSocketServerInstance,
 };

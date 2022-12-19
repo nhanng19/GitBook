@@ -3,7 +3,7 @@ const {
   newConnectionHandler,
   joiningRoomHandler,
 } = require("./socketHandlers/newConnectionHandler");
-const disconnectHandler = require("./socketHandlers/disconnectHandler");
+const {disconnectHandler, leaveRoomHandler} = require("./socketHandlers/disconnectHandler");
 // const directMessageHandler = require("./socketHandlers/directMessageHandler");
 // const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
 
@@ -43,11 +43,16 @@ const registerSocketServer = (server) => {
     //   directMessageHandler(socket, data);
     // });
     socket.on("leaveRoom", ({ username, room }) => {
-      console.log("user left");
-      console.log(`${username} has left room ${room}`);
+      
+      leaveRoomHandler(socket.id, room)
+      // console.log("user left");
+      // console.log(`${username} has left room ${room}`);
       socket.leave(room);
+      const gettingUsers = roomStore.getRoomUsers(room);
+      console.log("users in the room", gettingUsers);
+      
       io.to(room).emit(
-        "message",
+        "announce",
         formatMessage("Admin", `${username} has left the chat`)
       );
     });
