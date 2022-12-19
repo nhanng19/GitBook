@@ -28,7 +28,8 @@ const ProjectView = ({
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-
+  console.log("me", data?.me);
+  console.log("user", data?.user);
   const user = data?.me || data?.user || {};
 
   const [chat, setChat] = useState(false);
@@ -60,39 +61,47 @@ const ProjectView = ({
     //   outputMessage(message);
     // });
     // socket.off('message');
-    socket.on("message", ({ username, text, time }) => {
-      outputMessage({ username, text, time });
+    socket.on("message", ({ message, picture }) => {
+      outputMessage({ message, picture });
     });
 
     // return () => socket.off("roomUsers");
   }, []);
   useEffect(() => {
-    socket.on("announce", ({ text, time, username }) => {
-      outputMessage({ username, text, time });
+    socket.on("announce", (message) => {
+      const picture = null
+      outputMessage({ message, picture });
     });
-    socket.on("welcome", ({ text, time, username }) => {
-      outputMessage({ username, text, time });
+    socket.on("welcome", (message) => {
+      const picture = null
+      outputMessage({ message, picture });
     });
   }, []);
-  const returnPicture = (username) => {
-    if (username === "Admin") {
+  const returnPicture = ({message, picture}) => {
+    if (picture) {
+      return picture
+    };
+    
+    if (message.username === "Admin") {
       return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/admin_ih4chs.png";
-    } else if (username === "ChatBot") {
-      return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/chatbot_vpx8vl.png"
+    } else if (message.username === "ChatBot") {
+      return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/chatbot_vpx8vl.png";
     } else {
-      
+      return null;
     }
   };
 
-  const outputMessage = ({ username, text, time }) => {
+  const outputMessage = ({ message, picture }) => {
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-    const picUrl = returnPicture(username);
+    
+      const picUrl = returnPicture({message, picture});
+    
 
-    div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${username}</p><span class="spanChat">(${time})</span>
+    div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${username}</p><span class="spanChat">(${message.time})</span>
         <p class="text">
-            ${text}
+            ${message.text}
         </p>`;
 
     chatRoom.appendChild(div);

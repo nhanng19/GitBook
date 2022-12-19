@@ -1,3 +1,4 @@
+const { User } = require('./models');
 const authSocket = require("./utils/authSocket");
 const {
   newConnectionHandler,
@@ -60,7 +61,7 @@ const registerSocketServer = (server) => {
     socket.on("joinRoom", ({ username, room }) => {
       joiningRoomHandler(socket.id, username, room);
       // joiningRoomHandler(socket, "test");
-
+      console.log(socket.user.data);
       socket.join(room);
 
       const gettingUsers = roomStore.getRoomUsers(room);
@@ -84,13 +85,24 @@ const registerSocketServer = (server) => {
     });
 
     // Listen for ChatMessage
-    socket.on("chatMessage", ({msg, room}) => {
+    socket.on("chatMessage", async ({msg, room}) => {
       // const user = getCurrentUser(socket.id);
-      const username = socket.user.data.username
+      const username = socket.user.data.username 
       
 
+      // const sender = User.findOne({ username }).select('-__v -password')
+      const sender = await User.findOne({
+        username: username,
+      });
+      const picUrl = sender.picture
+      const message = formatMessage(username, msg)
+      console.log(message);
       // io.emit("message", formatMessage(user.username, msg));
-      io.emit("message", formatMessage(username, msg));
+      io.emit("message", {
+        message: message,
+        picture : picUrl,
+      }
+      );
     });
 
     // Broadcast when a user disconnect
