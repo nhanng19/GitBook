@@ -4,7 +4,6 @@
   gap: 10rem;
 }
 
-
 .card {
   padding: 2.4rem;
   background-color: white;
@@ -18,14 +17,13 @@
 }
 
 .card h3 {
-    white-space: nowrap;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 150px;
 }
 
 .card a {
-  
 }
 
 .card a:hover {
@@ -45,7 +43,7 @@
   color: black;
 }
 
-.owner a{
+.owner a {
   font-size: 1.5rem;
 }
 
@@ -58,30 +56,53 @@
 }
 
 .git:hover {
- color: var(--nav-color) !important
+  color: var(--nav-color) !important;
 }
 
-.cutoffText{
-    font-size: 1.5rem;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    max-width: 20rem;
+.cutoffText {
+  font-size: 1.5rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-width: 20rem;
 }
 
 .cardFrame > p {
   color: var(--primary-blue-dark);
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .badge {
-    position: absolute;
-    font-weight: bold;
+  position: absolute;
+  font-weight: bold;
   top: -10px;
   left: -10px;
   padding: 5px 10px;
   border-radius: 50%;
   background: red;
   color: white;
+}
+
+@media (max-width: 600px) {
+  .cardFrame {
+    display: block;
+  }
+
+  .card {
+    margin-bottom: 5rem;
+  }
+}
+@media (max-width: 997px) {
+  .cardFrame {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1157px) {
+
+
+  .cardFrame {
+    gap: 4.8rem;
+  }
 }

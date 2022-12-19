@@ -11,14 +11,6 @@ const ProfileProjects = () => {
 
   return (
     <>
-      {!visitor && (
-        <button
-          className={`blue_btn hover1 ${classes.add_btn}`}
-          onClick={() => setVisibleModal(true)}
-        >
-          Add Project
-        </button>
-      )}
       <div className={classes.container}>
         <ProjectList
           projects={outletCtx[3]}
@@ -26,14 +18,6 @@ const ProfileProjects = () => {
           showUsername={false}
         />
       </div>
-
-      {visibleModal && (
-        <div className="blur">
-          <div className="postBox">
-            <AddProject setVisibleModal={setVisibleModal} />
-          </div>
-        </div>
-      )}
     </>
   );
 };

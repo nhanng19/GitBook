@@ -112,7 +112,7 @@ code {
 }
 .details_input {
   margin-top: 10px;
-  background: var(background1) !important;
+  background: var(--background1) !important;
 }
 .details_input:focus {
   outline-color: var(--blue-color);
@@ -215,4 +215,11 @@ code {
   100% {
     width: 100%;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .postBox {
+  width: 300px !important;
+  height: 800px;
+}
 }

@@ -5,7 +5,7 @@ import AddProject from "../components/Project/AddProject";
 import ProjectList from "../components/Project/ProjectList";
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-
+import Main from "../components/UI/Main";
 const Dashboard = () => {
   const { username: userParam } = useParams();
 
@@ -22,18 +22,20 @@ const Dashboard = () => {
 
   return (
     <>
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <div>
-          {!userParam && <AddProject />}
-          <ProjectList
-            projects={user.projects}
-            title={user.username}
-            showUsername={false}
-          />
-        </div>
-      )}
+      <Main>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <div>
+            {!userParam && <AddProject />}
+            <ProjectList
+              projects={user.projects}
+              title={user.username}
+              showUsername={false}
+            />
+          </div>
+        )}
+      </Main>
     </>
   );
 };

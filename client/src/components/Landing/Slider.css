@@ -1,5 +1,5 @@
 .featuredProjects {
-  height: 50vh;
+  height: 60vh;
   background-color: #dae2b6;
 }
 
@@ -35,7 +35,7 @@
   width: 100%;
   height: 100%;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scrollbar-width: none;
   scroll-behavior: smooth;
 }

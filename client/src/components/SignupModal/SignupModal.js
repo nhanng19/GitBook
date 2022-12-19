@@ -45,21 +45,7 @@ const SignupForm = ({ setLoading }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const subResponse = await fetch("/Dashboard", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ userData }),
-    })
-    .then((res) => res.json())
-    .then(() => {
-      setUserData({
-        username: "",
-        email: "",
-        password: "",
-      })
-    })
+  
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -68,7 +54,7 @@ const SignupForm = ({ setLoading }) => {
       const { data } = await addUser({
         variables: userData,
       });
-
+        
       Auth.login(data.addUser.token);
       const spinner = await setLoading(true);
       const response = await search(userData.username);

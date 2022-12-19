@@ -65,3 +65,9 @@
   padding: 5px !important;
   width: 97% !important;
 }
+
+@media screen and (max-width: 600px) {
+  .toDoForm {
+      margin-left: 0rem;
+  }
+}

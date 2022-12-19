@@ -127,3 +127,11 @@
 .update_submit_wrap button {
     width: 110px !important;
 }
+
+
+@media screen and (max-width: 600px) {
+  .update_img {
+  width: 500px !important;
+  height: 800px;
+}
+}

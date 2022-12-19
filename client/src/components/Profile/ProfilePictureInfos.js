@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./ProfilePictureInfos.module.css";
 import {
   BsFillCameraFill,
-  BsFillFileImageFill,
   BsPencilFill,
-  BsFillPlusCircleFill,
 } from "react-icons/bs";
 import ProfilePicture from "./ProfilePicture";
 import useClickOutside from "../../helpers/useClickOutside";
@@ -45,7 +43,7 @@ const ProfilePictureInfos = ({ user, visitor }) => {
           <div className={classes.profile_friend_imgs}></div>
         </div>
       </div>
-      {!visitor && (
+      {/* {!visitor && (
         <div className={classes.profile_w_right}>
           <div className={`${classes.gray_btn} hover1`}>
             <i>
@@ -54,7 +52,7 @@ const ProfilePictureInfos = ({ user, visitor }) => {
             <span>Edit Profile</span>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./ProjectList.module.css";
 import { FaGithub } from "react-icons/fa";
 const ProjectList = ({ projects, title, showUsername = true }) => {
-  console.log(projects);
   return (
     <>
       <div className={styles.header}>
@@ -15,7 +14,7 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
             .sort((a, b) => b.toDo.length - a.toDo.length)
             .map((project) => (
               <div
-                data-aos="flip-up"
+                data-aos="flip-up" data-aos-offset="-100"
                 key={Math.floor(100000 + Math.random() * 900000)}
                 className={styles.card}
               >
@@ -41,7 +40,7 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
                 <div>
                   {showUsername ? (
                     <div className={styles.owner}>
-                      <Link to={`/profiles/${project.projectOwner}`}>
+                      <Link to={`/profile/${project.projectOwner}/projects`}>
                         {project.projectOwner}
                       </Link>{" "}
                       <br />
@@ -51,7 +50,7 @@ const ProjectList = ({ projects, title, showUsername = true }) => {
                     </div>
                   ) : (
                     <>
-                      <span style={{ fontSize: "1.em" }}>
+                      <span style={{ fontSize: "1.rem" }}>
                         You created on {project.createdAt}
                       </span>
                     </>

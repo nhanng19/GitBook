@@ -2,8 +2,33 @@
   text-align: center;
   position: relative;
 }
-.profileItem:not(:last-child) {
-  margin-bottom: 0.5rem;
+.nav__profile {
+  height: 3.75rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.profile_link:link,
+.profile_link:visited {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+@media screen and (max-width: 900px) {
+  .profile_link:link,
+  .profile_link:visited {
+    justify-content: center;
+    padding: 2rem;
+  }
+}
+
+.username {
+  color: black;
 }
 
 @media screen and (max-width: 900px) {
@@ -37,13 +62,12 @@
   background-color: var(--background2);
 }
 
-
 .sidebar {
   background-color: var(--nav-color);
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 0;
+  z-index: 10;
   display: flex;
   height: 100vh;
   flex-direction: column;
@@ -53,11 +77,28 @@
 }
 
 .side_nav {
+  display: block;
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
 }
 
+.profile_item:before {
+    content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--background2);
+  transform: scaleY(0);
+  transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+    background-color 0.1s;
+}
+.side_nav_item:hover::before{
+    transform: scaleY(1);
+  width: 100%;
+}
 .side_nav_link:link,
 .side_nav_link:visited {
   color: #333;
@@ -102,7 +143,23 @@
 }
 
 @media screen and (max-width: 900px) {
-  .legal {
-    display: none;
+  .side_nav {
+    display: block;
+  }
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  height: 5rem;
+  font-size: 2rem;
+  color: black;
+}
+
+@media screen and (max-width: 600px) {
+  .hamburger {
+    display: block;
   }
 }

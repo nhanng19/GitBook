@@ -31,3 +31,9 @@
 .git:hover {
   color: var(--nav-color) !important;
 }
+
+@media screen and (max-width: 600px) {
+  .container {
+
+}
+}

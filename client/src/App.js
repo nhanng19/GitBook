@@ -33,7 +33,7 @@ import Main from "./components/UI/Main";
 import "./App.css";
 import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
 import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
-import ProfileFriends from "./components/ProfileFriends/ProfileFriends";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
-    const newSocket = io(`https://calm-shelf-74011.herokuapp.com/`);
+    const newSocket = io(`https://calm-shelf-74011.herokuapp`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
@@ -80,12 +80,10 @@ function App() {
           <Route path="/profile" element={<Profile />}>
             <Route path="projects" element={<ProfileProjects />} />
             <Route path="about" element={<ProfileAbout />} />
-            <Route path="friends" element={<ProfileFriends />} />
           </Route>
           <Route path="/profile/:username" element={<Profile />}>
             <Route path="projects" element={<ProfileProjects />} />
             <Route path="about" element={<ProfileAbout />} />
-            <Route path="friends" element={<ProfileFriends />} />
           </Route>
           {/* <Route path="/friends" element={<Friends />} /> */}
           {/* <Route path="/chat" element={<ChatPage socket={socket} />} /> */}
@@ -114,7 +112,7 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-            <Main>{socket ? <div>{routes}</div> : <LoadingSpinner />}</Main>
+           {socket ? <div>{routes}</div> : <LoadingSpinner />}
           </>
         </Router>
       </React.Fragment>

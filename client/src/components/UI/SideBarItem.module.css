@@ -27,12 +27,6 @@
   transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
     background-color 0.1s;
 }
-.side_nav_item:hover::before,
-.side_nav_active::before {
-  transform: scaleY(1);
-  width: 100%;
-  /* background: #CCD6A6;     */
-}
 
 .side_nav_item:active::before {
   background-color: var(--background2);
@@ -57,12 +51,6 @@
     justify-content: center;
     padding: 2rem;
   }
-}
-
-.side_nav_link:hover {
-}
-
-.side_nav_link_active {
 }
 
 .side_nav_icon {

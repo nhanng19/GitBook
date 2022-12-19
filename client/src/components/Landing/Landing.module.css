@@ -3,6 +3,8 @@
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .left {
@@ -172,4 +174,12 @@
   50% {
     transform: translate3d(0, 5px, 0);
   }
+}
+
+
+@media screen and (max-width: 600px) {
+  .text p {
+display: none;
+}
+
 }

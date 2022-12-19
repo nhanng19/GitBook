@@ -2,5 +2,6 @@
     margin: 10px 5px 15px;
 }
 .container {
-    overflow-x: auto;
+      width: 90%;
+  margin: 3rem auto;
 }

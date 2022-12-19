@@ -4,6 +4,10 @@
   gap: 10rem;
   }
   
-  
+@media screen and (max-width: 600px) {
+  .kanbanBox {
+    display: block;
+  }
+}
   
   

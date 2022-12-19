@@ -19,11 +19,11 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
   };
 
   // Add user to DOM
-  const outputUsers = (users) => {
-    const userList = document.getElementById("user-list");
-    userList.innerHTML = `
-     <li class={styles.user}>${users[users.length - 1].username}</li>`;
-  };
+  // const outputUsers = (users) => {
+  //   const userList = document.getElementById("user-list");
+  //   userList.innerHTML = `
+  //    <li class={styles.user}>${users[users.length - 1].username}</li>`;
+  // };
   // Submit chat function
   const submitForm = (e) => {
     e.preventDefault();
@@ -42,12 +42,11 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
   useEffect(() => {
     // Get room and users
     socket.off("roomUsers").on("roomUsers", ({ room, users }) => {
-      outputUsers(users);
+    
     });
     socket.off("message").on("message", (message) => {
       outputMessage(message);
     });
-    return () => socket.off("roomUsers");
   }, [socket]);
 
   return (

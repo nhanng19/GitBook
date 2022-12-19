@@ -1,15 +1,16 @@
 .profile {
   color: var(--color-primary);
+  height: 100%;
 }
 
 .profile_top {
   /* margin-top: 56px; */
-  box-shadow: 0 1px 2px var(--shadow-1);
   background: var(--background1);
 }
 
 .profile_container {
-  max-width: 945px;
+  max-width: 100%;
+  background-color: var(--background2);
   margin: 0 auto;
 }
 

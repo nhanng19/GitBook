@@ -7,29 +7,30 @@ import Auth from "../../utils/auth";
 import useClickOutside from "../../helpers/useClickOutside";
 import { QUERY_ME } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
-
+import LoadingSpinner from "../UI/LoadingSpinner"
 const Main = (props) => {
   const { loading, data } = useQuery(QUERY_ME);
-
-  const user = data?.me;
+  const user = data?.me || {};
 
   const [visible, setVisible] = useState(false);
   const el = useRef(null);
-
+  console.log(user);
   useClickOutside(el, () => {
     setVisible(false);
   });
+  if (loading) {
+    return <LoadingSpinner/>
+  }
 
-if (loading) {
-  return <div>Loading...</div>
-}
   return (
     <>
-      {Auth.loggedIn() && <NavBar />}
-      {visible && <div className={classes.navbar_card} ref={el}></div>}
       <Content>
-        {Auth.loggedIn() && <SideBar username={user.username} />}
-        <main className={Auth.loggedIn() ? classes.main : ""}>
+        {Auth.loggedIn() && (
+          <SideBar username={user.username} picture={user.picture} />
+        )}
+        <main
+          className={props.profile === "true" ? classes.profile : classes.main}
+        >
           {props.children}
         </main>
       </Content>

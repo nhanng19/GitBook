@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
 import ProfileContainer from "../components/Profile/ProfileContainer";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import Auth from "../utils/auth";
-
+import Content from "../components/UI/Content";
+import SideBar from "../components/UI/SideBar";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+import Main from "../components/UI/Main";
 const Profile = () => {
   const { username: userParam } = useParams();
 
@@ -13,23 +15,22 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  console.log(user);
-  // let visitor = data?.me ? false : true;
 
-  // console.log(user.details)
-  // navigate to personal profile page if username is your
-  // <Navigate to="/profile" />
   let visitor = !userParam
     ? false
     : Auth.loggedIn() && Auth.getProfile().data.username === userParam
     ? false
     : true;
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  return <>{<ProfileContainer user={user} visitor={visitor} />}</>;
+  return (
+    <Main profile ="true">
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <> {<ProfileContainer user={user} visitor={visitor} />}</>
+      )}
+    </Main>
+  );
 };
 
 export default Profile;

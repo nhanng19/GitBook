@@ -6,9 +6,7 @@ import classes from "./ProfileContainer.module.css";
 import Cover from "./Cover";
 import ProfilePictureInfos from "./ProfilePictureInfos";
 import ProfileMenu from "./ProfileMenu";
-import ProfileAbout from "../ProfileAbout/ProfileAbout";
-import ProfileProjects from "../ProfileProjects/ProfileProjects";
-import ProfileFriends from "../ProfileFriends/ProfileFriends";
+
 
 const ProfileContainer = ({ user, visitor }) => {
   // const [currentDetails, setCurrentDetails] = useState(user.details);

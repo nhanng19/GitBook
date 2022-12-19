@@ -9,11 +9,10 @@ import { useMutation } from "@apollo/client";
 import { ADD_COVER } from "../../utils/mutations";
 
 const Cover = ({ cover, visitor }) => {
-  const [addCover, { error }] = useMutation(ADD_COVER);
+  const [addCover] = useMutation(ADD_COVER);
   const [coverImage, setCoverImage] = useState("");
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const [coverUrl, setCoverUrl] = useState(cover);
-  const [loading, setLoading] = useState(false);
   const menuRef = useRef(null);
   const refInput = useRef(null);
   useEffect(() => {
@@ -67,14 +66,14 @@ const Cover = ({ cover, visitor }) => {
         console.log(error);
       }
     },
-    [croppedAreaPixels]
+    [coverImage, croppedAreaPixels]
   );
   //   const profileCover = null;
   const coverRef = useRef(null);
   const [width, setWidth] = useState();
   useEffect(() => {
     setWidth(coverRef.current.clientWidth);
-  }, [window.innerWidth]);
+  }, []);
 
   const updateCoverPicture = async () => {
     try {
@@ -93,7 +92,6 @@ const Cover = ({ cover, visitor }) => {
         }
       ).then((r) => r.json());
       // await setCoverUrl(data.url);
-      const spinner = await setLoading(true);
       await addCover({
         variables: {
           cover: data.url,
@@ -105,6 +103,7 @@ const Cover = ({ cover, visitor }) => {
         setCoverImage("");
         setCoverUrl(data.url);
       }, 1000);
+      await window.location.reload()
     } catch (err) {
       setErrorCover(err.response.data.error);
     }
@@ -164,7 +163,7 @@ const Cover = ({ cover, visitor }) => {
           />
         </div>
       )}
-      {cover && !coverImage && <img src={coverUrl} className={classes.cover} alt="" />}
+      {cover && !coverImage && <img data-aos = "fade-in" src={coverUrl} className={classes.cover} alt="" />}
       {!visitor && (
         <div className={classes.update_cover_wrapper}>
           <div
