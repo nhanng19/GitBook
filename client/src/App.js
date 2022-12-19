@@ -63,7 +63,7 @@ function App() {
 
   useEffect(() => {
     const jwttoken = Auth.getToken();
-  const newSocket = io(`http://localhost:3000`, {
+  const newSocket = io(`http://gitbook-by-exodia.herokuapp.com`, {
     auth: {
       token: jwttoken,
     },
