@@ -14,7 +14,7 @@ const Main = (props) => {
 
   const [visible, setVisible] = useState(false);
   const el = useRef(null);
-  console.log(user);
+  // console.log(user);
   useClickOutside(el, () => {
     setVisible(false);
   });

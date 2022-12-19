@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { composeWithDevTools } from 'redux-devtools-extension';
 // import rootReducer from "./reducers";
 // const store = createStore(rootReducer, composeWithDevTools());
-
+import { Provider } from "react-redux";
+import store from "./store/store";
 import {
   ApolloClient,
   InMemoryCache,
@@ -33,7 +34,7 @@ import Main from "./components/UI/Main";
 import "./App.css";
 import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
 import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
-
+import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -61,11 +62,23 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    const jwttoken = Auth.getToken();
+  const newSocket = io(`http://localhost:3000`, {
+    auth: {
+      token: jwttoken,
+    },
+  });
+setSocket(newSocket);
+
+newSocket.on("connect", () => {
+  console.log("succesfully connected with socket.io server");
+  console.log("frontend socket connection", newSocket);
+});
+  
     Aos.init({ duration: 1000 });
-    const newSocket = io(`http://localhost:3000`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+
+  }, []);
+
 
   let routes;
 
@@ -109,13 +122,11 @@ function App() {
   }
   return (
     <ApolloProvider client={client}>
-      <React.Fragment>
+      <Provider store={store}>
         <Router>
-          <>
-           {socket ? <div>{routes}</div> : <LoadingSpinner />}
-          </>
+          <div>{routes}</div>
         </Router>
-      </React.Fragment>
+      </Provider>
     </ApolloProvider>
   );
 }
