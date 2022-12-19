@@ -2,6 +2,8 @@ import styles from "./Chat.module.css";
 import { useEffect, useRef, useState } from "react";
 import useClickOutside from "../../helpers/useClickOutside";
 const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
+  const [text, setText] = useState("");
+  
   const popup = useRef(null);
   useClickOutside(popup, () => {
     setChat(false);
@@ -16,13 +18,13 @@ const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
   // console.log(socket);
 
   // function to recieve data from server and render it onto page
-  const outputMessage = (message) => {
+  const outputMessage = ({username, text, time}) => {
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-    div.innerHTML = `<p class="userMessage">${message.username} <span>${message.time}</span></p>
+    div.innerHTML = `<p class="userMessage">${username} <span>${time}</span></p>
         <p className="text">
-            ${message.text}
+            ${text}
         </p>`;
 
     chatRoom.appendChild(div);
@@ -41,36 +43,42 @@ const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
     // retrieve text to send
     const msg = e.target.elements.msg.value;
     // sending message to server
-    socket.emit("chatMessage", msg);
+    socket.emit("chatMessage", { msg, room });
     // Clear input and focus on input area
     e.target.elements.msg.value = "";
     e.target.elements.msg.focus();
   };
 
   // Join chatroom
-
-  // useEffect(() => {
-  //   //   // Get room and users
-  //   // socket.on("roomUsers", ({ room, users }) => {});
-  //   socket.off("message").on("message", (message) => {
-  //     outputMessage(message);
-  //   });
-  //   socket.on("message", (message) => {
-  //     outputMessage(message);
-  //   });
-  //   return () => socket.off("roomUsers");
-  // }, []);
+  // test
 
   useEffect(() => {
-    socket.once("announce", (message) => {
-      console.log(message);
-    });
-    socket.once("welcome", (message) => {
-      console.log(message);
-    });
+    //   // Get room and users
+    // socket.on("roomUsers", ({ room, users }) => {});
+    // socket.off("message").on("message", (message) => {
+    //   outputMessage(message);
+    // });
+      // socket.off('message');
+      socket.on("message", ({username, text, time}) => {
+          outputMessage({username, text, time});
+        });
+        
+      
+    
+    // return () => socket.off("roomUsers");
   }, []);
   
-
+  useEffect(() => {
+    socket.once("announce", ({text, time, username}) => {
+      outputMessage({username, text, time})
+    });
+    socket.once("welcome", ({text, time, username}) => {
+      outputMessage({username, text, time})
+    });
+  }, [])
+const textChangeHandler = (e) => {
+setText(e.target.value)
+}
   return (
     <>
       <div className={styles.overlay}></div>
@@ -94,10 +102,12 @@ const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
             <input
               id="msg"
               type="text"
+              // value={text}
               placeholder="Enter message"
               className={styles.chatText}
               autoComplete="off"
               required
+              onChange={textChangeHandler}
             ></input>
             <button className={styles.sendBtn} type="submit">
               Send

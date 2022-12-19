@@ -68,7 +68,7 @@ const registerSocketServer = (server) => {
 
       // Broadcast when a user connects
       socket.broadcast
-        // .to(room)
+        .to(room)
         .emit(
           "announce",
           formatMessage("ChatBot", `${username} has joined the chat`)
@@ -84,12 +84,14 @@ const registerSocketServer = (server) => {
     });
 
     // Listen for ChatMessage
-    // socket.on("chatMessage", (msg) => {
-    //   const user = getCurrentUser(socket.id);
+    socket.on("chatMessage", ({msg, room}) => {
+      // const user = getCurrentUser(socket.id);
+      const username = socket.user.data.username
+      
 
-    //   io.emit("message", formatMessage(user.username, msg));
-    //   // io.to(user.room).emit("message", formatMessage(user.username, msg));
-    // });
+      // io.emit("message", formatMessage(user.username, msg));
+      io.emit("message", formatMessage(username, msg));
+    });
 
     // Broadcast when a user disconnect
     socket.on("disconnect", () => {
