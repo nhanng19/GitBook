@@ -41,7 +41,6 @@ const getRoomUsers = (room) => {
       users.push({ socketId: key, username: value.username });
     }
   });
-  // console.log(usersInRoom);
   return users;
 };
 module.exports = {

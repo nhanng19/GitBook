@@ -52,6 +52,7 @@ const ProjectView = ({
       socket.emit("leaveRoom", { username, room });
       console.log("user left");
     }
+    socket.emit('updateUser', {room});
   }, [chat]);
 
   useEffect(() => {
@@ -76,6 +77,9 @@ const ProjectView = ({
       const picture = null
       outputMessage({ message, picture });
     });
+    socket.on('emitUsers', (gettingUsers) => {
+      console.log(gettingUsers)
+    })
   }, []);
   const returnPicture = ({message, picture}) => {
     if (picture) {

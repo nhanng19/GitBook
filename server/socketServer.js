@@ -1,10 +1,13 @@
-const { User } = require('./models');
+const { User } = require("./models");
 const authSocket = require("./utils/authSocket");
 const {
   newConnectionHandler,
   joiningRoomHandler,
 } = require("./socketHandlers/newConnectionHandler");
-const {disconnectHandler, leaveRoomHandler} = require("./socketHandlers/disconnectHandler");
+const {
+  disconnectHandler,
+  leaveRoomHandler,
+} = require("./socketHandlers/disconnectHandler");
 // const directMessageHandler = require("./socketHandlers/directMessageHandler");
 // const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
 
@@ -28,8 +31,8 @@ const registerSocketServer = (server) => {
   });
 
   const emitOnlineUsers = () => {
-    const onlineUsers = serverStore.getOnlineUsers();
-    io.emit("online-users", { onlineUsers });
+    // const onlineUsers = serverStore.getOnlineUsers();
+    // io.emit("online-users", { onlineUsers });
     // io.emit("online-users", "hellow");
   };
 
@@ -44,14 +47,13 @@ const registerSocketServer = (server) => {
     //   directMessageHandler(socket, data);
     // });
     socket.on("leaveRoom", ({ username, room }) => {
-      
-      leaveRoomHandler(socket.id, room)
+      leaveRoomHandler(socket.id, room);
       // console.log("user left");
       // console.log(`${username} has left room ${room}`);
       socket.leave(room);
       const gettingUsers = roomStore.getRoomUsers(room);
       console.log("users in the room", gettingUsers);
-      
+
       io.to(room).emit(
         "announce",
         formatMessage("ChatBot", `${username} has left the chat`)
@@ -77,7 +79,7 @@ const registerSocketServer = (server) => {
 
       // Welcome current user
       socket.emit("welcome", formatMessage("Admin", `Welcome ${username}`));
-          // console.log('is this.. rendering twice?');
+      // console.log('is this.. rendering twice?');
       // io.to(user.room).emit("roomUsers", {
       //   room: user.room,
       //   users: getRoomUsers(user.room),
@@ -85,24 +87,27 @@ const registerSocketServer = (server) => {
     });
 
     // Listen for ChatMessage
-    socket.on("chatMessage", async ({msg, room}) => {
+    socket.on("chatMessage", async ({ msg, room }) => {
       // const user = getCurrentUser(socket.id);
-      const username = socket.user.data.username 
-      
+      const username = socket.user.data.username;
 
       // const sender = User.findOne({ username }).select('-__v -password')
       const sender = await User.findOne({
         username: username,
       });
-      const picUrl = sender.picture
-      const message = formatMessage(username, msg)
+      const picUrl = sender.picture;
+      const message = formatMessage(username, msg);
       console.log(message);
       // io.emit("message", formatMessage(user.username, msg));
       io.emit("message", {
         message: message,
-        picture : picUrl,
-      }
-      );
+        picture: picUrl,
+      });
+    });
+
+    socket.on("updateUser", ({room}) => {
+      const gettingUsers = roomStore.getRoomUsers(room);
+      socket.to(room).emit('emitUsers', gettingUsers);
     });
 
     // Broadcast when a user disconnect
