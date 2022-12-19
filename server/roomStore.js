@@ -20,7 +20,7 @@ const userJoin = ({socketId, room, username}) => {
 //     return users.find(user => user.id === id);
 // };
 
-function userLeave(id) {
+const userLeave = (id) => {
   const index = users.findIndex((user) => user.id === id);
 
   if (index != -1) {
@@ -36,7 +36,7 @@ const getRoomUsers = (room) => {
       users.push({ socketId: key, username: value.username });
     }
   });
-console.log(usersInRoom);
+// console.log(usersInRoom);
   return users;
 };
 module.exports = {

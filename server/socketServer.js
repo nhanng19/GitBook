@@ -1,5 +1,8 @@
 const authSocket = require("./utils/authSocket");
-const {newConnectionHandler, joiningRoomHandler} = require("./socketHandlers/newConnectionHandler");
+const {
+  newConnectionHandler,
+  joiningRoomHandler,
+} = require("./socketHandlers/newConnectionHandler");
 const disconnectHandler = require("./socketHandlers/disconnectHandler");
 // const directMessageHandler = require("./socketHandlers/directMessageHandler");
 // const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
@@ -32,21 +35,27 @@ const registerSocketServer = (server) => {
   io.on("connection", (socket) => {
     // console.log(socket.id);
     // console.log(socket.user.data);
-    
+
     newConnectionHandler(socket, io);
     // emitOnlineUsers();
-
 
     // socket.on("direct-message", (data) => {
     //   directMessageHandler(socket, data);
     // });
-    socket.on("leaveRoom", ({ username, room }) => {});
+    socket.on("leaveRoom", ({ username, room }) => {
+      console.log("user left");
+      console.log(`${username} has left room ${room}`);
+      socket.leave(room);
+      io.to(room).emit(
+        "message",
+        formatMessage("Admin", `${username} has left the chat`)
+      );
+    });
 
     socket.on("joinRoom", ({ username, room }) => {
-
       joiningRoomHandler(socket.id, username, room);
       // joiningRoomHandler(socket, "test");
-      
+
       socket.join(room);
 
       const gettingUsers = roomStore.getRoomUsers(room);
@@ -61,10 +70,7 @@ const registerSocketServer = (server) => {
         );
 
       // Welcome current user
-      socket.emit(
-        "welcome",
-        formatMessage("Admin", `Welcome ${username}`)
-      );
+      socket.emit("welcome", formatMessage("Admin", `Welcome ${username}`));
 
       // io.to(user.room).emit("roomUsers", {
       //   room: user.room,

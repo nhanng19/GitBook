@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Kanban from "../Kanban/Kanban";
 import Chat from "../Chat/Chat";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import styles from "./ProjectView.module.css";
 import { FaComment } from "react-icons/fa";
+import useClickOutside from "../../helpers/useClickOutside";
 const ProjectView = ({
   name,
   description,
@@ -23,13 +24,19 @@ const ProjectView = ({
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  
+
   const user = data?.me || data?.user || {};
-  const [chat, showChat] = useState(false);
-  const toggleChat = () => {
-    showChat(!chat);
-  };
-  
+  const [chat, setChat] = useState(false);
+
+  const username = user.username;
+  const room = projectId;
+  useEffect(() => {
+    if (!chat) {
+      socket.emit("leaveRoom", { username, room });
+      console.log('user left')
+    }
+  }, [chat]);
+
   return (
     <>
       {loading ? (
@@ -48,7 +55,10 @@ const ProjectView = ({
           <div>
             <ul className={styles.list}>
               <li>
-                <button className={styles.showChat} onClick={toggleChat}>
+                <button
+                  className={styles.showChat}
+                  onClick={() => setChat(true)}
+                >
                   <FaComment />
                 </button>
               </li>
@@ -60,8 +70,8 @@ const ProjectView = ({
               socket={socket}
               roomId={projectId}
               currentName={user.username}
-              showChat={toggleChat}
-              chat = {chat}
+              chat={chat}
+              setChat={setChat}
             />
           )}
         </>

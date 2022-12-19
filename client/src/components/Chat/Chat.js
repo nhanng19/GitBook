@@ -1,6 +1,13 @@
 import styles from "./Chat.module.css";
-import { useEffect } from "react";
-const Chat = ({ roomId, currentName, socket, chat, showChat }) => {
+import { useEffect, useRef, useState } from "react";
+import useClickOutside from "../../helpers/useClickOutside";
+const Chat = ({ roomId, currentName, socket, chat, setChat }) => {
+
+  const popup = useRef(null);
+  useClickOutside(popup, () => {
+    setChat(false)
+  });
+
   const username = currentName;
   const room = roomId;
 
@@ -44,7 +51,7 @@ const Chat = ({ roomId, currentName, socket, chat, showChat }) => {
   // Join chatroom
 
   useEffect(() => {
-  //   // Get room and users
+    //   // Get room and users
     // socket.on("roomUsers", ({ room, users }) => {});
     socket.off("message").on("message", (message) => {
       outputMessage(message);
@@ -59,23 +66,21 @@ const Chat = ({ roomId, currentName, socket, chat, showChat }) => {
     socket.on("announce", (message) => {
       console.log(message);
     });
-    socket.on('welcome', (message) => {
+    socket.on("welcome", (message) => {
       console.log(message);
-    })
+    });
   }, []);
 
   useEffect(() => {
     if (chat) {
       socket.emit("joinRoom", { username, room });
-    } else {
-      socket.emit("leaveRoom", { username, room });
     }
-  }, [chat]);
+  }, []);
 
   return (
     <>
-      <div onClick={showChat} className={styles.overlay}></div>
-      <div data-aos="fade-down" className={styles.container}>
+      <div className={styles.overlay}></div>
+      <div data-aos="fade-down" ref={popup} className={styles.container}>
         <div className={styles.rightSideBar}>
           <h2 className={styles.sideHeader}>Active Users:</h2>
           <hr></hr>
