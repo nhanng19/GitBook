@@ -76,7 +76,9 @@ newSocket.on("connect", () => {
 });
   
     Aos.init({ duration: 1000 });
+
   }, []);
+
 
   let routes;
 
