@@ -1,21 +1,35 @@
 const serverStore = require("../serverStore");
+const roomStore = require("../roomStore");
+
 // const friendsUpdate = require("../socketHandlers/updates/friends");
 
 const newConnectionHandler = async (socket, io) => {
-  const userDetails = socket.user.data
-  
+  const userDetails = socket.user.data;
 
   serverStore.addNewConnectedUser({
     socketId: socket.id,
     userId: userDetails._id,
   });
-  
 
   // update pending friends invitations list
-//   friendsUpdate.updateFriendsPendingInvitations(userDetails.userId);
+  //   friendsUpdate.updateFriendsPendingInvitations(userDetails.userId);
 
   // update friends list
-//   friendsUpdate.updateFriends(userDetails.userId);
+  //   friendsUpdate.updateFriends(userDetails.userId);
 };
 
-module.exports = newConnectionHandler;
+const joiningRoomHandler = async (socketId, username, room) => {
+  // const userId = id;
+  // const username = name;
+  // const roomId = room;
+  
+  
+
+  roomStore.userJoin({
+    room: room,
+    username: username,
+    socketId: socketId,
+  });
+};
+
+module.exports = { newConnectionHandler, joiningRoomHandler };

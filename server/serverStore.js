@@ -1,4 +1,5 @@
 const connectedUsers = new Map();
+const usersInRoom = new Map();
 
 let io = null;
 
@@ -9,6 +10,11 @@ const setSocketServerInstance = (ioInstance) => {
 const getSocketServerInstance = () => {
   return io;
 };
+// const userJoin = ({room, username}) => {
+//   usersInRoom.set(room, { username });
+//   console.log(`Users joined in ${room}`)
+//   console.log(usersInRoom);
+// }
 
 const addNewConnectedUser = ({ socketId, userId }) => {
   connectedUsers.set(socketId, { userId });
@@ -37,6 +43,7 @@ const getActiveConnections = (userId) => {
 };
 
 const getOnlineUsers = () => {
+  // console.log('is this working?')
   const onlineUsers = [];
 
   connectedUsers.forEach((value, key) => {

@@ -1,13 +1,13 @@
 import styles from "./Chat.module.css";
 import { useEffect } from "react";
-const Chat = ({ roomId, currentName, socket, showChat }) => {
+const Chat = ({ roomId, currentName, socket, chat, showChat }) => {
   const username = currentName;
   const room = roomId;
-  
-//   socket.on('online-users', (message) => {
-//   console.log(message);
-// })
 
+  //   socket.on('online-users', (message) => {
+  //   console.log(message);
+  // })
+  // console.log(socket);
 
   // function to recieve data from server and render it onto page
   const outputMessage = (message) => {
@@ -35,23 +35,42 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
     // retrieve text to send
     const msg = e.target.elements.msg.value;
     // sending message to server
-    // socket.emit("chatMessage", msg);
+    socket.emit("chatMessage", msg);
     // Clear input and focus on input area
     e.target.elements.msg.value = "";
     e.target.elements.msg.focus();
   };
 
   // Join chatroom
-  // socket.emit("joinRoom", { username, room });
 
-  // useEffect(() => {
-    // Get room and users
+  useEffect(() => {
+  //   // Get room and users
     // socket.on("roomUsers", ({ room, users }) => {});
-    // socket.off("message").on("message", (message) => {
-    //   outputMessage(message);
-    // });
-    // return () => socket.off("roomUsers");
-  // }, []);
+    socket.off("message").on("message", (message) => {
+      outputMessage(message);
+    });
+    socket.on("message", (message) => {
+      outputMessage(message);
+    });
+    return () => socket.off("roomUsers");
+  }, []);
+
+  useEffect(() => {
+    socket.on("announce", (message) => {
+      console.log(message);
+    });
+    socket.on('welcome', (message) => {
+      console.log(message);
+    })
+  }, []);
+
+  useEffect(() => {
+    if (chat) {
+      socket.emit("joinRoom", { username, room });
+    } else {
+      socket.emit("leaveRoom", { username, room });
+    }
+  }, [chat]);
 
   return (
     <>

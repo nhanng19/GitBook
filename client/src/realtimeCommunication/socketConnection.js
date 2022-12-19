@@ -12,18 +12,18 @@ let socket = null;
 export const connectWithSocketServer = (token) => {
   const jwtToken = token
 
-  socket = io("http://localhost:3000",
-   {
-    auth: {
-      token: jwtToken,
-    },
-  }
-  );
+  // socket = io("http://localhost:3000",
+  //  {
+  //   auth: {
+  //     token: jwtToken,
+  //   },
+  // }
+  // );
 
-  socket.on("connect", () => {
-    console.log("succesfully connected with socket.io server");
-    console.log("frontend socket connection", socket.id);
-  });
+  // socket.on("connect", () => {
+  //   console.log("succesfully connected with socket.io server");
+  //   console.log("frontend socket connection", socket.id);
+  // });
 
 //   socket.on("friends-invitations", (data) => {
 //     const { pendingInvitations } = data;

@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { composeWithDevTools } from 'redux-devtools-extension';
 // import rootReducer from "./reducers";
 // const store = createStore(rootReducer, composeWithDevTools());
-
+import { Provider } from "react-redux";
+import store from "./store/store";
 import {
   ApolloClient,
   InMemoryCache,
@@ -35,7 +36,6 @@ import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
 import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
 import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
-
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -59,29 +59,24 @@ const client = new ApolloClient({
 
 // need to change localhost to heroku link
 function App() {
-
   const [socket, setSocket] = useState(null);
-  useEffect(() => {
-    // const userDetails = localStorage.getItem("user");
-  Aos.init({ duration: 1000 });
-    // if (!userDetails) {
-    //   // logout();
-    // } else {
-      // setUserDetails(JSON.parse(userDetails));
-      // connectWithSocketServer(JSON.parse(userDetails));
-      const token = Auth.getToken();
 
-      connectWithSocketServer(token);
-    // }
-  }, [socket]);
-  // useEffect(() => {
-  //   Aos.init({ duration: 1000 });
-  //   // const newSocket = io(`http://localhost:3000`);
-  //   // setSocket(newSocket);
-    
-  //   // return () => newSocket.close()
-  // }, []);
-  // console.log(socket)
+  useEffect(() => {
+    const jwttoken = Auth.getToken();
+  const newSocket = io(`http://localhost:3000`, {
+    auth: {
+      token: jwttoken,
+    },
+  });
+setSocket(newSocket);
+
+newSocket.on("connect", () => {
+  console.log("succesfully connected with socket.io server");
+  console.log("frontend socket connection", newSocket);
+});
+  
+    Aos.init({ duration: 1000 });
+  }, []);
 
   let routes;
 
@@ -109,7 +104,7 @@ function App() {
           <Route path="/profiles/:username" element={<Profile />} />
           <Route
             path="/projects/:projectId"
-            element={<SingleProject socket="socket" />}
+            element={<SingleProject socket={socket} />}
           />
         </Routes>
       </>
@@ -125,14 +120,11 @@ function App() {
   }
   return (
     <ApolloProvider client={client}>
-      <React.Fragment>
+      <Provider store={store}>
         <Router>
-          <>
-          {/* TODO: add spinner */}
-           <div>{routes}</div>
-          </>
+          <div>{routes}</div>
         </Router>
-      </React.Fragment>
+      </Provider>
     </ApolloProvider>
   );
 }

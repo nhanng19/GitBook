@@ -23,12 +23,13 @@ const ProjectView = ({
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-
+  
   const user = data?.me || data?.user || {};
   const [chat, showChat] = useState(false);
   const toggleChat = () => {
     showChat(!chat);
   };
+  
   return (
     <>
       {loading ? (
@@ -42,7 +43,7 @@ const ProjectView = ({
             owner={owner}
             repo={repo}
             projectId={projectId}
-              project={project}
+            project={project}
           />
           <div>
             <ul className={styles.list}>
@@ -56,10 +57,11 @@ const ProjectView = ({
 
           {chat && (
             <Chat
-              // socket={socket}
+              socket={socket}
               roomId={projectId}
               currentName={user.username}
               showChat={toggleChat}
+              chat = {chat}
             />
           )}
         </>

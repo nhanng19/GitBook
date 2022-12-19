@@ -1,17 +1,12 @@
-const authSocket = require('./utils/authSocket')
-const newConnectionHandler = require("./socketHandlers/newConnectionHandler");
+const authSocket = require("./utils/authSocket");
+const {newConnectionHandler, joiningRoomHandler} = require("./socketHandlers/newConnectionHandler");
 const disconnectHandler = require("./socketHandlers/disconnectHandler");
 // const directMessageHandler = require("./socketHandlers/directMessageHandler");
 // const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
 
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers,
-} = require("./utils/users");
 const formatMessage = require("./utils/message");
 
+const roomStore = require("./roomStore");
 const serverStore = require("./serverStore");
 
 const registerSocketServer = (server) => {
@@ -24,51 +19,65 @@ const registerSocketServer = (server) => {
 
   serverStore.setSocketServerInstance(io);
 
-    io.use((socket, next) => {
-      authSocket(socket, next);
-    });
+  io.use((socket, next) => {
+    authSocket(socket, next);
+  });
 
   const emitOnlineUsers = () => {
     const onlineUsers = serverStore.getOnlineUsers();
     io.emit("online-users", { onlineUsers });
     // io.emit("online-users", "hellow");
   };
+
   io.on("connection", (socket) => {
-    console.log(socket.id);
-    console.log(socket.user.data)
-        newConnectionHandler(socket, io);
-        emitOnlineUsers();
- 
-    // socket.on("joinRoom", ({ username, room }) => {
-    //   const user = userJoin(socket.id, username, room);
+    // console.log(socket.id);
+    // console.log(socket.user.data);
+    
+    newConnectionHandler(socket, io);
+    // emitOnlineUsers();
 
-    //   socket.join(user.room);
 
-    //   // Broadcast when a user connects
-    //   socket.broadcast
-    //     .to(user.room)
-    //     .emit(
-    //       "message",
-    //       formatMessage("ChatBot", `${user.username} has joined the chat`)
-    //     );
-
-    //   // Welcome current user
-    //   socket.broadcast.emit(
-    //     "message",
-    //     formatMessage("Admin", `Welcome ${user.username}`)
-    //   );
-
-    //   io.to(user.room).emit("roomUsers", {
-    //     room: user.room,
-    //     users: getRoomUsers(user.room),
-    //   });
+    // socket.on("direct-message", (data) => {
+    //   directMessageHandler(socket, data);
     // });
+    socket.on("leaveRoom", ({ username, room }) => {});
+
+    socket.on("joinRoom", ({ username, room }) => {
+
+      joiningRoomHandler(socket.id, username, room);
+      // joiningRoomHandler(socket, "test");
+      
+      socket.join(room);
+
+      const gettingUsers = roomStore.getRoomUsers(room);
+      console.log("users in the room", gettingUsers);
+
+      // Broadcast when a user connects
+      socket.broadcast
+        .to(room)
+        .emit(
+          "announce",
+          formatMessage("ChatBot", `${username} has joined the chat`)
+        );
+
+      // Welcome current user
+      socket.emit(
+        "welcome",
+        formatMessage("Admin", `Welcome ${username}`)
+      );
+
+      // io.to(user.room).emit("roomUsers", {
+      //   room: user.room,
+      //   users: getRoomUsers(user.room),
+      // });
+    });
 
     // Listen for ChatMessage
     // socket.on("chatMessage", (msg) => {
     //   const user = getCurrentUser(socket.id);
 
-    //   io.to(user.room).emit("message", formatMessage(user.username, msg));
+    //   io.emit("message", formatMessage(user.username, msg));
+    //   // io.to(user.room).emit("message", formatMessage(user.username, msg));
     // });
 
     // Broadcast when a user disconnect
@@ -86,7 +95,7 @@ const registerSocketServer = (server) => {
   });
 
   setInterval(() => {
-    emitOnlineUsers();
+    // emitOnlineUsers();
   }, [1000 * 8]);
 };
 
