@@ -41,6 +41,12 @@ padding: 10px 15px;
  margin: 5px 0px;
 }
 
+.chatImage {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+    
+}
 .userMessage {
     display: inline;
     /* text-decoration: underline; */
@@ -57,5 +63,5 @@ padding: 10px 15px;
 .text {
     display:inline-block;
     margin-left: 10px;
-
+    margin-top: 7px;
 }

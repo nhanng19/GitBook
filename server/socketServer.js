@@ -53,7 +53,7 @@ const registerSocketServer = (server) => {
       
       io.to(room).emit(
         "announce",
-        formatMessage("Admin", `${username} has left the chat`)
+        formatMessage("ChatBot", `${username} has left the chat`)
       );
     });
 

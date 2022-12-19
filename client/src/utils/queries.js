@@ -5,6 +5,7 @@ export const QUERY_USERS = gql`
     users {
       _id
       username
+      picture
       email
       projects {
         _id

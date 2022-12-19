@@ -74,12 +74,23 @@ const ProjectView = ({
       outputMessage({ username, text, time });
     });
   }, []);
+  const returnPicture = (username) => {
+    if (username === "Admin") {
+      return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/admin_ih4chs.png";
+    } else if (username === "ChatBot") {
+      return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/chatbot_vpx8vl.png"
+    } else {
+      
+    }
+  };
 
   const outputMessage = ({ username, text, time }) => {
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-    div.innerHTML = `<p class="userMessage">${username}</p><span class="spanChat">(${time})</span>
+    const picUrl = returnPicture(username);
+
+    div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${username}</p><span class="spanChat">(${time})</span>
         <p class="text">
             ${text}
         </p>`;
