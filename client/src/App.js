@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
-    const newSocket = io(`https://calm-shelf-74011.herokuapp.com`);
+    const newSocket = io(`http://localhost:3000`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
