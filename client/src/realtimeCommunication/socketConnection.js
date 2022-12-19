@@ -1,10 +1,10 @@
 import io from "socket.io-client";
-// import {
-//   setPendingFriendsInvitations,
-//   setFriends,
-//   setOnlineUsers,
-// } from "../store/actions/friendsActions";
-// import store from "../store/store";
+import {
+  setPendingFriendsInvitations,
+  setFriends,
+  setOnlineUsers,
+} from "../store/actions/friendsActions";
+import store from "../store/store";
 // import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 
 let socket = null;
@@ -22,7 +22,7 @@ export const connectWithSocketServer = (token) => {
 
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");
-    console.log("sockethandler", socket.id);
+    console.log("frontend socket connection", socket.id);
   });
 
 //   socket.on("friends-invitations", (data) => {
@@ -35,10 +35,11 @@ export const connectWithSocketServer = (token) => {
 //     store.dispatch(setFriends(friends));
 //   });
 
-//   socket.on("online-users", (data) => {
-//     const { onlineUsers } = data;
-//     store.dispatch(setOnlineUsers(onlineUsers));
-//   });
+  socket.on("online-users", (data) => {
+    const { onlineUsers } = data;
+    store.dispatch(setOnlineUsers(onlineUsers));
+    console.log(onlineUsers);
+  });
 
 //   socket.on("direct-chat-history", (data) => {
 //     console.log(data);

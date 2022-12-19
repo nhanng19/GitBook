@@ -1,6 +1,6 @@
 const authSocket = require('./utils/authSocket')
 const newConnectionHandler = require("./socketHandlers/newConnectionHandler");
-// const disconnectHandler = require("./socketHandlers/disconnectHandler");
+const disconnectHandler = require("./socketHandlers/disconnectHandler");
 // const directMessageHandler = require("./socketHandlers/directMessageHandler");
 // const directChatHistoryHandler = require("./socketHandlers/directChatHistoryHandler");
 
@@ -28,16 +28,16 @@ const registerSocketServer = (server) => {
       authSocket(socket, next);
     });
 
-//   const emitOnlineUsers = () => {
-//     const onlineUsers = serverStore.getOnlineUsers();
-//     io.emit("online-users", { onlineUsers });
-//     // io.emit("online-users", "hellow");
-//   };
+  const emitOnlineUsers = () => {
+    const onlineUsers = serverStore.getOnlineUsers();
+    io.emit("online-users", { onlineUsers });
+    // io.emit("online-users", "hellow");
+  };
   io.on("connection", (socket) => {
     console.log(socket.id);
     console.log(socket.user.data)
         newConnectionHandler(socket, io);
-        // emitOnlineUsers();`
+        emitOnlineUsers();
  
     // socket.on("joinRoom", ({ username, room }) => {
     //   const user = userJoin(socket.id, username, room);
@@ -72,21 +72,22 @@ const registerSocketServer = (server) => {
     // });
 
     // Broadcast when a user disconnect
-    // socket.on("disconnect", () => {
-    //   const user = userLeave(socket.id);
+    socket.on("disconnect", () => {
+      disconnectHandler(socket);
+      // const user = userLeave(socket.id);
 
-    //   if (user) {
-    //     io.to(user.room).emit(
-    //       "message",
-    //       formatMessage("Admin", `${user.username} has left the chat`)
-    //     );
-    //   }
-    // });
+      // if (user) {
+      //   io.to(user.room).emit(
+      //     "message",
+      //     formatMessage("Admin", `${user.username} has left the chat`)
+      //   );
+      // }
+    });
   });
 
-//   setInterval(() => {
-//     emitOnlineUsers();
-//   }, [1000 * 8]);
+  setInterval(() => {
+    emitOnlineUsers();
+  }, [1000 * 8]);
 };
 
 module.exports = {
