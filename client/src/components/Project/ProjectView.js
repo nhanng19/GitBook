@@ -56,7 +56,7 @@ const ProjectView = ({
 
           {chat && (
             <Chat
-              socket={socket}
+              // socket={socket}
               roomId={projectId}
               currentName={user.username}
               showChat={toggleChat}

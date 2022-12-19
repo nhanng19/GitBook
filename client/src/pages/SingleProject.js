@@ -25,7 +25,7 @@ const SingleProject = ({ socket }) => {
             repo={project.projectRepo}
             projectId={project._id}
             project={project}
-            socket={socket}
+            // socket={socket}
           />
         )}
       </Main>

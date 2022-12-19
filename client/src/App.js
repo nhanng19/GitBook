@@ -33,6 +33,7 @@ import Main from "./components/UI/Main";
 import "./App.css";
 import ProfileProjects from "./components/ProfileProjects/ProfileProjects";
 import ProfileAbout from "./components/ProfileAbout/ProfileAbout";
+import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
 
 const httpLink = createHttpLink({
@@ -58,16 +59,29 @@ const client = new ApolloClient({
 
 // need to change localhost to heroku link
 function App() {
-  const [socket, setSocket] = useState(null);
 
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
-    Aos.init({ duration: 1000 });
-    const newSocket = io(`http://localhost:3000`);
-    setSocket(newSocket);
+    // const userDetails = localStorage.getItem("user");
+  Aos.init({ duration: 1000 });
+    // if (!userDetails) {
+    //   // logout();
+    // } else {
+      // setUserDetails(JSON.parse(userDetails));
+      // connectWithSocketServer(JSON.parse(userDetails));
+      const token = Auth.getToken();
+
+      connectWithSocketServer(token);
+    // }
+  }, [socket]);
+  // useEffect(() => {
+  //   Aos.init({ duration: 1000 });
+  //   // const newSocket = io(`http://localhost:3000`);
+  //   // setSocket(newSocket);
     
-    return () => newSocket.close()
-  }, []);
-  console.log(socket)
+  //   // return () => newSocket.close()
+  // }, []);
+  // console.log(socket)
 
   let routes;
 
@@ -95,7 +109,7 @@ function App() {
           <Route path="/profiles/:username" element={<Profile />} />
           <Route
             path="/projects/:projectId"
-            element={<SingleProject socket={socket} />}
+            element={<SingleProject socket="socket" />}
           />
         </Routes>
       </>
@@ -114,7 +128,8 @@ function App() {
       <React.Fragment>
         <Router>
           <>
-           {socket ? <div>{routes}</div> : <LoadingSpinner />}
+          {/* TODO: add spinner */}
+           <div>{routes}</div>
           </>
         </Router>
       </React.Fragment>

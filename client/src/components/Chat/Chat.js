@@ -35,23 +35,23 @@ const Chat = ({ roomId, currentName, socket, showChat }) => {
     // retrieve text to send
     const msg = e.target.elements.msg.value;
     // sending message to server
-    socket.emit("chatMessage", msg);
+    // socket.emit("chatMessage", msg);
     // Clear input and focus on input area
     e.target.elements.msg.value = "";
     e.target.elements.msg.focus();
   };
 
   // Join chatroom
-  socket.emit("joinRoom", { username, room });
+  // socket.emit("joinRoom", { username, room });
 
-  useEffect(() => {
+  // useEffect(() => {
     // Get room and users
-    socket.on("roomUsers", ({ room, users }) => {});
-    socket.off("message").on("message", (message) => {
-      outputMessage(message);
-    });
-    return () => socket.off("roomUsers");
-  }, []);
+    // socket.on("roomUsers", ({ room, users }) => {});
+    // socket.off("message").on("message", (message) => {
+    //   outputMessage(message);
+    // });
+    // return () => socket.off("roomUsers");
+  // }, []);
 
   return (
     <>
