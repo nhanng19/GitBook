@@ -74,7 +74,7 @@ newSocket.on("connect", () => {
   console.log("succesfully connected with socket.io server");
   console.log("frontend socket connection", newSocket);
 });
-  
+  // trying to change some code
     Aos.init({ duration: 1000 });
   }, []);
 
