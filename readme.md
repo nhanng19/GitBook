@@ -35,10 +35,12 @@ GitHub API makes it possible for us to connect your GitBook account to GitHub. Y
 
 ### MongoDB and Mongoose
 MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. This powerful database stores all GitBook projects, creating an open-source platform for all GitBook users to participate and contribute. 
+
 ![](/assets/mongo.PNG)
 
 ### GraphQL and Apollo
 GraphQL is a query language for APIs and a runtime for fulfilling those queries with existing data. GraphQL provides a complete and understandable description of the data in any API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools. With organized queries, we were able to write functional mutation for our kanban board.
+
 ![](/assets/kanban.PNG)
 
 ### Socket.io
