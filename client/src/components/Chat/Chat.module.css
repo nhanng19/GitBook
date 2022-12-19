@@ -78,7 +78,7 @@
   border: 3px solid rgba(59, 59, 59, 0.377);
   margin: 2%;
   overflow-y: scroll;
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 20px;
 }
 
@@ -92,14 +92,14 @@
   height: 100%;
   width: 92%;
   background-color: white;
-  font-size: 2rem;
+  font-size: 1.7rem;
   line-height: 100%;
   padding: 1rem;
 }
 
 .sendBtn {
   width: auto;
-  font-size: 2.2rem;
+  font-size: 2rem;
   background-color: var(--nav-color);
   margin: auto;
   padding: 0.5rem;
