@@ -14,7 +14,7 @@ Want an easy way to chat and collaborate with other developers? Tired of switchi
 
 ## INSTALLATION
 
-You can start collborating with like minded invdividuals by creating an account on our deployed website here.
+You can start collaborating with like minded invdividuals by creating an account on our deployed website here.
 
 ### TO RUN LOCALLY
 1. Clone/download the code in this repo
