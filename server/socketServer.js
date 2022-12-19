@@ -99,7 +99,7 @@ const registerSocketServer = (server) => {
       const message = formatMessage(username, msg);
       console.log(message);
       // io.emit("message", formatMessage(user.username, msg));
-      io.emit("message", {
+      io.to(room).emit("message", {
         message: message,
         picture: picUrl,
       });
