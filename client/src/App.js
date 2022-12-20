@@ -63,22 +63,20 @@ function App() {
 
   useEffect(() => {
     const jwttoken = Auth.getToken();
-  const newSocket = io(`http://localhost:3000`, {
-    auth: {
-      token: jwttoken,
-    },
-  });
-setSocket(newSocket);
+    const newSocket = io(`http://localhost:3000`, {
+      auth: {
+        token: jwttoken,
+      },
+    });
+    setSocket(newSocket);
 
-newSocket.on("connect", () => {
-  console.log("succesfully connected with socket.io server");
-  console.log("frontend socket connection", newSocket);
-});
-  
+    newSocket.on("connect", () => {
+      console.log("succesfully connected with socket.io server");
+      console.log("frontend socket connection", newSocket);
+    });
+
     Aos.init({ duration: 1000 });
-
   }, []);
-
 
   let routes;
 
