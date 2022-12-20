@@ -52,7 +52,12 @@ const registerSocketServer = (server) => {
       // console.log(`${username} has left room ${room}`);
       socket.leave(room);
       const gettingUsers = roomStore.getRoomUsers(room);
-      console.log("users in the room", gettingUsers);
+      let users = [];
+      gettingUsers.forEach((p) => {
+        users.push(p)
+      })
+      
+      socket.emit("emitUsers", users);
 
       io.to(room).emit(
         "announce",
@@ -60,14 +65,21 @@ const registerSocketServer = (server) => {
       );
     });
 
-    socket.on("joinRoom", ({ username, room }) => {
-      joiningRoomHandler(socket.id, username, room);
+    socket.on("joinRoom", ({ username, room, profile }) => {
+      joiningRoomHandler(socket.id, username, room, profile);
       // joiningRoomHandler(socket, "test");
       console.log(socket.user.data);
       socket.join(room);
 
+      // const gettingUsers = roomStore.getRoomUsers(room);
+      // console.log("users in the room", gettingUsers);
       const gettingUsers = roomStore.getRoomUsers(room);
-      console.log("users in the room", gettingUsers);
+      let users = [];
+      gettingUsers.forEach((p) => {
+        users.push(p)
+      })
+      
+      socket.emit("emitUsers", users);
 
       // Broadcast when a user connects
       socket.broadcast
@@ -105,9 +117,9 @@ const registerSocketServer = (server) => {
       });
     });
 
-    socket.on("updateUser", ({room}) => {
-      const gettingUsers = roomStore.getRoomUsers(room);
-      socket.to(room).emit('emitUsers', gettingUsers);
+    socket.on("updateUser", async ({ room }) => {
+      
+
     });
 
     // Broadcast when a user disconnect

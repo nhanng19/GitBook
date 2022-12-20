@@ -10,8 +10,8 @@ const getSocketServerInstance = () => {
   return io;
 };
 
-const userJoin = ({ socketId, room, username }) => {
-  usersInRoom.set(socketId, { username, room });
+const userJoin = ({ socketId, room, username, profile }) => {
+  usersInRoom.set(socketId, { username, room, profile });
   console.log(`Users joined in ${room}`);
   console.log(usersInRoom);
 };
@@ -38,7 +38,7 @@ const getRoomUsers = (room) => {
   const users = [];
   usersInRoom.forEach((value, key) => {
     if (value.room === room) {
-      users.push({ socketId: key, username: value.username });
+      users.push(value.profile);
     }
   });
   return users;

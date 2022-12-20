@@ -41,18 +41,19 @@ const ProjectView = ({
 
   const username = user.username;
   const room = projectId;
-
+  const profile = user.picture;
   useEffect(() => {
     if (chat) {
-      socket.emit("joinRoom", { username, room });
-      console.log("user joined");
-    }
-    if (!chat) {
+      socket.emit("joinRoom", { username, room, profile });
+      // socket.emit("updateUser", { room });
+      console.log(room);
+    } else {
       // socket.off('joinRoom');
+
       socket.emit("leaveRoom", { username, room });
-      console.log("user left");
+      // socket.emit("updateUser", { room });
+      console.log(room);
     }
-    socket.emit('updateUser', {room});
   }, [chat]);
 
   useEffect(() => {
@@ -70,22 +71,25 @@ const ProjectView = ({
   }, []);
   useEffect(() => {
     socket.on("announce", (message) => {
-      const picture = null
+      const picture = null;
       outputMessage({ message, picture });
     });
     socket.on("welcome", (message) => {
-      const picture = null
+      const picture = null;
       outputMessage({ message, picture });
     });
-    socket.on('emitUsers', (gettingUsers) => {
-      console.log(gettingUsers)
-    })
+    socket.on("emitUsers", (users) => {
+      for (const user of users) {
+        outputUsers(user);
+      }
+      
+    });
   }, []);
-  const returnPicture = ({message, picture}) => {
+  const returnPicture = ({ message, picture }) => {
     if (picture) {
-      return picture
-    };
-    
+      return picture;
+    }
+
     if (message.username === "Admin") {
       return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/admin_ih4chs.png";
     } else if (message.username === "ChatBot") {
@@ -99,9 +103,8 @@ const ProjectView = ({
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-    
-      const picUrl = returnPicture({message, picture});
-    
+
+    const picUrl = returnPicture({ message, picture });
 
     div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${message.username}</p><span class="spanChat">(${message.time})</span>
         <p class="text">
@@ -111,7 +114,19 @@ const ProjectView = ({
     chatRoom.appendChild(div);
     chatRoom.scrollTo(0, 9999);
   };
-
+  const outputUsers = (user) => {
+    const userList = document.getElementById("user-list");
+    const li = document.createElement('li');
+    li.classList.add('userEach');
+    const img = document.createElement('img');
+    img.classList.add('profileRender')
+    img.setAttribute('src', user)
+    li.appendChild(img);
+    userList.appendChild(li);
+    userList.scrollTo(0, 9999);
+    
+     
+  };
   const submitForm = (e) => {
     e.preventDefault();
     // retrieve text to send

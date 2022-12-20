@@ -10,11 +10,6 @@ const setSocketServerInstance = (ioInstance) => {
 const getSocketServerInstance = () => {
   return io;
 };
-// const userJoin = ({room, username}) => {
-//   usersInRoom.set(room, { username });
-//   console.log(`Users joined in ${room}`)
-//   console.log(usersInRoom);
-// }
 
 const addNewConnectedUser = ({ socketId, userId }) => {
   connectedUsers.set(socketId, { userId });

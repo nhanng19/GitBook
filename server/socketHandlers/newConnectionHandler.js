@@ -18,7 +18,7 @@ const newConnectionHandler = async (socket, io) => {
   //   friendsUpdate.updateFriends(userDetails.userId);
 };
 
-const joiningRoomHandler = async (socketId, username, room) => {
+const joiningRoomHandler = async (socketId, username, room, profile) => {
   // const userId = id;
   // const username = name;
   // const roomId = room;
@@ -29,6 +29,7 @@ const joiningRoomHandler = async (socketId, username, room) => {
     room: room,
     username: username,
     socketId: socketId,
+    profile: profile,
   });
 };
 
