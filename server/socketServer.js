@@ -54,9 +54,9 @@ const registerSocketServer = (server) => {
       const gettingUsers = roomStore.getRoomUsers(room);
       let users = [];
       gettingUsers.forEach((p) => {
-        users.push(p)
-      })
-      
+        users.push(p);
+      });
+
       socket.emit("emitUsers", users);
 
       io.to(room).emit(
@@ -76,21 +76,26 @@ const registerSocketServer = (server) => {
       const gettingUsers = roomStore.getRoomUsers(room);
       let users = [];
       gettingUsers.forEach((p) => {
-        users.push(p)
-      })
-      
-      socket.emit("emitUsers", users);
+        users.push(p);
+      });
+      const length = users.length - 1
+      const lastItem = users[length];
+      socket.emit("emitUsers", lastItem);
 
       // Broadcast when a user connects
-      socket.broadcast
-        .to(room)
-        .emit(
-          "announce",
-          formatMessage("ChatBot", `${username} has joined the chat`)
-        );
+      const chatBotMessage = formatMessage(
+        "ChatBot",
+        `${username} has joined the chat`
+      );
+      console.log(users)
+      socket.broadcast.to(room).emit("announce", {chatBotMessage, users});
 
+      const adminMessage = formatMessage(
+        `Admin`,
+        `Welcome ${username}!`
+      )
       // Welcome current user
-      socket.emit("welcome", formatMessage("Admin", `Welcome ${username}`));
+      socket.emit("welcome", {adminMessage, users});
       // console.log('is this.. rendering twice?');
       // io.to(user.room).emit("roomUsers", {
       //   room: user.room,
@@ -117,10 +122,7 @@ const registerSocketServer = (server) => {
       });
     });
 
-    socket.on("updateUser", async ({ room }) => {
-      
-
-    });
+    socket.on("updateUser", async ({ room }) => {});
 
     // Broadcast when a user disconnect
     socket.on("disconnect", () => {

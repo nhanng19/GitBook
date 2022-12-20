@@ -22,6 +22,7 @@ const ProjectView = ({
   projectId,
   project,
   socket,
+  title,
 }) => {
   const { username: userParam } = useParams();
 
@@ -70,19 +71,22 @@ const ProjectView = ({
     // return () => socket.off("roomUsers");
   }, []);
   useEffect(() => {
-    socket.on("announce", (message) => {
+    socket.on("announce", ({ chatBotMessage, users }) => {
+      console.log("announce", chatBotMessage)
       const picture = null;
-      outputMessage({ message, picture });
+      outputMessage({ message: chatBotMessage, picture });
+      outputUsers(users);
     });
-    socket.on("welcome", (message) => {
+    socket.on("welcome", ({ adminMessage, users }) => {
+      console.log('welcome', adminMessage)
       const picture = null;
-      outputMessage({ message, picture });
+      outputMessage({ message: adminMessage, picture });
+      outputUsers(users);
     });
-    socket.on("emitUsers", (users) => {
-      for (const user of users) {
-        outputUsers(user);
-      }
-      
+    socket.on("emitUsers", (user) => {
+      // for (const user of users) {
+      // outputUsers(user);
+      // }
     });
   }, []);
   const returnPicture = ({ message, picture }) => {
@@ -103,7 +107,7 @@ const ProjectView = ({
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-
+console.log("pic", message);
     const picUrl = returnPicture({ message, picture });
 
     div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${message.username}</p><span class="spanChat">(${message.time})</span>
@@ -114,18 +118,20 @@ const ProjectView = ({
     chatRoom.appendChild(div);
     chatRoom.scrollTo(0, 9999);
   };
-  const outputUsers = (user) => {
+  const outputUsers = (users) => {
     const userList = document.getElementById("user-list");
-    const li = document.createElement('li');
-    li.classList.add('userEach');
-    const img = document.createElement('img');
-    img.classList.add('profileRender')
-    img.setAttribute('src', user)
-    li.appendChild(img);
-    userList.appendChild(li);
+    userList.innerHTML = "";
+    for (let i = 0; i < users.length; i++) {
+      const li = document.createElement("li");
+      li.classList.add("userEach");
+      const img = document.createElement("img");
+      img.classList.add("profileRender");
+      img.setAttribute("src", users[i]);
+      li.appendChild(img);
+      userList.appendChild(li);
+    }
+
     userList.scrollTo(0, 9999);
-    
-     
   };
   const submitForm = (e) => {
     e.preventDefault();
@@ -183,7 +189,7 @@ const ProjectView = ({
                 </div>
                 <div className={classes.mainChat}>
                   <div className={classes.header}>
-                    <p className={classes.roomId}>Current Room: {room}</p>
+                    <p className={classes.roomId}>Current Room: {name}</p>
                     {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
                   </div>
                   <div className={classes.chatBox} id="chatBox"></div>
