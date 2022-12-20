@@ -14,7 +14,7 @@ Want an easy way to chat and collaborate with other developers? Tired of switchi
 
 ## INSTALLATION
 
-You can start collaborating with like minded invdividuals by creating an account on our deployed website [here](http://exodia-gitbook.herokuapp.com/).
+You can start collaborating with like minded invdividuals by creating an account on our deployed website [here](https://git-book-exodia.herokuapp.com/).
 
 ### TO RUN LOCALLY
 1. Clone/download the code in this repo
@@ -113,7 +113,7 @@ This project was uploaded to GitHub at the following repository link:
 [https://github.com/nhanng19/GitBook/](https://github.com/nhanng19/GitBook/)
 
 Deployed Link:
-[http://exodia-gitbook.herokuapp.com/](http://exodia-gitbook.herokuapp.com/)
+[http://exodia-gitbook.herokuapp.com/](https://git-book-exodia.herokuapp.com/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/nhanng19/GitBook.svg?style=for-the-badge
 [contributors-url]: https://github.com/nhanng19/GitBook/graphs/contributors
