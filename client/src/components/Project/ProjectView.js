@@ -22,6 +22,7 @@ const ProjectView = ({
   projectId,
   project,
   socket,
+  title,
 }) => {
   const { username: userParam } = useParams();
 
@@ -41,18 +42,19 @@ const ProjectView = ({
 
   const username = user.username;
   const room = projectId;
-
+  const profile = user.picture;
   useEffect(() => {
     if (chat) {
-      socket.emit("joinRoom", { username, room });
-      console.log("user joined");
-    }
-    if (!chat) {
+      socket.emit("joinRoom", { username, room, profile });
+      // socket.emit("updateUser", { room });
+      console.log(room);
+    } else {
       // socket.off('joinRoom');
+
       socket.emit("leaveRoom", { username, room });
-      console.log("user left");
+      // socket.emit("updateUser", { room });
+      console.log(room);
     }
-    socket.emit('updateUser', {room});
   }, [chat]);
 
   useEffect(() => {
@@ -69,23 +71,29 @@ const ProjectView = ({
     // return () => socket.off("roomUsers");
   }, []);
   useEffect(() => {
-    socket.on("announce", (message) => {
-      const picture = null
-      outputMessage({ message, picture });
+    socket.on("announce", ({ chatBotMessage, users }) => {
+      console.log("announce", chatBotMessage)
+      const picture = null;
+      outputMessage({ message: chatBotMessage, picture });
+      outputUsers(users);
     });
-    socket.on("welcome", (message) => {
-      const picture = null
-      outputMessage({ message, picture });
+    socket.on("welcome", ({ adminMessage, users }) => {
+      console.log('welcome', adminMessage)
+      const picture = null;
+      outputMessage({ message: adminMessage, picture });
+      outputUsers(users);
     });
-    socket.on('emitUsers', (gettingUsers) => {
-      console.log(gettingUsers)
-    })
+    socket.on("emitUsers", (user) => {
+      // for (const user of users) {
+      // outputUsers(user);
+      // }
+    });
   }, []);
-  const returnPicture = ({message, picture}) => {
+  const returnPicture = ({ message, picture }) => {
     if (picture) {
-      return picture
-    };
-    
+      return picture;
+    }
+
     if (message.username === "Admin") {
       return "https://res.cloudinary.com/dc2xiz0gi/image/upload/v1671478621/profileImgs/admin_ih4chs.png";
     } else if (message.username === "ChatBot") {
@@ -99,9 +107,8 @@ const ProjectView = ({
     const chatRoom = document.getElementById("chatBox");
     const div = document.createElement("div");
     div.classList.add("message");
-    
-      const picUrl = returnPicture({message, picture});
-    
+console.log("pic", message);
+    const picUrl = returnPicture({ message, picture });
 
     div.innerHTML = `<img class="chatImage" src='${picUrl}'><p class="userMessage">${message.username}</p><span class="spanChat">(${message.time})</span>
         <p class="text">
@@ -111,7 +118,21 @@ const ProjectView = ({
     chatRoom.appendChild(div);
     chatRoom.scrollTo(0, 9999);
   };
+  const outputUsers = (users) => {
+    const userList = document.getElementById("user-list");
+    userList.innerHTML = "";
+    for (let i = 0; i < users.length; i++) {
+      const li = document.createElement("li");
+      li.classList.add("userEach");
+      const img = document.createElement("img");
+      img.classList.add("profileRender");
+      img.setAttribute("src", users[i]);
+      li.appendChild(img);
+      userList.appendChild(li);
+    }
 
+    userList.scrollTo(0, 9999);
+  };
   const submitForm = (e) => {
     e.preventDefault();
     // retrieve text to send
@@ -168,7 +189,7 @@ const ProjectView = ({
                 </div>
                 <div className={classes.mainChat}>
                   <div className={classes.header}>
-                    <p className={classes.roomId}>Current Room: {room}</p>
+                    <p className={classes.roomId}>Current Room: {name}</p>
                     {/* <button className={styles.leaveBtn}>Leave Chat</button> */}
                   </div>
                   <div className={classes.chatBox} id="chatBox"></div>

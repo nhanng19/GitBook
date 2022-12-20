@@ -19,7 +19,7 @@ const ProjectInfo = (props) => {
         <h4 className={classes.projectDescription}>{props.description}</h4>
         <p className={classes.projectDate}>
           Created {props.date} by{" "}
-          <Link to={`/profile/${props.owner}/projects`}>
+          <Link title={props.title} to={`/profile/${props.owner}/projects`}>
             {props.owner}
           </Link>
         </p>
