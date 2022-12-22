@@ -32,6 +32,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
 // Starting Apollo Server
 const startApolloServer = async (typeDefs, resolvers) => {
   const apolloServer = new ApolloServer({
