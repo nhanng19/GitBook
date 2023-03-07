@@ -113,7 +113,7 @@ This project was uploaded to GitHub at the following repository link:
 [https://github.com/nhanng19/GitBook/](https://github.com/nhanng19/GitBook/)
 
 Deployed Link:
-[http://exodia-gitbook.herokuapp.com/](https://git-book-exodia.herokuapp.com/)
+[http://gitbookcms.herokuapp.com/](https://gitbookcms.herokuapp.com/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/nhanng19/GitBook.svg?style=for-the-badge
 [contributors-url]: https://github.com/nhanng19/GitBook/graphs/contributors
